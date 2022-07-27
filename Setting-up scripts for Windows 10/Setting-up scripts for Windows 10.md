@@ -17,8 +17,8 @@
 ## Get ISO
 
 Some features of Windows 10 20H1/2004 are needed here.  
-**通过  “电脑win - 系统 - 关于”  查看**  
-20H1表示Win10 2020年上半年系统，本电脑系统为21H2，即21年下半年系统  
+`通过  “电脑win - 系统 - 关于”  查看`  
+`20H1表示Win10 2020年上半年系统，本电脑系统为21H2，即21年下半年系统`  
 Build 19041.84 or later√ 操作系统内部版本 
 
 
@@ -31,7 +31,7 @@ Windows 10√
 ## Install, active and update Windows
 * Enable Virtualization in BIOS or VM √  
 1. 进入BIOS方法：联想yoga——关机按 insert键可以进入BIOS界面；  
-**大部分电脑会在开机界面上显示进入BIOS界面的方法**  
+`大部分电脑会在开机界面上显示进入BIOS界面的方法`  
 2. BIOS（basic input output system 即基本输入输出系统）设置程序是被固化到电脑主板上的ROM芯片（只读存储芯片）中的一组程序，其主要功能是为电脑提供最底层地、最直接地硬件设置和控制。
 
 * Active Windows 10 via KMS, <http://kms.nju.edu.cn/>  
@@ -52,39 +52,44 @@ systeminfo
 ```
 →结果：
 ```powershell
-主机名:           DESKTOP-HI65AUV
-OS 名称:          Microsoft Windows 10 专业教育版
+1.主机名:           DESKTOP-HI65AUV
+2.OS 名称:          Microsoft Windows 10 专业教育版
 * 操作系统（英语：Operating System，简称OS）是管理和控制计算机硬件与软件资源的计算机程序，是直接运行在“裸机”上的最基本的系统软件，任何其他软件都必须在操作系统的支持下才能运行。
-OS 版本:          10.0.19044 暂缺 Build 19044
-OS 制造商:        Microsoft Corporation
-OS 配置:          独立工作站
-OS 构建类型:      Multiprocessor Free
-注册的所有人:     XRZ
-注册的组织:       暂缺
-产品 ID:          00378-40000-00001-AA107
-初始安装日期:     2022/7/15, 19:31:13
-系统启动时间:     2022/7/25, 9:53:37
-系统制造商:       Gigabyte Technology Co., Ltd.
-系统型号:         To be filled by O.E.M.
-系统类型:         x64-based PC
-处理器:           安装了 1 个处理器。
+3.OS 版本:          10.0.19044 暂缺 Build 19044
+* 暂缺：该版本不带补丁包Service Pack，也可能不是官方正版。一般在一个软件的开发过程中，一开始有很多因素是没有考虑到的，但是随着时间的推移，软件所存在的问题会慢慢的被发现。这时候，为了对软件本身存在的存在的问题进行修复，软件开发者会发布相应的补丁,也就是修复本身存在的洞（缺陷）
+4.OS 制造商:        Microsoft Corporation
+5.OS 配置:          独立工作站
+* 独立工作站：工作站是一种高端的通用微型计算机。它是为了单用户使用并提供比个人计算机更强大的性能，尤其是在图形处理能力，任务并行方面的能力。通常配有高分辨率的大屏、多屏显示器及容量很大的内存储器和外部存储器，并且具有极强的信息和高性能的图形、图像处理功能的计算机。就是，PC会连接更厉害的大电脑，来实现更高级的功能。
+6.OS 构建类型:      Multiprocessor Free
+7.注册的所有人:     XRZ
+8.注册的组织:       暂缺
+9.产品 ID:          00378-40000-00001-AA107
+10.初始安装日期:     2022/7/15, 19:31:13
+11.系统启动时间:     2022/7/25, 9:53:37
+12.系统制造商:       Gigabyte Technology Co., Ltd.
+13.系统型号:         To be filled by O.E.M.
+14.系统类型:         x64-based PC
+15.处理器:           安装了 1 个处理器。
                   [01]: Intel64 Family 6 Model 94 Stepping 3 GenuineIntel ~4001 Mhz
-BIOS 版本:        American Megatrends Inc. F7, 2016/3/1
-Windows 目录:     C:\WINDOWS
-系统目录:         C:\WINDOWS\system32
-启动设备:         \Device\HarddiskVolume2
-系统区域设置:     zh-cn;中文(中国)
-输入法区域设置:   zh-cn;中文(中国)
-时区:             (UTC+08:00) 北京，重庆，香港特别行政区，乌鲁木齐
-物理内存总量:     32,584 MB
-可用的物理内存:   874 MB
-虚拟内存: 最大值: 39,530 MB
-虚拟内存: 可用:   5,416 MB
-虚拟内存: 使用中: 34,114 MB
-页面文件位置:     C:\pagefile.sys
-域:               WORKGROUP
-登录服务器:       \\DESKTOP-HI65AUV
-修补程序:         安装了 13 个修补程序。
+16.BIOS 版本:        American Megatrends Inc. F7, 2016/3/1
+17.Windows 目录:     C:\WINDOWS
+18.系统目录:         C:\WINDOWS\system32
+19.启动设备:         \Device\HarddiskVolume2
+20.系统区域设置:     zh-cn;中文(中国)
+21.输入法区域设置:   zh-cn;中文(中国)
+22.时区:             (UTC+08:00) 北京，重庆，香港特别行政区，乌鲁木齐
+23.物理内存总量:     32,584 MB
+* 物理内存是指由于安装内存条而获得的临时储存空间。主要作用是在计算机运行时为操作系统和各种程序提供临时储存
+24.可用的物理内存:   874 MB
+25.虚拟内存: 最大值: 39,530 MB
+* 虚拟内存是计算机系统内存管理的一种技术，即匀出一部分硬盘空间来充当内存使用。当内存耗尽时，电脑就会自动调用硬盘来充当内存，以缓解内存的紧张。
+26.虚拟内存: 可用:   5,416 MB
+27.虚拟内存: 使用中: 34,114 MB
+28.页面文件位置:     C:\pagefile.sys
+29.域:               WORKGROUP
+* 工作组：工作组（Work Group）就是将不同的电脑按功能分别列入不同的组中，以方便管理。你可以随便加入同一网络上的任何工作组，也可以随时离开一个工作组。“工作组”就像一个自由加入和退出的俱乐部一样。它本身的作用仅仅是提供一个“房间”，以方便网上计算机共享资源的浏览。
+30.登录服务器:       \\DESKTOP-HI65AUV
+31.修补程序:         安装了 13 个修补程序。
                   [01]: KB5013887
                   [02]: KB4562830
                   [03]: KB5003791
@@ -98,10 +103,16 @@ Windows 目录:     C:\WINDOWS
                   [11]: KB5014032
                   [12]: KB5014671
                   [13]: KB5005699
-网卡:             安装了 3 个 NIC。
+32.网卡:             安装了 3 个 NIC。
+* 台式机一般都采用内置网卡来连接网络。网卡也叫“网络适配器”，英文全称为“Network Interface Card”，简称“NIC”，它是连接计算机与网络的硬件设备。
+  网卡的功能主要有两个:一是将电脑的数据封装为帧，并通过网线(对无线网络来说就是电磁波)将数据发送到网络上去;二是接收网络上其它设备传过来的帧，并将帧重新组合成数据，发送到所在的电脑中。
+
                   [01]: Intel(R) Ethernet Connection (2) I219-V
                       连接名:      以太网
                       启用 DHCP:   是
+
+* DHCP，Dynamic Host Configuration Protocol，动态主机配置协议，是一个应用于局域网的网络协议，该协议允许服务器向客户端动态分配IP地址和配置信息。
+
                       DHCP 服务器: 192.168.1.1
                       IP 地址
                         [01]: 192.168.1.8
@@ -118,17 +129,21 @@ Windows 目录:     C:\WINDOWS
                       IP 地址
                         [01]: 172.24.32.1
                         [02]: fe80::d441:d262:ee88:9a51
-Hyper-V 要求:     已检测到虚拟机监控程序。将不显示 Hyper-V 所需的功能。
+33.Hyper-V 要求:     已检测到虚拟机监控程序。将不显示 Hyper-V 所需的功能。
 ```
 
 
 ## Enable some optional features of Windows 10
 
 * Mount Windows ISO to D: (or others)
+将ISO 挂在了C盘
 
 * Open PowerShell as an Administrator
+`Win+X按钮，选择管理员`
 
 ```powershell
+打开各项功能
+
 # .Net 2.5 and 3
 DISM /Online /Enable-Feature /FeatureName:NetFx3 /All /LimitAccess /Source:D:\sources\sxs
 
@@ -140,33 +155,41 @@ Enable-WindowsOptionalFeature -Online -FeatureName SMB1Protocol -All
 
 # Telnet
 DISM /Online /Enable-Feature /FeatureName:TelnetClient
-
 ```
+启动方法(以SMB1为例)：  
+1.代码Enable-WindowsOptionalFeature -Online -FeatureName SMB1Protocol -All  
+2.用 win+R键，输入control.exe，打开控制面板，在单击/点击“ 程序和功能”图标。单击/点击左侧的“ 打开或关闭Windows功能”链接，勾选需要功能。
 
 ## WSL 2
 
-* Follow instructions of [this page](https://docs.microsoft.com/en-us/windows/wsl/wsl2-install)
+Windows Subsystem for Linux (WSL)
 
+* Follow instructions of [this page](https://docs.microsoft.com/en-us/windows/wsl/wsl2-install)  
+mainly:
+```powershell
+wsl --install
+```
 * Open PowerShell as an Administrator
 
 ```powershell
+设置方法同上
+
 # HyperV
 Enable-WindowsOptionalFeature -Online -FeatureName VirtualMachinePlatform -NoRestart
 Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All -NoRestart
 
 # WSL
-Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux -NoRestart
-
+Enable-WindowsOptionalFeature -Online 
+-FeatureName Microsoft-Windows-Subsystem-Linux -NoRestart
 ```
 
 Update the [WSL 2](https://docs.microsoft.com/en-us/windows/wsl/wsl2-kernel) Linux kernel if
-necessarily.
+necessarily. 
 
 Restart then set WSL 2 as default.
 
 ```powershell
 wsl --set-default-version 2
-
 ```
 
 ## Ubuntu 20.04
@@ -176,7 +199,8 @@ Search `bash` in Microsoft Store or use the following command lines.
 ```powershell
 if (!(Test-Path Ubuntu.appx -PathType Leaf))
 {
-    Invoke-WebRequest -Uri https://aka.ms/wslubuntu2004 -OutFile Ubuntu.appx -UseBasicParsing
+    Invoke-WebRequest -Uri https://aka.ms/wslubuntu2004 -OutFile Ubuntu.appx -UseBasicParsing  
+    # 通过网页下载
 }
 Add-AppxPackage .\Ubuntu.appx
 
@@ -191,7 +215,12 @@ The following command verifies the status of WSL:
 wsl -l -v
 
 ```
-
+→结果：
+```
+ C:\WINDOWS\system32> wsl -l -v
+  NAME      STATE           VERSION
+* Ubuntu    Running         2
+```
 ### Symlinks
 
 * WSL: reduce the space occupied by virtual disks
@@ -220,9 +249,10 @@ mklink /D c:\Users\wangq\data d:\data
 ## Install `winget` and `Windows Terminal`
 
 ```powershell
-if (!(Test-Path Microsoft.WindowsTerminal.msixbundle -PathType Leaf))
+if (!(Test-Path Microsoft.WindowsTerminal.msixbundle -PathType Leaf))  #此命令检查变量中存储的路径是否指向文件。
 {
     Invoke-WebRequest `
+    #获取 http web请求访问内容虽然没有curl那么主流，但一样可以成为http访问的一个选择。
         'https://github.com/microsoft/winget-cli/releases/download/v1.2.10271/Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle' `
         -OutFile 'Microsoft.DesktopAppInstaller.msixbundle'
 }
@@ -235,24 +265,26 @@ winget install -e --id Microsoft.WindowsTerminal
 winget install -e --id Microsoft.PowerShell
 
 winget install -e --id Git.Git
-
+#以上利用winget下载，windows推出的命令行安装工具——winget,全称windows package manager client
 ```
 
 Open `Windows Terminal`
 
-* Set `Settings` -> `Startup` -> `Default profile` to `PowerShell`, not `Windows PowerShell`.
+* Set `Settings` -> `Startup` -> `Default profile` to `PowerShell`, not `Windows PowerShell`. √
 
-* Set `Default terminal application` to `Windows Terminal`.
+* Set `Default terminal application` to `Windows Terminal`. 暂时找不到
 
-* Hide unneeded `Profiles`.
+* Hide unneeded `Profiles`.  暂时找不到
 
 ## Optional: Adjusting Windows
 
 Works with Windows 10 or 11.
 
 ```powershell
+# 创建~/Scripts文件目录，并且挂载到该目录下
 mkdir -p ~/Scripts
 cd ~/Scripts
+# 将网页中内容clone下来，用于循环克隆git子项目 
 git clone --recursive https://github.com/wang-q/windows
 
 cd ~/Scripts/windows/setup
@@ -267,63 +299,7 @@ Log in to the Microsoft Store and get updates from there.
 
 ## Optional: winget-pkgs
 
-```powershell
-# programming
-# winget install -s winget -e --id AdoptOpenJDK.OpenJDK
-winget install -s winget -e --id Oracle.JavaRuntimeEnvironment
-winget install -s winget -e --id Oracle.JDK.18
-# winget install -s winget -e --id Microsoft.dotnet
-winget install -s winget -e --id StrawberryPerl.StrawberryPerl
-# winget install -e --id Python.Python
-winget install -s winget -e --id RProject.R
-# winget install -s winget -e --id RProject.Rtools
-# winget install -s winget-e --id OpenJS.NodeJS.LTS
-winget install -s winget -e --id RStudio.RStudio.OpenSource
-winget install -s winget -e --id Kitware.CMake
 
-# development
-winget install -s winget -e --id GitHub.GitHubDesktop
-winget install -s winget -e --id WinSCP.WinSCP
-winget install -s winget -e --id Microsoft.VisualStudioCode
-winget install -s winget -e --id ScooterSoftware.BeyondCompare4
-winget install -s winget -e --id JetBrains.Toolbox
-winget install -s winget -e --id Clement.bottom
-# winget install -e --id WinFsp.WinFsp
-# winget install -e --id SSHFS-Win.SSHFS-Win
-# \\sshfs\REMUSER@HOST[\PATH]
-
-# winget install -e --id Docker.DockerDesktop
-
-# winget install -e --id VMware.WorkstationPlayer
-
-winget install -s winget -e --id Canonical.Multipass
-
-# utils
-winget install -s winget -e --id voidtools.Everything
-winget install -s winget -e --id Bandisoft.Bandizip
-winget install -s msstore Rufus # need v3.18 or higher
-winget install -s winget -e --id QL-Win.QuickLook
-winget install -s winget -e --id AntibodySoftware.WizTree
-winget install -s winget -e --id HandBrake.HandBrake
-# winget install -s winget -e --id Microsoft.PowerToys
-winget install -s winget -e --id qBittorrent.qBittorrent
-winget install -s winget -e --id IrfanSkiljan.IrfanView
-
-# apps
-winget install -s winget -e --id Mozilla.Firefox
-winget install -s winget -e --id Tencent.WeChat
-winget install -s winget -e --id Tencent.TencentMeeting
-winget install -s winget -e --id Tencent.QQ
-winget install -s winget -e --id NetEase.CloudMusic
-winget install -s winget -e --id Youdao.YoudaoDict
-winget install -s winget -e --id Baidu.BaiduNetdisk
-winget install -s winget -e --id stax76.mpvdotnet
-winget install -s winget -e --id Zotero.Zotero
-
-# winget install -e --id Adobe.AdobeAcrobatReaderDC
-# winget install -e --id Alibaba.DingTalk
-
-```
 
 ## Optional: Windows 7 games
 
@@ -340,74 +316,10 @@ winget install -s winget -e --id Zotero.Zotero
 
 ## Optional: sysinternals
 
-* Add `$HOME/bin` to Path
-* Open PowerShell as an Administrator
 
-```powershell
-mkdir $HOME/bin
-
-# Add to Path
-[Environment]::SetEnvironmentVariable(
-    "Path",
-    [Environment]::GetEnvironmentVariable("Path", [EnvironmentVariableTarget]::Machine) + ";$HOME\bin",
-    [EnvironmentVariableTarget]::Machine)
-
-```
-
-* Download and extract
-
-```powershell
-scoop install unzip
-
-$array = "DU", "ProcessExplorer", "ProcessMonitor", "RAMMap"
-
-foreach ($app in $array) {
-    aria2c.exe -c "https://download.sysinternals.com/files/$app.zip"
-}
-
-foreach ($app in $array) {
-    unzip "$app.zip" -d $HOME/bin -x Eula.txt
-}
-
-rm $HOME/bin/*.chm
-rm $HOME/bin/*64.exe
-rm $HOME/bin/*64a.exe
-
-```
 
 ## Optional: QuickLook Plugins
 
-<https://github.com/QL-Win/QuickLook/wiki/Available-Plugins>
-
-```powershell
-# epub
-$url = (
-curl.exe -fsSL https://api.github.com/repos/QL-Win/QuickLook.Plugin.EpubViewer/releases/latest |
-    jq -r '.assets[0].browser_download_url'
-)
-curl.exe -LO $url
-
-# office
-$url = (
-curl.exe -fsSL https://api.github.com/repos/QL-Win/QuickLook.Plugin.OfficeViewer/releases/latest |
-    jq -r '.assets[0].browser_download_url'
-)
-curl.exe -LO $url
-
-# folder
-$url = (
-curl.exe -fsSL https://api.github.com/repos/adyanth/QuickLook.Plugin.FolderViewer/releases/latest |
-    jq -r '.assets[0].browser_download_url'
-)
-curl.exe -LO $url
-
-```
-
-Select the `qlplugin` file and press `Spacebar` to install the plugin.
 
 ## Directory Organization
-
-* [`packer/`](packer/): Scripts for building a Windows 10 box for Parallels.
-
-* [`setup/`](setup/): Scripts for setting-up Windows.
 
