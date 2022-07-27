@@ -56,6 +56,10 @@ deb-src https://mirrors.ustc.edu.cn/ubuntu/ focal main restricted universe multi
 1. deb行是相对于二进制软件包的，您可以使用进行安装apt。
 2. deb-src相对于源代码包（由下载apt-get source $package），然后进行编译。
 仅当您要自己编译某些软件包或检查源代码中是否有错误时，才需要源软件包。普通用户不需要包含此类存储库。
+3.main:完全的自由软件。
+restricted:不完全的自由软件。
+universe:ubuntu官方不提供支持与补丁，全靠社区支持。
+muitiverse：非自由软件，完全不提供支持和补丁。
 
 
 
