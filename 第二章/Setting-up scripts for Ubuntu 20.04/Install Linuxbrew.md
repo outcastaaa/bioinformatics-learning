@@ -64,9 +64,42 @@ fi
 source $HOME/.bashrc
 #source：使当前shell读入路径为filepath的shell文件并依次执行文件中的所有语句，通常用于重新执行刚修改的初始化文件，使之立即生效，而不必注销并重新登录
 
-#表示安装成功：
-#xuruizhi@LAPTOP-VVGKELBI:~$ brew --version
-#Homebrew 3.4.11
-#Homebrew/homebrew-core (git revision 04c73a4f47a; last commit 2022-05-15)
+```
 
+### 遇到的问题
+
+```
+From https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-core
+ * [new branch]              master     -> origin/master
+fatal: Could not resolve HEAD to a revision
+Warning: /home/linuxbrew/.linuxbrew/bin is not in your PATH.
+Instructions on how to configure your shell for Homebrew
+  can be found in the 'Next steps' section below.
+==> Installation successful!
+```
+官方给的解决办法：
+```
+==> Next steps:
+- Run these two commands in your terminal to add Homebrew to your PATH:
+    echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> /home/xuruizhi/.profile
+    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+- Run these commands in your terminal to add the non-default Git remotes for Homebrew/brew and Homebrew/homebrew-core:
+    echo 'export HOMEBREW_BREW_GIT_REMOTE="https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/brew.git"' >> /home/xuruizhi/.profile
+    echo 'export HOMEBREW_CORE_GIT_REMOTE="https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-core.git"' >> /home/xuruizhi/.profile
+    export HOMEBREW_BREW_GIT_REMOTE="https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/brew.git"
+    export HOMEBREW_CORE_GIT_REMOTE="https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-core.git"
+- Install Homebrew's dependencies if you have sudo access:
+    sudo apt-get install build-essential
+  For more information, see:
+    https://docs.brew.sh/Homebrew-on-Linux
+```
+网上的解决办法：
+```
+xuruizhi@LAPTOP-VVGKELBI:~$ git -C $(brew --repository homebrew/core) checkout master
+Branch 'master' set up to track remote branch 'master' from 'origin'.
+Already on 'master'
+xuruizhi@LAPTOP-VVGKELBI:~$ brew update
+HOMEBREW_BREW_GIT_REMOTE set: using https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/brew.git for Homebrew/brew Git remote.
+HOMEBREW_CORE_GIT_REMOTE set: using https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-core.git for Homebrew/core Git remote.
+Already up-to-date
 ```
