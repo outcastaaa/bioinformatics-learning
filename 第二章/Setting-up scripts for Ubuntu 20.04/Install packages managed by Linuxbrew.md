@@ -188,6 +188,7 @@ brew tap wang-q/tap
 
 # download tools
 brew install aria2 curl wget
+#wget 是一个从网络上自动下载文件的自由工具，支持通过 HTTP、HTTPS、FTP 三个最常见的 TCP/IP协议 下载，并可以使用 HTTP 代理。
 
 # gnu
 brew install gnu-sed gnu-tar
@@ -210,12 +211,15 @@ fi
 hash pandoc 2>/dev/null || {
     brew install pandoc
 }
+#Pandoc是由John MacFarlane开发的标记语言转换工具，可实现不同标记语言间的格式转换
 #相当于直接安装
 
 
 hash gnuplot 2>/dev/null || {
     brew install gnuplot
 }
+#Gnuplot是一个命令行的交互式绘图工具（command-driven interactive function plotting program）。用户通过输入命令，可以逐步设置或修改绘图环境，并以图形描述数据或函数，借由图形做更进一步的分析。
+
 
 hash dot 2>/dev/null || {
     brew install graphviz
@@ -224,6 +228,8 @@ hash dot 2>/dev/null || {
 hash convert 2>/dev/null || {
     brew install imagemagick
 }
+#ImageMagick是一个免费的创建、编辑、合成图片的软件。它可以读取、转换、写入多种格式的图片。图片切割、颜色替换、各种效果的应用，图片的旋转、组合，文本，直线，多边形，椭圆，曲线，附加到图片伸展旋转。
+
 
 # weird dependancies by Cairo.pm 安装依赖项
 # brew install linuxbrew/xorg/libpthread-stubs linuxbrew/xorg/renderproto linuxbrew/xorg/kbproto linuxbrew/xorg/xextproto
@@ -231,3 +237,38 @@ hash convert 2>/dev/null || {
 # gtk+3
 # brew install gsettings-desktop-schemas gtk+3 adwaita-icon-theme gobject-introspection
 ```
+### 安装结果：
+![tupian](./pictures/%E5%9B%BE%E7%89%878.png)
+### 遇到问题
+如果找不到bottle，可以使用brew config语句，看domain的配置，可更改配置
+```
+HOMEBREW_VERSION: 3.5.6
+ORIGIN: https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/brew.git
+HEAD: 0b030b74e2ac518bd0bc4158f96c449198f9957f
+Last commit: 13 days ago
+Core tap ORIGIN: https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-core.git
+Core tap HEAD: 995d52418d43ea95d1f03082a96a1b9c80ad74ab
+Core tap last commit: 8 days ago
+Core tap branch: master
+HOMEBREW_PREFIX: /home/linuxbrew/.linuxbrew
+HOMEBREW_BOTTLE_DOMAIN: https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles
+HOMEBREW_BREW_GIT_REMOTE: https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/brew.git
+HOMEBREW_CASK_OPTS: []
+HOMEBREW_CORE_GIT_REMOTE: https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-core.git
+HOMEBREW_MAKE_JOBS: 8
+HOMEBREW_NO_ANALYTICS: set
+Homebrew Ruby: 2.6.8 => /home/linuxbrew/.linuxbrew/Homebrew/Library/Homebrew/vendor/portable-ruby/2.6.8_1/bin/ruby
+CPU: octa-core 64-bit skylake
+Clang: N/A
+Git: 2.25.1 => /bin/git
+Curl: 7.68.0 => /bin/curl
+Kernel: Linux 5.10.102.1-microsoft-standard-WSL2 x86_64 GNU/Linux
+OS: Ubuntu 20.04.4 LTS (focal)
+Host glibc: 2.31
+/usr/bin/gcc: 9.4.0
+/usr/bin/ruby: N/A
+glibc: N/A
+gcc@5: 5.5.0_7
+xorg: N/A
+```
+
