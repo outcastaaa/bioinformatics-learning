@@ -370,7 +370,7 @@ stow -t "${HOME}" stow-bash -v 2
 ```
 
 # 补充内容:
-1.   configure
+1.   configure  
 ![tupian](./pictures/%E5%9B%BE%E7%89%8720.png)
-2. tty命令
+2. tty命令  
 ![tu](./pictures/%E5%9B%BE%E7%89%8721.png)
