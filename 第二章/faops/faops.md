@@ -2,7 +2,7 @@
 - [介绍](#介绍)
 - [下载](#下载)
 - [语句用法](#语句用法)
-    - [总结](##总结)
+    - [总结](#总结)
     - [Bash用法](#Bash用法)
     - [Cat用法](#Cat用法)
     - [文件/etc/apt/sources.list](#文件/etc/apt/sources.list)
