@@ -567,6 +567,224 @@ xuruizhi@DESKTOP-HI65AUV:~$ cat 2.fa
 
 >(null)
 ```
+## replace
+`replace        replace headers from a FA file      替换 header序列名`  
+
+命令faops replace 能够实现对特定序列名的替换, 也可以仅对指定序列的提取、改名并输出。   
+其中, replace.tsv 文件里名称的变换可以用制表符tab分隔开. 
+* 具体用法
+```
+xuruizhi@DESKTOP-HI65AUV:~$ faops replace
+
+faops replace - Replace headers from a FA file
+usage:
+    faops replace [options] <in.fa> <replace.tsv> <out.fa>
+
+options:
+    -s         only output sequences in the list, like `faops some` 
+    #只输出在replace.tsv 文件中的序列
+    -l INT     sequence line length [80]  
+
+<replace.tsv> is a tab-separated file containing two fields
+    original_name       replace_name
+
+in.fa  == stdin  means reading from stdin
+out.fa == stdout means writing to stdout
+```
+* 举例
+```
+xuruizhi@DESKTOP-HI65AUV:~$ cat 1.fa
+>1
+CTTTTTGTTTACCAAGGCTTTTTTTTT
+>2
+ACTGGGGTCACTGGT
+>3
+CTTGGCCAGCGTGTTGTAGGGGATGTGGCTGAT
+
+xuruizhi@DESKTOP-HI65AUV:~$ cat >replace.tsv <<EOF
+> 1   5
+> 2   6
+> EOF
+
+xuruizhi@DESKTOP-HI65AUV:~$ faops replace -s 1.fa replace.tsv 2.fa
+
+xuruizhi@DESKTOP-HI65AUV:~$ cat 2.fa
+>5
+CTTTTTGTTTACCAAGGCTTTTTTTTT
+>6
+ACTGGGGTCACTGGT
+
+# -s 只显示replace.tsv中序列，删掉该命令则都显示
+xuruizhi@DESKTOP-HI65AUV:~$ faops replace 1.fa replace.tsv 3.fa
+xuruizhi@DESKTOP-HI65AUV:~$ cat 3.fa
+>5
+CTTTTTGTTTACCAAGGCTTTTTTTTT
+>6
+ACTGGGGTCACTGGT
+>3
+CTTGGCCAGCGTGTTGTAGGGGATGTGGCTGAT
+```
+## filter        
+` filter filter fa records    过滤 FA 记录`  
+* 具体用法
+```
+xuruizhi@DESKTOP-HI65AUV:~$ faops filter
+
+faops filter - Filter fa records
+usage:
+    faops filter [options] <in.fa> <out.fa>
+
+options:
+    -a INT     pass sequences at least this big ('a'-smallest)
+    -z INT     pass sequences this size or smaller ('z'-biggest)
+    -n INT     pass sequences with fewer than this number of N's
+    -u         Unique, removes duplicated ids, keeping the first
+    -U         Upper case, converts all sequences to upper cases
+    -b         pretend to be a blocked fasta file
+    -N         convert IUPAC ambiguous codes to 'N'
+    -d         remove dashes '-'
+    -s         simplify sequence names
+    -l INT     sequence line length [80]
+
+in.fa  == stdin  means reading from stdin
+out.fa == stdout means writing to stdout
+
+Not all faFilter options were implemented.
+Names' wildcards are easily accomplished by "faops some".
+```
+* 举例  
+①　Faops filter -a  INT 输入文件.fa  输出文件.fa   
+ `筛掉短序列，留长序列，序列长度最小为INT`
+```
+xuruizhi@DESKTOP-HI65AUV:~$ cat 1.fa
+>1
+CTTTTTGTTTACCAAGGCTTTTTTTTT
+>2
+ACTGGGGTCACTGGT
+>3
+CTTGGCCAGCGTGTTGTAGGGGATGTGGCTGAT
+
+xuruizhi@DESKTOP-HI65AUV:~$ faops size 1.fa
+1       27
+2       15
+3       33
+
+xuruizhi@DESKTOP-HI65AUV:~$ faops filter -a 25 1.fa 2.fa
+
+xuruizhi@DESKTOP-HI65AUV:~$ cat 2.fa
+>1
+CTTTTTGTTTACCAAGGCTTTTTTTTT
+>3
+CTTGGCCAGCGTGTTGTAGGGGATGTGGCTGAT
+```
+②　Faops  filter -z  INT 输入文件.fa  输出文件.fa    
+`筛掉长序列，留短序列，序列长度最大为INT`
+```
+xuruizhi@DESKTOP-HI65AUV:~$ faops filter -z 30 1.fa 2.fa
+
+xuruizhi@DESKTOP-HI65AUV:~$ cat 2.fa
+>1
+CTTTTTGTTTACCAAGGCTTTTTTTTT
+>2
+ACTGGGGTCACTGGT
+```
+③　Faops  filter -n  INT 输入文件.fa  输出文件.fa  
+`清除含有 超过INT个数的 N 的序列，留含N少的序列`
+```
+xuruizhi@DESKTOP-HI65AUV:~$ cat 3.fa
+>1
+CTTTTTGTTTACCAAGGCTTTTTTTTTnnnnnnnnnn
+>2
+ACTGGGGTCACTGGTN
+>3
+CTTGGCCAGCGTGTTGTAGGGGATGTGGCTGATNNNN
+
+xuruizhi@DESKTOP-HI65AUV:~$ faops filter -n 3 3.fa 4.fa
+
+xuruizhi@DESKTOP-HI65AUV:~$ cat 4.fa
+>2
+ACTGGGGTCACTGGTN
+```
+④　Faops  filter -u  输入文件.fa  输出文件.fa  
+`Unique，删除重复id的序列，保留第一个`
+```
+xuruizhi@DESKTOP-HI65AUV:~$ cat 3.fa
+>1
+CTTTTTGTTTACCAAGGCTTTTTTTTTnnn
+>2
+ACTGGGGTCACTGGTN
+>3
+CTTGGCCAGCGTGTTG
+>2
+CTTGGCCAGC
+
+xuruizhi@DESKTOP-HI65AUV:~$ faops filter -u 3.fa 4.fa
+
+xuruizhi@DESKTOP-HI65AUV:~$ cat 4.fa
+>1
+CTTTTTGTTTACCAAGGCTTTTTTTTTnnn
+>2
+ACTGGGGTCACTGGTN
+>3
+CTTGGCCAGCGTGTTG
+```
+⑤　Faops  filter -U  输入文件.fa  输出文件.fa  
+`大写，将所有序列转换为大写`
+```
+xuruizhi@DESKTOP-HI65AUV:~$ cat 3.fa
+>1
+CTTTTTGTTTACCAAGGCTTTTTTTTTnnn
+>2
+ACTGGGGTCACTGGTN
+>3
+CTTGGCCAGCGTGTTG
+>2
+CTTGGCCAGC
+
+xuruizhi@DESKTOP-HI65AUV:~$ faops filter -U 3.fa 4.fa
+
+xuruizhi@DESKTOP-HI65AUV:~$ cat 4.fa
+>1
+CTTTTTGTTTACCAAGGCTTTTTTTTTNNN
+>2
+ACTGGGGTCACTGGTN
+>3
+CTTGGCCAGCGTGTTG
+>2
+CTTGGCCAGC
+```
+⑥　Faops  filter -b  输入文件.fa  输出文件.fa  
+`假装是一个被屏蔽的fasta文件`
+```
+还不太清楚怎么用
+```
+
+⑦　Faops  filter -N  输入文件.fa  输出文件.fa  
+`将IUPAC模糊二义码转换为“N”` 不太清楚咋用    
+IUPAC：  
+![tu](./pictures/%E5%9B%BE%E7%89%873.png)
+![tu](./pictures/%E5%9B%BE%E7%89%874.png)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
  # 补充
  1. 核苷酸和氨基酸缩写表  
