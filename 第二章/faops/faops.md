@@ -524,8 +524,6 @@ xuruizhi@DESKTOP-HI65AUV:~$ faops order 1.fa \
 3
 1
 2
-
-
 ```
 
 
