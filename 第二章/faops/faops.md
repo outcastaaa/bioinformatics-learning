@@ -763,9 +763,30 @@ CTTGGCCAGC
 `将IUPAC模糊二义码转换为“N”` 不太清楚咋用    
 IUPAC：  
 ![tu](./pictures/%E5%9B%BE%E7%89%873.png)
-![tu](./pictures/%E5%9B%BE%E7%89%874.png)
+![tu](./pictures/%E5%9B%BE%E7%89%874.png)  
 
+⑧　Faops  filter -d  输入文件.fa  输出文件.fa    
+`删除破折号“-”`  
+⑨　Faops  filter -s  输入文件.fa  输出文件.fa    
+`简化序列名称`  
+```
+xuruizhi@DESKTOP-HI65AUV:~$ cat 3.fa
+>human spins
+CTTTTTGTTTACCAAGGCTTTTTTTTTnnn
+>mouse
+CTTGGCCAGCGTGTTG
 
+xuruizhi@DESKTOP-HI65AUV:~$ faops filter -s 3.fa 4.fa
+
+xuruizhi@DESKTOP-HI65AUV:~$ cat 4.fa
+>human
+CTTTTTGTTTACCAAGGCTTTTTTTTTnnn
+>mouse
+CTTGGCCAGCGTGTTG
+```
+## split-name    
+`split-name splitting by sequence names       按序列名称拆分`  
+`命令faops split-name 可以按序列名称对序列文件进行切割. 此功能会输出一个包含所有序列的文件夹`
 
 
 
