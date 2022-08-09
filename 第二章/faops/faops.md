@@ -478,6 +478,97 @@ ACTGGGGTCACTGGT
 >3
 CTTGGCCAGCGTGTTGTAGGGGATGTGGCTGAT
 ```
+## order          
+`order extract some fa records by the given order       以一个给定的order提取一些FA记录`
+* 具体用法
+```
+xuruizhi@DESKTOP-HI65AUV:~$ faops order
+
+faops order - Extract multiple fa sequences by the given order.
+              Consume much more memory for load all sequences in memory.
+usage:
+    faops order [options] <in.fa> <list.file> <out.fa>
+
+options:
+    -l INT     sequence line length [80]
+
+in.fa  == stdin  means reading from stdin
+out.fa == stdout means writing to stdout
+```
+* 举例
+```
+faops order in.fa \
+      <(faops size in.fa | sort -n -r -k2,2 | cut -f 1) \
+      out.fa
+(faops size in.fa | sort -n -r -k2,2 | cut -f 1)
+# 查看输入文件大小| 以-n ： number 按数字大小，-r 反向排序，从大到小进行排序，-k2以tab空格为分隔符，将第二个区域进行排序 即，以输入文件每个序列的大小从大到小排序| cut -f 指定显示哪个区域 即，该语句限制只显示每一个序列的 第一个区块 \ 输出到out.fa
+```
+① 包含所有命令,包含cut -f 1， 排序只显示第一个序列的序号
+```
+xuruizhi@DESKTOP-HI65AUV:~$ cat 1.fa
+>1
+CTTTTTGTTTACCAAGGCTTTTTTTTT
+>2
+ACTGGGGTCACTGGT
+>3
+CTTGGCCAGCGTGTTGTAGGGGATGTGGCTGAT
+
+xuruizhi@DESKTOP-HI65AUV:~$ faops size 1.fa
+1       27
+2       15
+3       33
+
+xuruizhi@DESKTOP-HI65AUV:~$ faops order 1.fa \
+>  >(faops size 1.fa | sort -n -r -k2,2 | cut -f 1) \
+> 2.fa
+3
+1
+2
+
+
+```
+
+
+② 删掉cut -f 语句，按序列长短排序，且全部显示
+```
+xuruizhi@DESKTOP-HI65AUV:~$ cat 1.fa
+>1
+CTTTTTGTTTACCAAGGCTTTTTTTTT
+>2
+ACTGGGGTCACTGGT
+>3
+CTTGGCCAGCGTGTTGTAGGGGATGTGGCTGAT
+
+xuruizhi@DESKTOP-HI65AUV:~$ faops order 1.fa \
+> <(faops size 1.fa | sort -n -r -k2,2) \
+> 2.fa
+
+xuruizhi@DESKTOP-HI65AUV:~$ cat 2.fa
+>3
+CTTGGCCAGCGTGTTGTAGGGGATGTGGCTGAT
+>(null)
+
+>1
+CTTTTTGTTTACCAAGGCTTTTTTTTT
+>(null)
+
+>2
+ACTGGGGTCACTGGT
+>(null)
+```
+③ 换成 cut -f 2， 只显示第二个序列
+```
+xuruizhi@DESKTOP-HI65AUV:~$ faops order 1.fa \
+> <(faops size 1.fa | sort -n -r -k2,2 | cut -f 2) \
+> 2.fa
+
+xuruizhi@DESKTOP-HI65AUV:~$ cat 2.fa
+>(null)
+
+>(null)
+
+>(null)
+```
 
  # 补充
  1. 核苷酸和氨基酸缩写表  
