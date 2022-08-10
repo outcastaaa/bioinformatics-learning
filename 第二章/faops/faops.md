@@ -852,6 +852,8 @@ ACTGGGGTCACTGGT
 CTTGGCCAGCGTGTTGTAGGGGATGTGGCTGAT
 
 
+
+
 # 每个序列被单独拆分为n个文件（n.fa），保存在out.dir里
 xuruizhi@DESKTOP-HI65AUV:~$ faops split-name 1.fa out.dir
 
