@@ -203,6 +203,9 @@ xuruizhi@DESKTOP-HI65AUV:~$ cat >1.fa <<EOF
 > nnn
 > EOF
 
+
+
+#筛选出不合适的N，并且标注出每一序列的具体位置
 xuruizhi@DESKTOP-HI65AUV:~$ faops masked -g 1.fa
 1:181-183
 2:181-183
@@ -231,6 +234,7 @@ out.fa == stdout means writing to stdout
 xuruizhi@DESKTOP-HI65AUV:~$ faops frag -l 3 test.fa 55 88 1.fa
 More than one sequence in test.fa, just using first
 
+# 提取 start-end 序列
 xuruizhi@DESKTOP-HI65AUV:~$ cat 1.fa
 >1:55-88
 CAT
@@ -282,6 +286,8 @@ CTTTTTGTTTACCAAGGCTTTTTTTTT
 >2
 ACTGGGGTCACTGGT
 
+
+
 xuruizhi@DESKTOP-HI65AUV:~$ faops rc 1.fa 2.fa
 
 xuruizhi@DESKTOP-HI65AUV:~$ cat 2.fa
@@ -301,6 +307,8 @@ CTTTTTGTTTACCAAGGCTTTTTTTTT
 >2
 ACTGGGGTCACTGGT
 
+
+
 xuruizhi@DESKTOP-HI65AUV:~$ faops rc -n 1.fa 2.fa
 
 xuruizhi@DESKTOP-HI65AUV:~$ cat 2.fa
@@ -318,6 +326,8 @@ CTTTTTGTTTACCAAGGCTTTTTTTTT
 >2
 ACTGGGGTCACTGGT
 
+
+
 xuruizhi@DESKTOP-HI65AUV:~$ faops rc -r 1.fa 2.fa
 
 xuruizhi@DESKTOP-HI65AUV:~$ cat 2.fa
@@ -334,6 +344,8 @@ xuruizhi@DESKTOP-HI65AUV:~$ cat 1.fa
 CTTTTTGTTTACCAAGGCTTTTTTTTT
 >2
 ACTGGGGTCACTGGT
+
+
 
 xuruizhi@DESKTOP-HI65AUV:~$ faops rc -c 1.fa 2.fa
 
@@ -356,6 +368,8 @@ xuruizhi@DESKTOP-HI65AUV:~$ cat >list.txt <<EOF
 > 1
 > EOF
 
+
+
 xuruizhi@DESKTOP-HI65AUV:~$ faops rc -f list.txt 1.fa 2.fa
 
 xuruizhi@DESKTOP-HI65AUV:~$ cat 2.fa
@@ -373,6 +387,8 @@ xuruizhi@DESKTOP-HI65AUV:~$ cat 1.fa
 CTTTTTGTTTACCAAGGCTTTTTTTTT
 >2
 ACTGGGGTCACTGGT
+
+
 
 xuruizhi@DESKTOP-HI65AUV:~$ faops rc -l 8 1.fa 2.fa
 
@@ -430,6 +446,8 @@ ACTGGGGTCACTGGT
 >3
 CTTGGCCAGCGTGTTGTAGGGGATGTGGCTGAT
 
+
+
 xuruizhi@DESKTOP-HI65AUV:~$ faops one 1.fa 2 2.fa
 
 xuruizhi@DESKTOP-HI65AUV:~$ cat 2.fa
@@ -448,6 +466,8 @@ CTTGGCCAGCGTGTTGTAGGGGATGTGGCTGAT
 
 xuruizhi@DESKTOP-HI65AUV:~$ cat list.txt
 1
+
+
 
 xuruizhi@DESKTOP-HI65AUV:~$ faops some 1.fa list.txt 2.fa
 
@@ -469,6 +489,8 @@ CTTGGCCAGCGTGTTGTAGGGGATGTGGCTGAT
 
 xuruizhi@DESKTOP-HI65AUV:~$ cat list.txt
 1
+
+
 
 xuruizhi@DESKTOP-HI65AUV:~$ faops some -i 1.fa list.txt 2.fa
 
@@ -518,6 +540,8 @@ xuruizhi@DESKTOP-HI65AUV:~$ faops size 1.fa
 2       15
 3       33
 
+
+
 xuruizhi@DESKTOP-HI65AUV:~$ faops order 1.fa \
 >  >(faops size 1.fa | sort -n -r -k2,2 | cut -f 1) \
 > 2.fa
@@ -536,6 +560,8 @@ CTTTTTGTTTACCAAGGCTTTTTTTTT
 ACTGGGGTCACTGGT
 >3
 CTTGGCCAGCGTGTTGTAGGGGATGTGGCTGAT
+
+
 
 xuruizhi@DESKTOP-HI65AUV:~$ faops order 1.fa \
 > <(faops size 1.fa | sort -n -r -k2,2) \
@@ -606,6 +632,8 @@ xuruizhi@DESKTOP-HI65AUV:~$ cat >replace.tsv <<EOF
 > 2   6
 > EOF
 
+
+
 xuruizhi@DESKTOP-HI65AUV:~$ faops replace -s 1.fa replace.tsv 2.fa
 
 xuruizhi@DESKTOP-HI65AUV:~$ cat 2.fa
@@ -613,6 +641,8 @@ xuruizhi@DESKTOP-HI65AUV:~$ cat 2.fa
 CTTTTTGTTTACCAAGGCTTTTTTTTT
 >6
 ACTGGGGTCACTGGT
+
+
 
 # -s 只显示replace.tsv中序列，删掉该命令则都显示
 xuruizhi@DESKTOP-HI65AUV:~$ faops replace 1.fa replace.tsv 3.fa
@@ -669,6 +699,8 @@ xuruizhi@DESKTOP-HI65AUV:~$ faops size 1.fa
 2       15
 3       33
 
+
+
 xuruizhi@DESKTOP-HI65AUV:~$ faops filter -a 25 1.fa 2.fa
 
 xuruizhi@DESKTOP-HI65AUV:~$ cat 2.fa
@@ -699,6 +731,8 @@ ACTGGGGTCACTGGTN
 >3
 CTTGGCCAGCGTGTTGTAGGGGATGTGGCTGATNNNN
 
+
+
 xuruizhi@DESKTOP-HI65AUV:~$ faops filter -n 3 3.fa 4.fa
 
 xuruizhi@DESKTOP-HI65AUV:~$ cat 4.fa
@@ -717,6 +751,8 @@ ACTGGGGTCACTGGTN
 CTTGGCCAGCGTGTTG
 >2
 CTTGGCCAGC
+
+
 
 xuruizhi@DESKTOP-HI65AUV:~$ faops filter -u 3.fa 4.fa
 
@@ -740,6 +776,8 @@ ACTGGGGTCACTGGTN
 CTTGGCCAGCGTGTTG
 >2
 CTTGGCCAGC
+
+
 
 xuruizhi@DESKTOP-HI65AUV:~$ faops filter -U 3.fa 4.fa
 
@@ -776,6 +814,8 @@ CTTTTTGTTTACCAAGGCTTTTTTTTTnnn
 >mouse
 CTTGGCCAGCGTGTTG
 
+
+
 xuruizhi@DESKTOP-HI65AUV:~$ faops filter -s 3.fa 4.fa
 
 xuruizhi@DESKTOP-HI65AUV:~$ cat 4.fa
@@ -787,7 +827,55 @@ CTTGGCCAGCGTGTTG
 ## split-name    
 `split-name splitting by sequence names       按序列名称拆分`  
 `命令faops split-name 可以按序列名称对序列文件进行切割. 此功能会输出一个包含所有序列的文件夹`
+* 具体用法  
+```
+xuruizhi@DESKTOP-HI65AUV:~$ faops split-name
 
+faops split-name - Split an fa file into several files
+                   Using sequence names as file names
+usage:
+    faops split-name [options] <in.fa> <outdir>
+
+options:
+    -l INT     sequence line length [80]
+
+in.fa  == stdin  means reading from stdin
+```
+* 举例  
+```
+xuruizhi@DESKTOP-HI65AUV:~$ cat 1.fa
+>1
+CTTTTTGTTTACCAAGGCTTTTTTTTT
+>2
+ACTGGGGTCACTGGT
+>3
+CTTGGCCAGCGTGTTGTAGGGGATGTGGCTGAT
+
+
+# 每个序列被单独拆分为n个文件（n.fa），保存在out.dir里
+xuruizhi@DESKTOP-HI65AUV:~$ faops split-name 1.fa out.dir
+
+xuruizhi@DESKTOP-HI65AUV:~$ ls
+1.fa   2.fa  4.fa     bin           download.sh  list.txt  replace.tsv  software
+1.txt  3.fa  Scripts  brew-install  faops        out.dir   share        test.fa
+
+xuruizhi@DESKTOP-HI65AUV:~$ cd out.dir
+
+xuruizhi@DESKTOP-HI65AUV:~/out.dir$ ls
+1.fa  2.fa  3.fa
+
+xuruizhi@DESKTOP-HI65AUV:~/out.dir$ cat 1.fa
+>1
+CTTTTTGTTTACCAAGGCTTTTTTTTT
+
+xuruizhi@DESKTOP-HI65AUV:~/out.dir$ cat 2.fa
+>2
+ACTGGGGTCACTGGT
+
+xuruizhi@DESKTOP-HI65AUV:~/out.dir$ cat 3.fa
+>3
+CTTGGCCAGCGTGTTGTAGGGGATGTGGCTGAT
+```
 
 
 
