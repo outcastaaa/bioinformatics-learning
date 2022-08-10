@@ -878,11 +878,223 @@ xuruizhi@DESKTOP-HI65AUV:~/out.dir$ cat 3.fa
 >3
 CTTGGCCAGCGTGTTGTAGGGGATGTGGCTGAT
 ```
+##  split-about    
+`split-sbout  splitting to chunks about specified size    分割成指定大小的块并放在不同文件夹内      输出文件.dir`  
+* 具体用法
+```
+xuruizhi@DESKTOP-HI65AUV:~$ faops split-about
+
+faops split-about - Split an fa file into several files
+                    of about approx_size bytes each by record
+usage:
+    faops split-about [options] <in.fa> <approx_size> <outdir>
+# approx_size 指的是碱基片段的长度
+
+options:
+    -e         sequences in one file should be EVEN
+    -m INT     max parts
+    -l INT     sequence line length [80]
+```
+
+* 举例  
+
+①　approx_size  指的是碱基片段的长度  # 不确定是不是对的，未总结出规律
+```
+xuruizhi@DESKTOP-HI65AUV:~$ cat 1.fa
+>1
+CTTTTTGTTTACCAAGGCTTTTTTTTT
+>2
+ACTGGGGTCACTGGT
+>3
+CTTGGCCAGCGTGTTGTAGGGGATGTGGCTGAT
+
+xuruizhi@DESKTOP-HI65AUV:~$ faops size 1.fa
+1       27
+2       15
+3       33
 
 
 
 
+# approx_size 为20
+xuruizhi@DESKTOP-HI65AUV:~$ faops split-about 1.fa 20 out.dir
 
+xuruizhi@DESKTOP-HI65AUV:~$ cd out.dir
+
+xuruizhi@DESKTOP-HI65AUV:~/out.dir$ ls
+000.fa  001.fa
+
+xuruizhi@DESKTOP-HI65AUV:~/out.dir$ cat 000.fa
+>1
+CTTTTTGTTTACCAAGGCTTTTTTTTT
+xuruizhi@DESKTOP-HI65AUV:~/out.dir$ cat 001.fa
+>2
+ACTGGGGTCACTGGT
+>3
+CTTGGCCAGCGTGTTGTAGGGGATGTGGCTGAT
+
+
+
+# 改变approx_size 为10
+xuruizhi@DESKTOP-HI65AUV:~$ faops split-about 1.fa 10 out.dir
+
+xuruizhi@DESKTOP-HI65AUV:~$ cd out.dir
+
+xuruizhi@DESKTOP-HI65AUV:~/out.dir$ ls
+000.fa  001.fa  002.fa
+
+xuruizhi@DESKTOP-HI65AUV:~/out.dir$ cat 000.fa
+>1
+CTTTTTGTTTACCAAGGCTTTTTTTTT
+xuruizhi@DESKTOP-HI65AUV:~/out.dir$ cat 001.fa
+>2
+ACTGGGGTCACTGGT
+xuruizhi@DESKTOP-HI65AUV:~/out.dir$ cat 002.fa
+>3
+CTTGGCCAGCGTGTTGTAGGGGATGTGGCTGAT
+
+```
+② -e 一个文件中的序列是偶数个   
+
+比如：一共3个序列1，2，3，就会分割呈两个文件，每个文件中含两个序列（不够两个就一个）
+```
+xuruizhi@DESKTOP-HI65AUV:~$ cat 1.fa
+>1
+CTTTTTGTTTACCAAGGCTTTTTTTTT
+>2
+ACTGGGGTCACTGGT
+>3
+CTTGGCCAGCGTGTTGTAGGGGATGTGGCTGAT
+
+xuruizhi@DESKTOP-HI65AUV:~$ faops size 1.fa
+1       27
+2       15
+3       33
+
+
+
+# approx_size为20，没有-e
+xuruizhi@DESKTOP-HI65AUV:~$ faops split-about 1.fa 20 out.dir
+
+xuruizhi@DESKTOP-HI65AUV:~$ cd out.dir
+
+xuruizhi@DESKTOP-HI65AUV:~/out.dir$ ls
+000.fa  001.fa
+
+xuruizhi@DESKTOP-HI65AUV:~/out.dir$ cat 000.fa
+>1
+CTTTTTGTTTACCAAGGCTTTTTTTTT
+xuruizhi@DESKTOP-HI65AUV:~/out.dir$ cat 001.fa
+>2
+ACTGGGGTCACTGGT
+>3
+CTTGGCCAGCGTGTTGTAGGGGATGTGGCTGAT
+
+
+
+# approx_size为20，加上-e
+xuruizhi@DESKTOP-HI65AUV:~$ faops split-about -e  1.fa 20 out.dir
+
+xuruizhi@DESKTOP-HI65AUV:~$ cd out.dir
+
+xuruizhi@DESKTOP-HI65AUV:~/out.dir$ ls
+000.fa  001.fa
+
+xuruizhi@DESKTOP-HI65AUV:~/out.dir$ cat 000.fa
+>1
+CTTTTTGTTTACCAAGGCTTTTTTTTT
+>2
+ACTGGGGTCACTGGT
+xuruizhi@DESKTOP-HI65AUV:~/out.dir$ cat 001.fa
+>3
+CTTGGCCAGCGTGTTGTAGGGGATGTGGCTGAT
+
+
+
+
+# approx_size 为10
+xuruizhi@DESKTOP-HI65AUV:~$ faops split-about 1.fa 10 out.dir
+
+xuruizhi@DESKTOP-HI65AUV:~$ cd out.dir
+
+xuruizhi@DESKTOP-HI65AUV:~/out.dir$ ls
+000.fa  001.fa  002.fa
+
+xuruizhi@DESKTOP-HI65AUV:~/out.dir$ cat 000.fa
+>1
+CTTTTTGTTTACCAAGGCTTTTTTTTT
+xuruizhi@DESKTOP-HI65AUV:~/out.dir$ cat 001.fa
+>2
+ACTGGGGTCACTGGT
+xuruizhi@DESKTOP-HI65AUV:~/out.dir$ cat 002.fa
+>3
+CTTGGCCAGCGTGTTGTAGGGGATGTGGCTGAT
+
+
+
+#approx_size为10， 加上-e
+xuruizhi@DESKTOP-HI65AUV:~$ faops split-about -e 1.fa 10 out.dir
+
+xuruizhi@DESKTOP-HI65AUV:~$ cd out.dir
+
+xuruizhi@DESKTOP-HI65AUV:~/out.dir$ ls
+000.fa  001.fa
+
+xuruizhi@DESKTOP-HI65AUV:~/out.dir$ cat 000.fa
+>1
+CTTTTTGTTTACCAAGGCTTTTTTTTT
+>2
+ACTGGGGTCACTGGT
+xuruizhi@DESKTOP-HI65AUV:~/out.dir$ cat 001.fa
+>3
+CTTGGCCAGCGTGTTGTAGGGGATGTGGCTGAT
+
+```
+
+③　-m INT 确定最大分割byte
+```
+
+
+```
+
+
+
+④ 一个文件下多个序列
+```
+xuruizhi@DESKTOP-HI65AUV:~$ cat 1.fa
+>1
+CTTTTTGTTTACCAAGGCTTTTTTTTT
+ACTGGGGTCA
+>2
+ACTGGGGTCACTGGT
+ACTGGGGTCACTGGT
+>3
+CTTGGCCAGCGTGTTGTAGGGGATGTGGCTGAT
+
+xuruizhi@DESKTOP-HI65AUV:~$ faops size 1.fa
+1       37
+2       30
+3       33
+
+
+
+xuruizhi@DESKTOP-HI65AUV:~$ faops split-about 1.fa 30 out.dir
+
+xuruizhi@DESKTOP-HI65AUV:~$ cd out.dir
+
+xuruizhi@DESKTOP-HI65AUV:~/out.dir$ ls
+000.fa  001.fa  002.fa
+
+xuruizhi@DESKTOP-HI65AUV:~/out.dir$ cat 000.fa
+>1
+CTTTTTGTTTACCAAGGCTTTTTTTTTACTGGGGTCA
+xuruizhi@DESKTOP-HI65AUV:~/out.dir$ cat 001.fa
+>2
+ACTGGGGTCACTGGTACTGGGGTCACTGGT
+xuruizhi@DESKTOP-HI65AUV:~/out.dir$ cat 002.fa
+>3
+CTTGGCCAGCGTGTTGTAGGGGATGTGGCTGAT
+```
 
 
 
