@@ -1053,13 +1053,114 @@ CTTGGCCAGCGTGTTGTAGGGGATGTGGCTGAT
 
 ③　-m INT 确定最大分割byte
 ```
+xuruizhi@DESKTOP-HI65AUV:~$ cat 1.fa
+>1
+CTTTTTGTTTACCAAGGCTTTTTTTTT
+>2
+ACTGGGGTCACTGGT
+>3
+CTTGGCCAGCGTGTTGTAGGGGATGTGGCTGAT
 
 
+
+
+#没有-m 参数
+xuruizhi@DESKTOP-HI65AUV:~$  faops split-about 1.fa 20 out.fa
+
+xuruizhi@DESKTOP-HI65AUV:~$ cd out.fa
+
+xuruizhi@DESKTOP-HI65AUV:~/out.fa$ ls
+000.fa  001.fa  002.fa
+
+xuruizhi@DESKTOP-HI65AUV:~/out.fa$ cat 000.fa
+>1
+CTTTTTGTTTACCAAGGCTTTTTTTTTACTGGGGTCA
+xuruizhi@DESKTOP-HI65AUV:~/out.fa$ cat 001.fa
+>2
+ACTGGGGTCACTGGTACTGGGGTCACTGGT
+xuruizhi@DESKTOP-HI65AUV:~/out.fa$ cat 002.fa
+>3
+CTTGGCCAGCGTGTTGTAGGGGATGTGGCTGAT
+
+
+
+
+# -m 1 参数， 只分割出来序列1
+
+xuruizhi@DESKTOP-HI65AUV:~$ faops split-about -m 1 1.fa 20 out.dir
+
+xuruizhi@DESKTOP-HI65AUV:~$ cd out.dir
+
+xuruizhi@DESKTOP-HI65AUV:~/out.dir$ ls
+000.fa
+xuruizhi@DESKTOP-HI65AUV:~/out.dir$ cat 000.fa
+>1
+CTTTTTGTTTACCAAGGCTTTTTTTTT
+
+
+
+# -m 2 参数，将三个序列分割到两个文件
+
+xuruizhi@DESKTOP-HI65AUV:~$ faops split-about -m 2 1.fa 20 out.dir
+
+xuruizhi@DESKTOP-HI65AUV:~$ cd out.dir
+
+xuruizhi@DESKTOP-HI65AUV:~/out.dir$ ls
+000.fa  001.fa
+
+xuruizhi@DESKTOP-HI65AUV:~/out.dir$ cat 000.fa
+>1
+CTTTTTGTTTACCAAGGCTTTTTTTTT
+xuruizhi@DESKTOP-HI65AUV:~/out.dir$ cat 001.fa
+>2
+ACTGGGGTCACTGGT
+>3
+CTTGGCCAGCGTGTTGTAGGGGATGTGGCTGAT
+
+
+
+# -m 3 参数，将三个序列分割到两个文件     # 不是很明白为什么
+
+xuruizhi@DESKTOP-HI65AUV:~$  faops split-about -m 3 1.fa 20 out.dir
+
+xuruizhi@DESKTOP-HI65AUV:~$ cd out.dir
+
+xuruizhi@DESKTOP-HI65AUV:~/out.dir$ ls
+000.fa  001.fa
+
+xuruizhi@DESKTOP-HI65AUV:~/out.dir$ cat 000.fa
+>1
+CTTTTTGTTTACCAAGGCTTTTTTTTT
+xuruizhi@DESKTOP-HI65AUV:~/out.dir$ cat 001.fa
+>2
+ACTGGGGTCACTGGT
+>3
+CTTGGCCAGCGTGTTGTAGGGGATGTGGCTGAT
+
+
+
+# 同时有-e -m， 从第一个文件开始尽量保证是偶数
+
+xuruizhi@DESKTOP-HI65AUV:~$ faops split-about -e -m 3 1.fa 20 out.dir
+
+xuruizhi@DESKTOP-HI65AUV:~$ cd out.dir
+
+xuruizhi@DESKTOP-HI65AUV:~/out.dir$ ls
+000.fa  001.fa
+
+xuruizhi@DESKTOP-HI65AUV:~/out.dir$ cat 000.fa
+>1
+CTTTTTGTTTACCAAGGCTTTTTTTTT
+>2
+ACTGGGGTCACTGGT
+xuruizhi@DESKTOP-HI65AUV:~/out.dir$ cat 001.fa
+>3
+CTTGGCCAGCGTGTTGTAGGGGATGTGGCTGAT
 ```
 
 
 
-④ 一个文件下多个序列
+④ 一个文件下多个序列， 直接合并到一起
 ```
 xuruizhi@DESKTOP-HI65AUV:~$ cat 1.fa
 >1
@@ -1096,7 +1197,38 @@ xuruizhi@DESKTOP-HI65AUV:~/out.dir$ cat 002.fa
 CTTGGCCAGCGTGTTGTAGGGGATGTGGCTGAT
 ```
 
+## n50            
+` n50   compute N50 and other statistics        计算 N50 和其他统计数据`  
+* 具体用法
+```
+xuruizhi@DESKTOP-HI65AUV:~$ faops n50
 
+faops n50 - compute N50 and other statistics.
+usage:
+    faops n50 [options] <in.fa> [more_files.fa]
+
+options:
+    -H         do not display header
+    -N INT     compute Nx statistic [50]
+    -S         compute sum of size of all entries
+    -A         compute average length of all entries
+    -E         compute the E-size (from GAGE)
+    -C         count entries
+    -g INT     size of genome, instead of total size in files
+
+in.fa  == stdin  means reading from stdin
+```
+
+①　-H 只显示最后统计结果的数字，但是不显示每个数字对应的条目
+②　-N 50或者 -N 90   
+`每一段含名称的序列都是一个contig`  
+
+
+③　-S 计算所有条目的大小总和
+④　-A 计算所有条目的平均长度= -S/序列个数
+⑤　-E 计算E-size(来自GAGE)
+⑥　-C 计算条目数
+⑦  -g INT  基因组的大小，而不是文件中的总大小
 
 
 
