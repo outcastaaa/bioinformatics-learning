@@ -11,7 +11,7 @@
     - [one-some](#one-some)
     - [order](#order)
     - [replace](#replace)
-    - [fliter](#fliter)
+    - [filter](#filter)
     - [split-name](#split-name)
     - [split-about](#split-about)
     - [n50](#n50)
