@@ -1478,10 +1478,101 @@ TGGCCAGCGTGTT
  faops rc  test/ufasta.fa   out.fa          # 在名称前添加 RC_ 反向互补
  faops rc -n  test/ufasta.fa    out.fa      # 保留原有名称
 ```
+```
+xuruizhi@DESKTOP-HI65AUV:~$ cat 1.fa
+>1
+CTTTTTGTTTACCAAGGCTTTTTTTTT
+>2
+ACTGGGGTCACTGGT
+>3
+CTTGGCCAGCGTGTTGTAGGGGATGTGGCTGAT
+
+# 在名称前添加 RC_ 反向互补
+xuruizhi@DESKTOP-HI65AUV:~$ faops rc 1.fa 2.fa
+xuruizhi@DESKTOP-HI65AUV:~$ cat 2.fa
+>RC_1
+AAAAAAAAAGCCTTGGTAAACAAAAAG
+>RC_2
+ACCAGTGACCCCAGT
+>RC_3
+ATCAGCCACATCCCCTACAACACGCTGGCCAAG
 
 
+# 保留原有名称
+xuruizhi@DESKTOP-HI65AUV:~$ faops rc -n 1.fa 2.fa
+xuruizhi@DESKTOP-HI65AUV:~$ cat 2.fa
+>1
+AAAAAAAAAGCCTTGGTAAACAAAAAG
+>2
+ACCAGTGACCCCAGT
+>3
+ATCAGCCACATCCCCTACAACACGCTGGCCAAG
+```
+2.  提取 list.file 中所包含序列名称 对应的整个序列  
+```
+faops sometest/ufasta.fa       list.file       out.fa  #提取一些FA记录
+```
+3. 提取 list.file 中名称的序列，每行一个名称，但从标准输入到标准输出  
+```
+  Cat   test/ufasta.fa   | faops   some     stdin      list.file     stdout
+```
+4. 按序列编号大小排序  
+``` 
+faops order      test/ufasta.fa \        # 以一个给定的order提取一些FA记录
+      <(  cat   test/ufasta.fa | grep '>' | sed 's/>//' | sort) \
+         out.fa
+
+# Faops order  输入文件.fa \ < (输入文件.fa  | 在文本中查找 '>' 字符 | 将 '>' 字符替换为空，即删除>字符 | 排序  →即，按照序列标号的大小排序) \ 输出文件.fa
+```
+```
+xuruizhi@DESKTOP-HI65AUV:~$ cat 3.fa
+>3
+CTTGGCCAGCGTGTTGTAGGGGATGTGGCTGAT
+>1
+CTTTTTGTTTACCAAGGCTTTTTTTTT
+>2
+ACTGGGGTCACTGGT
 
 
+xuruizhi@DESKTOP-HI65AUV:~$  faops order 3.fa \
+> <(cat 3.fa | grep '>' |  sed 's/>//' | sort) \    # 注意|前后有空格
+> 4.fa
+xuruizhi@DESKTOP-HI65AUV:~$ cat 4.fa
+>1
+CTTTTTGTTTACCAAGGCTTTTTTTTT
+>2
+ACTGGGGTCACTGGT
+>3
+CTTGGCCAGCGTGTTGTAGGGGATGTGGCTGAT
+```
+5. 按每个序列的base长度进行排序Sort by lengths
+```
+faops order           test/ufasta.fa \         
+      <(faops size test/ufasta.fa | sort -n -r -k2,2 | cut -f 1) \         
+   out2.fa
+
+#计算总base数；按数字大小进行反向排序（从大到小）；按照分割的第二区域进行排序；只排序每个序列的第一段（如果没有该语句，还会显示其他段）
+```
+6. 整理fasta文件到每行80个字符的序列Tidy fasta file to 80 characters of sequence per line   
+```
+faops filter   -l 80   test/ufasta.fa   out.fa
+```
+7. 所有内容写在一行上All content written on one line  
+```      
+  faops filter  -l 0      test/ufasta.fa       out.fa
+```
+8. 将 fastq格式 转换为 fasta格式    Convert fastq to fasta 
+```     
+  Faops  filter   -l 0   in.fq   out.fa
+```
+9. 计算N50，不显示序列名称    Compute N50, clean result
+```
+   Faops  n50   -H   test/ufasta.fa
+```
+10. 用估计的基因组大小计算 N90、contig的总和和平均值
+```
+ Faops   n50   -N 90   -S   -A   -g 10000   test/ufasta.fa
+```
 
 
 
