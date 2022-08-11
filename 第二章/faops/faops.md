@@ -1579,4 +1579,20 @@ faops filter   -l 80   test/ufasta.fa   out.fa
  # 补充
  1. 核苷酸和氨基酸缩写表  
 
- ![tu](./pictures/%E5%9B%BE%E7%89%872.png)
+ ![tu](./pictures/%E5%9B%BE%E7%89%872.png)  
+
+2. N50  
+* 概念  
+①  contigs是reads的拼接结果；scaffold是contigs的组装结果，而且总scaffold长度长于总contigs。    
+②  Reads拼接后会获得一些不同长度的Contigs.将所有的Contig长度相加,能获得一个Contig总长度.然后将所有的Contigs按照从长到短进行排序,如获得Contig 1,Contig 2,contig 3...………Contig 25.将Contig按照这个顺序依次相加,当相加的长度达到Contig总长度的一半时,最后一个加上的Contig长度即为Contig N50.  
+举例：Contig 1+Contig 2+ Contig 3 +Contig 4=Contig总长度*1/2时,Contig 4的长度即为Contig N50.  
+`ContigN50可以作为基因组拼接的结果好坏的一个判断标准.`
+
+
+![tu](./pictures/%E5%9B%BE%E7%89%875.png)  
+
+* N50如何影响基因预测    
+
+  成功注释基因组的第一步就是看组装有没有达到要求，除了一些统计指标来表述组装的完整性和连续性之外，最重要的就是N50.尽管没有绝对的标准，但是对于基因预测而言，n50达到基因的平均长度是一个合理的目标，原因十分简单：基因中约有50%有望包括在单个scaffold或者contig中。对于n90，就是基因中约有90%有望包括在单个scaffold或者contig中。这样会得到完整的基因序列。这是很有意义的。  
+  理论上，N50 越小，说明拼接效果越好
+
