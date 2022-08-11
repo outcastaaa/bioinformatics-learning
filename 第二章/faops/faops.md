@@ -2,13 +2,23 @@
 - [介绍](#介绍)
 - [下载](#下载)
 - [Commands](#Commands)
-    - [总结](#总结)
-    - [Bash用法](#Bash用法)
-    - [Cat用法](#Cat用法)
-    - [文件/etc/apt/sources.list](#文件/etc/apt/sources.list)
-    - [shell语句中各种符号](#shell语句中各种符号)
-    - [条件判断语句if-then-fi](#条件判断语句if-then-fi)
-    - [sed-i命令](#sed-i命令)
+    - [summary](#summary)
+    - [help](#help)
+    - [count-size](#count-size)
+    - [masked](#masked)
+    - [frag](#frag)
+    - [rc](#rc)
+    - [one-some](#one-some)
+    - [order](#order)
+    - [replace](#replace)
+    - [fliter](#fliter)
+    - [split-name](#split-name)
+    - [split-about](#split-about)
+    - [n50](#n50)
+    - [dazz](#dazz)
+    - [interleave](#interleave)
+    - [region](#region)
+- [Examples](#Examples)
 - [补充](#补充)
 # 介绍
 1. fasta files  
@@ -104,7 +114,7 @@ Options:
     Type "faops command-name" for detailed options of each command.
     Options *MUST* be placed just after command.
 ```
-## count and size 
+## count-size 
 `count    -base statistics in FA file(s)    -计算base数据`  
 `size     -count total bases in FA file(s)        -计算总base数`
 * 先用cat把序列信息写入文件test.fa
@@ -403,7 +413,7 @@ ACCAGTGA
 CCCCAGT
 ```
 
-## one and some
+## one-some
 `one            extract one fa record        提取一个FA记录   `
 
 `some           extract some fa records       提取一些FA记录`
