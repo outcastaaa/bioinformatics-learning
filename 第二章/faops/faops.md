@@ -51,6 +51,10 @@ cd faops
 make
 brew install wang-q/tap/faops
 ```
+* 成功结果
+![tu](./pictures/%E5%9B%BE%E7%89%877.png)
+![tu](./pictures/%E5%9B%BE%E7%89%878.png)
+
 # Commands
 ## summary
 ```
