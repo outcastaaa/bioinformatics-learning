@@ -1219,21 +1219,265 @@ options:
 in.fa  == stdin  means reading from stdin
 ```
 
-①　-H 只显示最后统计结果的数字，但是不显示每个数字对应的条目
-②　-N 50或者 -N 90   
-`每一段含名称的序列都是一个contig`  
+①　-H 只显示最后统计结果的数字，但是不显示每个数字对应的条目  
+②　-N 50或者 -N 90    
+`每一段含名称的序列都是一个contig`    
+
+③　-S 计算所有条目的大小总和  
+④　-A 计算所有条目的平均长度= -S/序列个数  
+⑤　-E 计算E-size(来自GAGE)  
+⑥　-C 计算条目数    
+⑦    -g INT  基因组的大小，而不是文件中的总大小  
+ * 举例
+ ```
+ xuruizhi@DESKTOP-HI65AUV:~$ cat 1.fa
+>1
+CTTTTTGTTTACCAAGGCTTTTTTTTT
+>2
+ACTGGGGTCACTGGT
+>3
+CTTGGCCAGCGTGTTGTAGGGGATGTGGCTGAT
 
 
-③　-S 计算所有条目的大小总和
-④　-A 计算所有条目的平均长度= -S/序列个数
-⑤　-E 计算E-size(来自GAGE)
-⑥　-C 计算条目数
-⑦  -g INT  基因组的大小，而不是文件中的总大小
+
+#  没有-H参数
+xuruizhi@DESKTOP-HI65AUV:~$ faops n50 -N90 -S -A -E -C -g 2 1.fa
+N90     33
+S       75       #计算所有条目的大小总和 
+A       25.00    #计算所有条目的平均长度= -S/序列个数
+E       27.24    #计算E-size(来自GAGE)
+C       3        #计算条目数  
+
+
+#  有-H参数
+xuruizhi@DESKTOP-HI65AUV:~$ faops n50 -N90 -S -A -E -C -g 2 -H 1.fa
+33
+75
+25.00
+27.24
+3
+```
+
+
+## dazz  
+`dazz,     rename records for dazz_db        重命名 dazz_db 的记录`  
+`命令faops dazz 可以对序列信息命名进行新的标准化, 为下游组装分析做准备.——改名卡`
+* 具体用法
+```
+xuruizhi@DESKTOP-HI65AUV:~$ faops dazz
+
+faops dazz - Rename records for dazz_db
+usage:
+    faops dazz [options] <in.fa> <out.fa>
+
+options:
+    -p STR     prefix of names [read]
+    -s INT     start index [1]
+    -a         don't drop duplicated ids
+    -l INT     sequence line length [80]
+
+in.fa  == stdin  means reading from stdin
+out.fa == stdout means writing to stdout
+
+Sequences with duplicated ids will be dropped, keeping the first one.
+This command don't write a replace.tsv file, `anchr dazzname` does.
+```
+①　-p STR 名称前缀[read]  
+②　-s INT 开始指数[1]  
+③　-a 不要删除重复的id  
+具有重复id的序列将被删除，保留第一个。  
+这个命令不会书写  replace.tsv file，但是 anchr dazzname 可以。 
+
+
+* 举例  
+ 
+```
+xuruizhi@DESKTOP-HI65AUV:~$ faops dazz -p read -s 0 -a 1.fa 2.fa
+# 序列名称前缀为 `read`, 从`0`开始，且不删除重复id
+
+xuruizhi@DESKTOP-HI65AUV:~$ cat 2.fa
+>read/0/0_27
+CTTTTTGTTTACCAAGGCTTTTTTTTT
+>read/1/0_15
+ACTGGGGTCACTGGT
+>read/2/0_33
+CTTGGCCAGCGTGTTGTAGGGGATGTGGCTGAT
+
+#>read/2/0_33  —— -p前缀为 read/-s 从几开始编号/ 0_碱基个数
+```
+##  interleave    
+`interleave,   interleave two PE files        交错两个 PE 文件`  
+命令faops interleave 可以将双端测序的两个文件交错合并. 可以只输入一个文件, 
+此时另一端会以N 为序列内容。
+写入到标准输出，不支持从标准输入读取。
+* 具体用法
+```
+xuruizhi@DESKTOP-HI65AUV:~$ faops interleave
+
+faops interleave - Interleave two PE files
+                   One file is also OK, output a single `N`.
+                   With -q, the quality value set to `!` (33)
+usage:
+    faops interleave [options] <R1.fa> [R2.fa]
+
+options:
+    -q         write FQ. The inputs must be FQs
+    -p STR     prefix of names [read]
+    -s INT     start index [0]
+
+Write to stdout and don't support reading from stdin.
+```
+交叉放置两个PE文件, 一个文件也OK，输出一个' N '。  
+使用-q，质量值设置为' !”(33)  
+①　-q   写入FQ。输入必须是fq  
+②　-p STR 名称前缀[read]  
+③　-s INT 开始指数[0]  
+* 举例  
+```
+xuruizhi@DESKTOP-HI65AUV:~$ cat 1.fa
+>1
+CTTTTTGTTTACCAAGGCTTTTTTTTT
+>2
+ACTGGGGTCACTGGT
+>3
+CTTGGCCAGCGTGTTGTAGGGGATGTGGCTGAT
+
+
+xuruizhi@DESKTOP-HI65AUV:~$ cat 2.fa
+>4
+GGCAGAATGGGCTGGGTGCAGAGAGTGTTCTTGCATGACGGAGCTGAGAGGGAGCCACTC
+TCCAAAGGCTCTGTATTCCTGCCACTCAGGCTGTGTCTCCGGGGGAAAGGAGGGGGTCCA
+>5
+GCGTGGTGGTGGCAGTGGCGGTGGGGTGTGCCACCACCATGG
+>6
+CAATCAGCAGCCTC
+
+
+
+# 没有-q 参数
+xuruizhi@DESKTOP-HI65AUV:~$ faops interleave -p read -s 0 1.fa 2.fa
+>read0/1
+CTTTTTGTTTACCAAGGCTTTTTTTTT
+>read0/2
+GGCAGAATGGGCTGGGTGCAGAGAGTGTTCTTGCATGACGGAGCTGAGAGGGAGCCACTCTCCAAAGGCTCTGTATTCCTGCCACTCAGGCTGTGTCTCCGGGGGAAAGGAGGGGGTCCA
+>read1/1
+ACTGGGGTCACTGGT
+>read1/2
+GCGTGGTGGTGGCAGTGGCGGTGGGGTGTGCCACCACCATGG
+>read2/1
+CTTGGCCAGCGTGTTGTAGGGGATGTGGCTGAT
+>read2/2
+CAATCAGCAGCCTC
+
+
+
+#有-q 参数
+xuruizhi@DESKTOP-HI65AUV:~$ faops interleave -p read -s 0 -q 1.fa 2.fa
+@read0/1
+CTTTTTGTTTACCAAGGCTTTTTTTTT
++
+(null)
+@read0/2
+GGCAGAATGGGCTGGGTGCAGAGAGTGTTCTTGCATGACGGAGCTGAGAGGGAGCCACTCTCCAAAGGCTCTGTATTCCTGCCACTCAGGCTGTGTCTCCGGGGGAAAGGAGGGGGTCCA
++
+(null)
+@read1/1
+ACTGGGGTCACTGGT
++
+(null)
+@read1/2
+GCGTGGTGGTGGCAGTGGCGGTGGGGTGTGCCACCACCATGG
++
+(null)
+@read2/1
+CTTGGCCAGCGTGTTGTAGGGGATGTGGCTGAT
++
+(null)
+@read2/2
+CAATCAGCAGCCTC
++
+(null)
+```
+Read 0/1 ——①；Read 0/2 ——1；Read 1/1 ——②；Read 1/2 ——2；
+Read 2/1 ——③；Read 2/2 ——3
+
+# region      
+`region,   extract regions from a FA file      从 FA 文件中提取区域`  
+命令faops region 可以在序列文件中摘取一个或多个指定的序列片段, 本功能可以使用参数标注摘取的正反方向. region.txt 中某个序列的多个位置用逗号分隔,多个序列之间用回车换行分隔.
+此外, 指的注意的是, 此命令不能进行空序列片段的摘取, 会输出其他序列的片段.
+* 具体用法
+```
+xuruizhi@DESKTOP-HI65AUV:~$ faops region
+
+faops region - Extract regions from a FA file
+usage:
+    faops region [options] <in.fa> <region.txt> <out.fa>
+
+options:
+    -s         add strand '(+)' to headers
+    -l INT     sequence line length [80]
+
+<region.txt> is a text file containing one field
+    seq_name:begin-end[,begin-end]
+
+in.fa  == stdin  means reading from stdin
+out.fa == stdout means writing to stdout
+```
+* 举例  
+　-s    add strand '(+)' to headers, 在序列名称添加'(+)'
+```
+xuruizhi@DESKTOP-HI65AUV:~$ cat 1.fa
+>1
+CTTTTTGTTTACCAAGGCTTTTTTTTT
+>2
+ACTGGGGTCACTGGT
+>3
+CTTGGCCAGCGTGTTGTAGGGGATGTGGCTGAT
+
+
+
+
+# 一个序列中多个位置需要用`,`分割，要不然会直接覆盖
+xuruizhi@DESKTOP-HI65AUV:~$ cat region.txt
+1:3-11
+1:6-22
+3:3-15
+
+xuruizhi@DESKTOP-HI65AUV:~$ faops region -s 1.fa region.txt 2.fa
+
+xuruizhi@DESKTOP-HI65AUV:~$ cat 2.fa
+>1(+):6-22
+TGTTTACCAAGGCTTTT
+>3(+):3-15
+TGGCCAGCGTGTT
+
+
+# 用`,`分割  
+xuruizhi@DESKTOP-HI65AUV:~$ cat region.txt
+1:3-11,6-22
+3:3-15
+
+xuruizhi@DESKTOP-HI65AUV:~$ faops region -s 1.fa region.txt 2.fa
+
+xuruizhi@DESKTOP-HI65AUV:~$ cat 2.fa
+>1(+):3-11
+TTTTGTTTA
+>1(+):6-22
+TGTTTACCAAGGCTTTT
+>3(+):3-15
+TGGCCAGCGTGTT
+```
 
 
 
 
 
+# Examples
+ 1. 取反向互补序列,   Reverse complement   
+```
+ faops rc  test/ufasta.fa   out.fa          # 在名称前添加 RC_ 反向互补
+ faops rc -n  test/ufasta.fa    out.fa      # 保留原有名称
+```
 
 
 
