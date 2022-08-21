@@ -124,7 +124,8 @@ FastQC中的分析是通过一系列的分析模块来完成的。主交互页�
 蓝线代表 平均质量 ；
 图表上的 y 轴显示quality scores。 分数越高，base call越好。 
 
-图表的背景将 y 轴分为good quality calls (green), calls of reasonable quality (orange), and calls of poor quality (red)。 大多数平台上的calls质量会随着运行的进行而下降，因此通常会看到base calls在读取结束时落入橙色区域。
+图表的背景将 y 轴分为good quality calls (green), calls of reasonable quality (orange), and calls of poor quality (red)。 
+大多数平台上的calls质量会随着运行的进行而下降，因此通常会看到base calls在读取结束时落入橙色区域。
 ```
 `随着程序进行，质量下降`  
 
