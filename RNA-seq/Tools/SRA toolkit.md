@@ -234,4 +234,56 @@ sra-pileup [options] <accession>
 -r 1:579150-579150
 ```
 -----------------------------------
+## 四、在NCBI中查找基因信息举例
+来获取文件  
+```
+prefetch SRR1553610
+```
+这些文件去哪里了→存在了你home目录下的一个默认文件夹里
+```
+ls ~/ncbi
+```
+里面添加了什么可以用工具find来查看
+```
+find ~/ncbi 
+/home/sunchengquan/ncbi
+/home/sunchengquan/ncbi/public 
+/home/sunchengquan/ncbi/public/sra
+/home/sunchengquan/ncbi/public/sra/SRR1553610.sra
+```
+我们用程序fastq-dump来把文件拆包
+```
+fastq-dump -h 
+从NCBI下下来的数据，双端测序数据是放在一个文件里的，所以需要把它们重新拆解为两个文件
+```
+拆包文件
+```
+cd ncbi/public/sra/
+fastq-dump --split-files SRR1553610 
+FASTQ格式的原始数据文件已经在当前文件夹了
+```
+shell下的模式匹配。*（星号）表示可以匹配任何东西
+```
+wc -1 *.fastq 
 
+879348 SRR1553610_1.fastq 
+879348 SRR1553610_2.fastq 
+1758696 总用量
+```
+查看文件
+```
+head SRR1553610_1.fastq 1
+cat *.fastq | grep @SRR | wc -1
+```
+如何下载多个文件
+```
+echo SRR1553607 > sra.ids 
+echo SRR1553605 >> sra.ids m
+prefetch --option-file sra.ids
+```
+拆包下载好的所有文件
+```
+fastq-dump --split-files ~/ncbi/public/sra/SRR155360*
+or
+ cat sra.ids │ sed 's/SRR/fastq-dump --split-files SRR/'
+```
