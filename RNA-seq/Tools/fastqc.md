@@ -197,7 +197,7 @@ c.  库具有不同长度的reads
 
 
 ④　 Per base sequence content每种碱基的含量  
-  
+
 1). 意义：Per Base Sequence Content绘制出文件中每个碱基位置的比例，其中四个正常 DNA 碱基中的每一个都被调用  
 2). 图像：  
 ![tu](../pictures/%E5%9B%BE%E7%89%873.png)  
@@ -242,7 +242,8 @@ d. 经过aggressivley adapter修剪的文库:
 对于那种类型的文库如果您正在分析一个经过aggressivley adapter修剪的文库，那么自然会在读取结束时引入组成偏差，因为恰好匹配短片段adaptor的序列被删除，只留下不匹配的序列匹配。 因此，经过aggressivley adapter修剪的文库末尾的组成突然偏差可能是不准确的。  
 
 -----------------------------------
-⑤　Per sequence GC content
+⑤　Per sequence GC content  
+
 1). 意义：计算文件中每个序列的整个长度的 GC 含量，并将其与 GC 含量的建模正态分布进行比较。  
 
 2). 图像：  
@@ -370,20 +371,314 @@ d. 在 RNA-Seq 文库中，来自不同转录本的序列将在起始种群中�
 
 一个正常的高通量文库将包含一组多样性的序列，不是单个序列构成整个序列的一小部分。 发现单个序列在集合中的代表性过高要么意味着它`具有高度的生物学意义`，要么表明`文库被污染（多为引物二聚体）`，或者`不像预期的那样多样化`。   
 
+2). 图像    
+
+![tu](../pictures/%E5%9B%BE%E7%89%878.png)    
+
+ 
 该模块列出了`占总数超过 0.1% 的所有序列`。为了节省内存，仅将出现在`前 100,000 个序列`中的序列跟踪到文件末尾。 因此，该模块可能会遗漏一个被过度表达但由于某种原因没有出现在文件开头的序列。  
 
 对于每个过度表达的序列，程序将`在常见污染物的数据库中寻找匹配，并报告它找到的最佳匹配`。 命中的长度必须`至少为 20 bp，并且不匹配不超过 1 个`。   
-**找到命中并不一定意味着这是污染的来源，但可能会为您指明正确的方向。**许多adapter序列彼此非常相似，因此您可能会得到一个命中报告，这在技术上不正确，但与实际匹配的序列非常相似。  
+**找到命中并不一定意味着这是污染的来源，但可能会为您指明正确的方向**. 许多adapter序列彼此非常相似，因此您可能会得到一个命中报告，这在技术上不正确，但与实际匹配的序列非常相似。  
 
-由于重复检测需要在整个序列长度上进行精确的序列匹配，因此出于分析目的，任何长度超过 75bp 的读取都将被截断为 50bp。 即便如此，较长的读取更有可能包含测序错误，这将人为地增加观察到的多样性，并且往往会低估高度重复的序列。`**呈现的重复率将偏低**`
-
-
+由于重复检测需要在整个序列长度上进行精确的序列匹配，因此出于分析目的，任何长度超过 75bp 的读取都将被截断为 50bp。 即便如此，较长的读取更有可能包含测序错误，这将人为地增加观察到的多样性，并且往往会低估高度重复的序列。`*呈现的重复率将偏低*`  
 
 
 
+3). Warning  
 
+如果发现任何序列占总数的 0.1% 以上，此模块将发出警告。  
+
+4). Failure  
+
+如果发现任何序列占总数的 1% 以上，此模块将发出错误。  
+
+5). Warning 原因   
+
+当用于分析`小 RNA 文库`时，通常会触发该模块，其中序列不会受到随机片段化，并且相同的序列可能自然地存在于文库的很大一部分中。  
+ 
 -----------------------------------
 
+⑩ Adapter content adapter的含量  
+
+1).  意义  
+
+Kmer 含量模块将对库中的所有 Kmer 进行通用分析，以找到那些在reads长度中没有覆盖的内容。 这可以在库中找到bias的不同来源，其中包括在序列末端建立的read-through adapter sequences。
+任何overrepresented的序列（例如adapter二聚体）的存在都会导致 Kmer 图被这些序列包含的 Kmer 所支配，并且并不总是很容易看出其中是否存在其他偏差。  
+
+一类明显的序列是`adapter序列`。 了解库是否包含大量adapter，以便能够评估是否需要修剪adapter。 尽管 Kmer 分析理论上可以发现这种污染，但并不总是很清楚。 因此，此模块会`针对一组单独定义的 Kmer 进行特定搜索，并提供包含这些 Kmer 的库的总比例的视图`。 将始终为adapter配置文件中存在的所有序列生成结果跟踪，可以查看库的即使很低的adapter含量。  
+
+2). 图像  
+![tu](../pictures/%E5%9B%BE%E7%89%879.png)    
+
+`该图显示了在每个位置看到每个adapter序列的文库比例的累积百分比计数`。 一旦在读取中看到一个序列，它就被视为一直存在到读取结束，因此看到的百分比只会随着读取长度的增加而增加。  
+
+3). Warning  
+
+如果发现任何序列占reads的5% 以上，此模块将发出警告。  
+
+4).  Failure  
+
+如果发现任何序列占reads的 10% 以上，此模块将发出错误。  
+
+5). Warning 原因  
+
+任何插入大小的合理比例小于读取长度的库都将触发此模块。 这并不表示存在这样的问题 - 只是在进行任何下游分析之前需要对序列进行adapter修剪。
+如果在当时fastqc分析的时候-a选项没有内容，则默认使用图例中的四种通用adapter序列进行统计。如果有adapter序列没有去除干净的情况，在后续分析的时候需要先`使用cutadapt软件进行去接头`，也可以用 `trimmomatic来去除接头`  
+
+----------------------------------
+
+11. Kmer Content   Kmer的含量  
+
+1). 意义  
+
+对overrepresented sequences分析将发现完全重复的序列的增加，但对其他问题不起作用：
+* 如果序列很长且序列质量较差，那么随机测序错误将显着减少完全重复序列的计数。
+* 如果有一个部分序列出现在序列中的多个位置，那么 per base content plot 或the duplicate sequence分析都不会看到这一点。  
+
+Kmer 模块假设: 在多样化库中, 任何小序列片段不应有位置bias。 某些 Kmer 总体上富集或耗尽可能有生物学原因，但这些偏差应该平等地影响序列中的所有位置。 因此，该模块测量库中每个位置的每个 7-mer 的数量，然后使用二项式检验 binomial test来寻找与所有位置的均匀覆盖率的有显着偏差的kmer。 报告任何具有位置偏差富集的 Kmer。   
+
+如果某k个bp的短序列在reads中大量出现，其频率高于统计期望的话，fastqc将其记为over-represented k-mer。默认的`k = 5`，可以用`-k --kmers选项`来调节，范围是2-10。`出现频率总体上3倍于期望或是在某位置上5倍于期望的k-mer被认为是over-represented`。fastqc除了列出所有over-represented k-mers，还会把`前6个的per base distribution画出来`。
+
+2). 图像  
+
+下图是` 6 个最有bias的 Kmer`，以显示它们的分布。
+
+![tu](../pictures/%E5%9B%BE%E7%89%8710.png)    
 
 
- 
+为了让这个模块在合理的时间内运行，只分析整个库的 2%，并将结果外推到库的其余部分。 长于 500bp 的序列将被截断为 500bp 用于分析。  
+
+3). Warning  
+
+如果任何 k-mer 不平衡且二项式 p 值 <0.01，此模块将发出警告。  
+
+4). Failure  
+
+如果任何 k-mer 不平衡且二项式 p 值 <10^-5，此模块将失败。  
+当有出现频率总体上3倍于期望或是在某位置上5倍于期望的k-mer时，报”WARN“；当有出现频率在某位置上10倍于期望的k-mer时报"FAIL"。  
+  
+5). Warning原因  
+
+任何单独的overrepresented sequences，即使没有以足够高的阈值来触发the overrepresented sequences module，也会导致来自这些序列的 Kmer 在该模块中高度富集。 这些通常会在序列中的单个点上显示为富集的尖锐尖峰，而不是渐进或广泛的富集。  
+
+由于可能的随机引物的采样不完整，源自随机引物的文库几乎总是在文库开始时显示 Kmer 偏差。  
+
+----------------------------------
+
+12.　Per tile sequence quality   每tile的测序质量  
+
+1). 意义:
+如果使用的是保留其原始序列标识符的 Illumina 文库，该图只会出现在分析结果中。 其中编码的是每次read来自的flow cell tile。 该图表允许您查看所有碱基中每个图块的quality scores，以查看是否存在因为一部分flow cell造成的质量损失。    
+
+![tu](../pictures/%E5%9B%BE%E7%89%8711.png)  
+
+2). 图像：  
+
+![tu](../pictures/%E5%9B%BE%E7%89%8712.png)    
+
+
+该图显示了与每个tile的平均质量的偏差。 颜色是从冷到热的等级，冷色是在运行中质量达到或高于该base平均水平的位置，而较热的颜色表明一个tile的质量比该base的其他tile更差。 x轴从左到右，代表`每一个tile读取的read位置`，y轴是`tile的Index编号，表示每一个tile的位置`。好的结果应该一直是蓝色的。  
+
+3). Warning  
+
+如果任何图块显示的平均 Phred 分数比所有tile中该碱基的平均值小 2 多，此模块将发出警告。  
+
+4). Failure  
+
+如果任何图块显示的平均 Phred 分数比所有tile中该碱基的平均值小 5 多，此模块将发出警告。  
+
+5). Warning原因  
+
+在该图上看到警告或错误的原因可能是暂时性问题，例如`通过流通池的气泡`，也可能是更持久的问题，例如`流通池上的污迹或流通池通道内的碎片`。  
+
+虽然此模块中的警告可以由个别特定事件触发，但我们还观察到，当流通池通常过载时，归因于tile的 phred 分数的更大变化也可能出现。 在这种情况下，事件会出现在整个流通池中，而不是局限于特定区域或循环范围。 我们通常会忽略仅在 1 或 2 个周期内轻微影响少量tiles的错误，但会修正更大的影响，即分数偏差较大或持续几个周期。  
+
+
+## 五、用法，步骤  
+
+![tu](../pictures/%E5%9B%BE%E7%89%8713.png)    
+```
+fastqc -help
+
+            FastQC - A high throughput sequence QC analysis tool
+
+SYNOPSIS
+
+        fastqc seqfile1 seqfile2 .. seqfileN
+
+    fastqc [-o output dir] [--(no)extract] [-f fastq|bam|sam]
+           [-c contaminant file] seqfile1 .. seqfileN
+
+DESCRIPTION
+
+    FastQC reads a set of sequence files and produces from each one a quality
+    control report consisting of a number of different modules, each one of
+    which will help to identify a different potential type of problem in your
+    data.
+
+    If no files to process are specified on the command line then the program
+    will start as an interactive graphical application.  If files are provided
+    on the command line then the program will run with no user interaction
+    required.  In this mode it is suitable for inclusion into a standardised
+    analysis pipeline.
+
+    The options for the program as as follows:
+
+    -h --help       Print this help file and exit
+
+    -v --version    Print the version of the program and exit
+
+    -o --outdir     Create all output files in the specified output directory.
+                    Please note that this directory must exist as the program
+                    will not create it.  If this option is not set then the
+                    output file for each sequence file is created in the same
+                    directory as the sequence file which was processed.
+
+    --casava        Files come from raw casava output. Files in the same sample
+                    group (differing only by the group number) will be analysed
+                    as a set rather than individually. Sequences with the filter
+                    flag set in the header will be excluded from the analysis.
+                    Files must have the same names given to them by casava
+                    (including being gzipped and ending with .gz) otherwise they
+                    won't be grouped together correctly.
+
+    --nano          Files come from nanopore sequences and are in fast5 format. In
+                    this mode you can pass in directories to process and the program
+                    will take in all fast5 files within those directories and produce
+                    a single output file from the sequences found in all files.
+
+    --nofilter      If running with --casava then don't remove read flagged by
+                    casava as poor quality when performing the QC analysis.
+
+    --extract       If set then the zipped output file will be uncompressed in
+                    the same directory after it has been created.  By default
+                    this option will be set if fastqc is run in non-interactive
+                    mode.
+
+    -j --java       Provides the full path to the java binary you want to use to
+                    launch fastqc. If not supplied then java is assumed to be in
+                    your path.
+
+    --noextract     Do not uncompress the output file after creating it.  You
+                    should set this option if you do not wish to uncompress
+                    the output when running in non-interactive mode.
+
+    --nogroup       Disable grouping of bases for reads >50bp. All reports will
+                    show data for every base in the read.  WARNING: Using this
+                    option will cause fastqc to crash and burn if you use it on
+                    really long reads, and your plots may end up a ridiculous size.
+                    You have been warned!
+
+    --min_length    Sets an artificial lower limit on the length of the sequence
+                    to be shown in the report.  As long as you set this to a value
+                    greater or equal to your longest read length then this will be
+                    the sequence length used to create your read groups.  This can
+                    be useful for making directly comaparable statistics from
+                    datasets with somewhat variable read lengths.
+
+    -f --format     Bypasses the normal sequence file format detection and
+                    forces the program to use the specified format.  Valid
+                    formats are bam,sam,bam_mapped,sam_mapped and fastq
+
+    -t --threads    Specifies the number of files which can be processed
+                    simultaneously.  Each thread will be allocated 250MB of
+                    memory so you shouldn't run more threads than your
+                    available memory will cope with, and not more than
+                    6 threads on a 32 bit machine
+
+    -c              Specifies a non-default file which contains the list of
+    --contaminants  contaminants to screen overrepresented sequences against.
+                    The file must contain sets of named contaminants in the
+                    form name[tab]sequence.  Lines prefixed with a hash will
+                    be ignored.
+
+    -a              Specifies a non-default file which contains the list of
+    --adapters      adapter sequences which will be explicity searched against
+                    the library. The file must contain sets of named adapters
+                    in the form name[tab]sequence.  Lines prefixed with a hash
+                    will be ignored.
+
+    -l              Specifies a non-default file which contains a set of criteria
+    --limits        which will be used to determine the warn/error limits for the
+                    various modules.  This file can also be used to selectively
+                    remove some modules from the output all together.  The format
+                    needs to mirror the default limits.txt file found in the
+                    Configuration folder.
+
+   -k --kmers       Specifies the length of Kmer to look for in the Kmer content
+                    module. Specified Kmer length must be between 2 and 10. Default
+                    length is 7 if not specified.
+
+   -q --quiet       Supress all progress messages on stdout and only report errors.
+
+   -d --dir         Selects a directory to be used for temporary files written when
+                    generating report images. Defaults to system temp directory if
+                    not specified.
+```  
+
+* 对于单端数据，基本用法如下:  
+```
+fastqc -o out_dir -t 10 input.fq
+```
+* 对于双端数据，基本用法如下:  
+```
+fastqc -o out_dir -t 10 R1.fq R2.fq
+```
+需要注意的是，输出目录必须手动新建。
+
+
+## 六、如何根据fastqc给出的结果判断高通量测序结果的好坏：  
+
+* 好的illumina data ，[见网页](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/good_sequence_short_fastqc.html)
+
+* 差的illumina data ，[见网页](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/bad_sequence_fastqc.html)
+
+1. Per base sequence quality每个碱基序列质量  
+![hao](../pictures/%E5%9B%BE%E7%89%8714.png)  
+![huai](../pictures/%E5%9B%BE%E7%89%8715.png)  
+Quality score 集中在最高值，且都很稳定，没有非常明显的倒峰；做出来的趋势线顺滑且尽量平行于x轴   
+所以上面的不好的测序结果，需要把后面的24bp以后的序列切除，从而保证后续分析的正确性
+2. Per tile sequence quality   每tile的测序质量  
+![hao](../pictures/%E5%9B%BE%E7%89%8716.png)    
+![huai](../pictures/%E5%9B%BE%E7%89%8717.png)     
+Seq quality 尽量蓝屏，没有彩色条带
+如果某些tile出现暖色，可以在后续分析中把该tile测序的结果全部都去除  
+3. Per sequence quality scores每个序列质量得分  
+![hao](../pictures/%E5%9B%BE%E7%89%8718.png)    
+![huai](../pictures/%E5%9B%BE%E7%89%8719.png)     
+好的序列质量得分图，在x轴最后分数最高段，有且只有一个尖锐峰  
+第二个图其实也行  
+4. Per base seq content每种碱基的含量   
+![hao](../pictures/%E5%9B%BE%E7%89%8720.png)    
+![huai](../pictures/%E5%9B%BE%E7%89%8721.png)   
+每种碱基含量应该很稳定，呈现平滑平行于x轴的直线，几乎没有交叉  
+5. Per sequence GC content每个测序的GC含量  
+![hao](../pictures/%E5%9B%BE%E7%89%8722.png)    
+![huai](../pictures/%E5%9B%BE%E7%89%8723.png)   
+GC比例几乎与理论值相同，曲线重合度高，没有突出峰尖尖  
+6. Per base N content 每个碱基中N含量  
+![hao](../pictures/%E5%9B%BE%E7%89%8724.png)      
+![huai](../pictures/%E5%9B%BE%E7%89%8725.png)     
+几乎没有N出现，出现一点也行    
+
+7. Sequence Length Distribution序列长度分布  
+![tu](../pictures/%E5%9B%BE%E7%89%8726.png)  
+呈现等腰三角形  
+
+8. Sequence Duplication Levels重复序列的水平  
+![hao](../pictures/%E5%9B%BE%E7%89%8727.png)      
+![huai](../pictures/%E5%9B%BE%E7%89%8728.png)  
+
+9. Overrepresented sequences过表达的序列  
+![hao](../pictures/%E5%9B%BE%E7%89%8729.png)      
+![huai](../pictures/%E5%9B%BE%E7%89%8730.png)
+
+10. Adapter content adapter的含量  
+![hao](../pictures/%E5%9B%BE%E7%89%8731.png)      
+![huai](../pictures/%E5%9B%BE%E7%89%8732.png)  
+
+ 几乎没有adaptor含量，出现一点也行
+* 此图衡量的是序列中两端adapter的情况
+8 如果在当时fastqc分析的时候-a选项没有内容，则默认使用图例中的四种通用adapter序列进行统计
+* 本例中adapter都已经去除，如果有adapter序列没有去除干净的情况，在后续分析的时候需要先使用cutadapt软件进行去接头，也可以用 trimmomatic来去除接头
