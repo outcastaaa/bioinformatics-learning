@@ -180,7 +180,8 @@ c.  库具有不同长度的reads
 提前通过 序列长度分布`模块 sequence length distribution module ` 结果来检查有多少序列会触发错误
 
 如果您的库具有不同长度的读取，那么您会发现此模块会触发警告或错误，因为给定碱基范围的覆盖率非常低。 
-在提交任何操作之前，通过查看序列长度分布模块 sequence length distribution module 结果来检查有多少序列会触发错误。
+在提交任何操作之前，通过查看序列长度分布模块 sequence length distribution module 结果来检查有多少序列会触发错误。  
+
 -----------------------------------    
 
 ③　Per sequence quality scores每个序列质量得分   
