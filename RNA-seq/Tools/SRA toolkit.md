@@ -48,7 +48,9 @@ Windows: C:\Users\[user_name]\ncbi\public
 
 这里只有两个主要功能：设置下载权限（Enable Remote Access）和存储目录（Enable Local File Caching），用tab键选择项目，space和enter键进入设置，其中下载权限是默认开启的，如果要改变存储路径，则进入Enable Local File Caching，如下图所示：  
 ![tu](../pictures/3.png)  
-还不太确定如何修改成功  
+将存储地址改为home/xuruizhi/data文件  
+![4](../pictures/4.png)    
+
 ## 三、SRA Toolkit 使用方法
 1. fastq-dump  
 
