@@ -177,27 +177,45 @@ Options (defaults in parentheses):
 7. 比对过程中，中间锚定read、短锚定read、跨多个外显子read的比对占总比对时长的30%-60%，而且比对错误率很高
 
 # 比对命令  
-```
-建索引：
 
+1. 建索引：
+```
 hisat2-build [options]* <reference_in> <ht2_base>
-#<reference_in> ：fasta文件 list，如果为list，使用逗号分开
+hisat2-build [选项] [基因组序列(.fa)] [索引文件的前缀名]
+
+
+#<reference_in> ：fasta文件;  如果为list，使用逗号分开
 #<ht2_base> ：索引文件的前缀名，如设为xxx，则生成的索引文件为xxx.1.ht2,xxx.2.ht2，默认的前缀名为NAME
+
 #option:详见说明书
-检查索引：hisat2-inspect [options]* <ht2_base>
+```
+
+2. 检查索引：
+
+```
+hisat2-inspect [options]* <ht2_base>
 #输出结果为一个fasta文件，主要用于检查已经构建好的索引所用的构建信息，感觉没啥用
-比对：hisat2 [options]* -x <hisat2-idx> {-1 <m1> -2 <m2> | -U <r> | --sra-acc <SRA accession number>} [-S <hit>]
+```
+3. 比对：
+```
+hisat2 [options]* -x <hisat2-idx> {-1 <m1> -2 <m2> | -U <r> | --sra-acc <SRA accession number>} [-S <hit>]
+
 #参数说明：
 #-p ：线程数目
 #--dta  ：注意！！！在下游使用stringtie组装的时候一定要在hisat中设置这个参数！！！
 #-x <hisat2-idx> ：参考基因组索引的basename，即前缀名
+
 #{}：其中的内容意思为hisat2可以接受单端测序，双端测序，或者直接提交SRA ID号
+
 #-1 <m1> ：双端测序的read1 list ，若为list，使用逗号隔开，名字与2要匹配，如-1 flyA_1.fq,flyB_1.fq
 #-2 <m2> ：双端测序的read2 list ，若为list，使用逗号隔开，名字与1要匹配，如-2 flyA_2.fq,flyB_2.fq
 #-U <r>：单端测序list，若为list，使用逗号隔开，-U lane1.fq,lane2.fq,lane3.fq,lane4.fq
 #--sra-acc <SRA accession number> : SRAID list，若为list，使用逗号隔开，--sra-acc SRR353653,SRR353654
+
 #-S <hit> ：SAM写入的文件名，默认写入到标准输出中
-#options:这里只列出可调节的类别，至于参数调整，详见说明书
+
+#options:这里只列出可调节的类别，至于参数调整，详见说明
+
 #Input options
 #Alignment options
 #Scoring options
@@ -208,15 +226,21 @@ hisat2-build [options]* <reference_in> <ht2_base>
 #SAM options
 #Performance options
 #Other options
-report格式
-若为单端测序
+```
+4. report格式  
+
+* 若为单端测序  
+```
 20000 reads; of these:
   20000 (100.00%) were unpaired; of these:
     1247 (6.24%) aligned 0 times
     18739 (93.69%) aligned exactly 1 time
     14 (0.07%) aligned >1 times
 93.77% overall alignment rate
-若为双端测序
+```
+
+* 若为双端测序
+```
 10000 reads; of these:
   10000 (100.00%) were paired; of these:
     650 (6.50%) aligned concordantly 0 times
@@ -232,4 +256,90 @@ report格式
         571 (46.35%) aligned exactly 1 time
         1 (0.08%) aligned >1 times
 96.70% overall alignment rate
+```  
+5. 比对结果bam文件  
+
+使用Hisat2软件进行比对之后生成的默认文件是`sam文件格式`，`bam文件是sam文件的二进制格式`，可以减小文件的存储。了解sam/bam文件的格式对后续的分析结果的筛选非常重要，sam/bam文件的格式示例如下：  
+```
+bam/sam文件的说明如下：
+
+第1列：reads名称；
+
+第2列：Flag标签；Flag标签是二进制数字之和，不同数字代表了不同的意义。比如下面的数据代表的含义如下：
+
+1：代表这个序列采用的是PE双端测序；
+
+2：代表这个序列和参考序列完全匹配，没有插入缺失；
+
+4：代表这个序列没有比对到参考序列上；
+
+8：代表这个序列的另一端序列没有比对到参考序列上，比如这条序列是R1,它对应的R2端序列没有比对到参考序列上；
+
+16：代表这个序列比对到参考序列的负链上；
+
+32：代表这个序列对应的另一端序列比对到参考序列的负链上；
+
+64：代表这个序列是R1端序列，read1；
+
+128：代表这个序列是R2端序列，read2；
+
+256：代表这个序列不是主要的比对，一条序列可能比对到参考序列的多个位置，只有一个是首要的比对位置，其他都是次要的。
+
+第3列：比对到的染色体信息；
+
+第4列：比对到参考基因组物理位置；
+
+第5列：比对质量值（0-60）；
+
+第6列：CIAGR（记录插入、缺失等）；CIAGR中包含的是比对结果信息，表明了一条reads所有碱基的比对情况。比如CIGAR = 150M表示150bp的reads都比对到参考基因组上；常见的CIAGR标签表示的含义如下：
+
+第7列：配对reads比对到的染色体，=表示相同；
+
+第8列：配对reads比对到的染色体物理位置；
+
+第9列：文库插入序列大小；
+
+第10列：Reads序列；
+
+第11列：质量值。
+```
+![P7](../pictures/P7.jpg)  
+
+
+
+
+
+
+
+# 举例
+```
+hisat2-build human.fa --snp human.snp human_hg38
+#最终会生成以human_hg38为前缀，以.*.ht2为后缀的索引文件
+#其中提供了snp信息
+
+* 单端测序比对
+hisat2 -f -x human_hg38 -U reads_1.fa -S eg1.sam
+#-f:输入文件为fasta文件
+#-q：输入文件为fastq文件
+#-x：只写前缀
+#最终生成eg1.sam文件
+
+
+* 双端测序比对
+hisat2 -f -x human_hg38 -1 reads_1.fa -2 reads_2.fa -S eg2.sam
+#最后生成eg2.sam
+
+可以使用samtools或者bcftools作为下游
+samtools view -bS eg2.sam > eg2.bam
+#转化为bam文件
+
+samtools sort eg2.bam -o eg2.sorted.bam
+#bam文件转变为sorted bam
+
+samtools mpileup -uf human.fa eg2.sorted.bam | bcftools view -bvcg - > eg2.raw.bcf
+#生成bcf文件
+
+bcftools view eg2.raw.bcf
+#查看bcf文件
+#详见samtools工具的使用
 ```
