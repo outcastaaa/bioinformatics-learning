@@ -1,8 +1,156 @@
 [HISAT2官网](https://daehwankimlab.github.io/hisat2/)  
 [参考文章1](https://www.jianshu.com/p/ce3f4afb9b60)   
 [参考文章2](https://zhuanlan.zhihu.com/p/451939113)  
+[参考文章3](https://www.jianshu.com/p/87cb17e299b2)
 
 
+# hisat2 -build 命令使用方法  
+```
+命令行：
+
+hisat2-build[options]*
+
+注意：
+
+       如果使用--snp，--ss和/或--exon选项，hisat2-build将需要大约200GB的运行内存来满足人类基因组规模大小的基因组的索引构建，因为建立索引涉及到graph construction。否则，就可以用8GB的运行内存在个人电脑构建索引了。
+
+主要参数
+
+<reference_in>
+
+       以逗号分隔的FASTA文件列表，其中包含要比对的参考序列，例如chr1.fa，chr2.fa，chrX.fa，chrY.fa；如果指定了-c，则可以具体的GGTCATCCT，ACGGGTCGT，CCGTTCTATGCGGCTTA序列。
+
+<ht2_base>
+
+       要写入的索引文件的basename；默认情况下，hisat2-build写入文件名为NAME.1.ht2, NAME.2.ht2, NAME.3.ht2, NAME.4.ht2, NAME.5.ht2, NAME.6.ht2, NAME.7.ht2, NAME.8.ht2的文件。<ht2_base>就是文件前缀NAME。
+
+选项
+
+1.-f
+
+参考基因组输入文件(指定为<reference_in>_)是FASTA文件(通常具有.fa、.mfa、.fna或类似的扩展名)。
+
+2.-c
+
+在命令行上给出参考序列。也就是说<reference_in>是一个逗号分隔的序列列表，而不是一个FASTA文件列表。
+
+3.--large-index
+
+强制hisat2-build建立一个大的索引，即使参考的长度小于~ 40亿个核苷酸。
+
+4.-a/--noauto
+
+禁用hisat2-build根据可用内存自动选择--bmax，--dcv和[--packed]参数的这一默认行为。相反，用户可以为这些参数指定值。如果内存在构建索引期间耗尽，将输出错误信息；由用户决定是否尝试新的参数。
+
+5.--bmax
+
+block中允许的最大后缀数。允许每个block使用更多的后缀可以加快索引构建速度，但会增加内存的峰值使用。设置此选项将覆盖以前对--bmax或--bmaxdivn的任何设置。--bmaxdivn默认值是4。这是默认自动配置的；使用-a/- noauto则可以手动配置。
+
+6.--bmaxdivn
+
+block中允许的最大后缀数，表示为参考序列长度的一部分。设置此选项将覆盖以前对--bmax或--bmaxdivn的任何设置。默认值: --bmaxdivn 4。这是默认自动配置的；使用-a/- noauto则可以手动配置。
+
+7.--dcv
+
+使用<int>作为difference-cover样本的period。较大的period产生较少的内存开销，但可能使后缀排序变慢，特别是如果存在重复。必须是2的整数幂且必须不大于4096。默认值:1024。这是默认自动配置的；使用-a/- noauto手动配置。
+
+8.--nodc
+
+禁用difference-cover样本的使用。在最坏的情况下(最坏的情况是极度重复的参考序列)，后缀排序变成了二次排序。默认值:关闭。
+
+9.-r/--noref
+
+不要构建名称为NAME.3.ht2 、NAME.4.ht2的索引部分，它包含参考序列的bitpacked版本，用于双端测序的比对。
+
+10.-3/--justref
+
+只构建名称为NAME.3.ht2 、NAME.4.ht2的索引部分，它包含引用序列的bitpacked版本，用于双端测序的比对。
+
+11.-o/--offrate<int>
+
+为了将比对结果映射回参考序列上，有必要用基因组上相应位置标注(标记)部分或全部的Burrows-Wheeler
+
+rows。-o/- offrate统计有多少行被标记:索引器将标记每2^<int>行。标记更多的行可以使序列-位置查找更快，但是需要更多的内存来在运行时保存注释。默认值为4(每16行标记一次；对于人类基因组来说，注释大约有680兆字节)。
+
+12.-t/--ftabchars
+
+ftab是用于计算的第一个<int>字符的初始Burrows-Wheeler范围的查找表。较大的<int>将生成较大的查找表，但查询时间更快。ftab的大小为4^(<int>+1)字节。默认设置为10 (ftab为4MB)。
+
+13.--localoffrate
+
+这个选项统计在本地索引中标记多少行:索引器将标记每2^<int>行。标记更多的行可以使引用位置查找更快，但是需要更多的内存来在运行时保存注释。默认值为3(每标记第8行，每个本地索引大约占用16KB)。
+
+14.--localftabchars
+
+本地ftab是本地索引中的查找表。默认设置为6 (ftab为每个本地索引8KB)。
+
+15.-p
+
+并行运算线程数(默认:1)。
+
+16.--snp
+
+提供一个snp列表(HISAT2自己的格式)，如下(五列)。
+
+SNPID snp type (single, deletion, or insertion) chromosomename zero-offset based genomic position of a SNP alternative base (single), the length of SNP (deletion), or insertion sequence(insertion)
+
+例如：rs58784443，single，13，18447947，T
+
+hisat2_extract_snps_haplotypes_UCSC.py(在HISAT2包中)从dbSNP文件(例如http://hgdownload.soe.ucsc.edu/goldenPath/hg38/database/snp144Common.txt.gz)中提取SNPs和haplotypes。或者hisat2_extract_snps_haplotypes_VCF.py从VCF文件中提取SNPs和haplotypes(例如ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/release/20130502/supporting/GRCh38_
+
+positions/ALL.chr22.phase3_shapeit2_mvncall_integrated_v3plus_nounphased.rsID.genotypes.GRCh38_dbSNP_no_SVs.vcf.gz)。
+
+17.--haplotype
+
+提供一个单倍型列表(使用HISAT2自己的格式)，如下所示(五列)。
+
+HaplotypeID chromosome name zero-offset based left coordinate ofhaplotype zero-offset based right coordinate of haplotype a comma separated list of SNP ids in the haplotype
+
+例如：ht35，13，18446877，18446945，rs12381094,rs12381056,rs192016659,rs538569910
+
+关于如何提取单倍型，请参阅上面的-snp选项。这个选项不是必需的，但是单倍型信息可以防止索引构造激增，并大幅减少索引大小。
+
+18.--ss
+
+注意，这个选项应该与下面的--exon选项一起使用。提供一个剪切位点列表(HISAT2自己的格式)，如下(四列)：
+
+chromosomename zero-offset based genomic position of the flanking base on theleft side of an intron zero-offset based genomic position of theflanking base on the right strand
+
+可以用hisat2_extract_splice_sites.py 脚本从GTF注释文件中提取剪切位点文件。
+
+19.--exon
+
+注意，这个选项应该与上面的--ss选项一起使用。提供一个外显子列表(HISAT2自己的格式)，如下(三列)：
+
+chromosomename zero-offset based left genomic position of an exon zero-offset based right genomic position of an exon
+
+可以用hisat2_extract_exons.py脚本从GTF注释文件中提取外显子文件。
+
+20. --seed
+
+伪随机数生成器的种子
+
+21.--cutoff
+
+
+
+22.-q/--quiet
+
+静默输出，只会输出错误信息。
+
+23.-h/--help
+
+帮助文档
+
+24.--version
+
+软件版本信息
+
+作者：至尊小王子
+链接：https://www.jianshu.com/p/87cb17e299b2
+来源：简书
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+```
 # 使用方法  
 ```
 $ hisat2 -h
