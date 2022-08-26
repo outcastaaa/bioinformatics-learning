@@ -1,3 +1,8 @@
+[HISAT2官网](https://daehwankimlab.github.io/hisat2/)  
+[参考文章1](https://www.jianshu.com/p/ce3f4afb9b60)   
+[参考文章2](https://zhuanlan.zhihu.com/p/451939113)  
+
+
 # 使用方法  
 ```
 xuruizhi@DESKTOP-HI65AUV:~$ hisat2 -h
