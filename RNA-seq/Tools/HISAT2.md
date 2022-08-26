@@ -5,8 +5,10 @@
 
 # 使用方法  
 ```
-xuruizhi@DESKTOP-HI65AUV:~$ hisat2 -h
+$ hisat2 -h
+
 HISAT2 version 2.2.1 by Daehwan Kim (infphilo@gmail.com, www.ccb.jhu.edu/people/infphilo)
+
 Usage:
   hisat2 [options]* -x <ht2-idx> {-1 <m1> -2 <m2> | -U <r>} [-S <sam>]
 
@@ -21,6 +23,7 @@ Usage:
 
   <m1>, <m2>, <r> can be comma-separated lists (no whitespace) and can be
   specified many times.  E.g. '-U file1.fq,file2.fq -U file3.fq'.
+
 
 Options (defaults in parentheses):
 
@@ -148,3 +151,85 @@ Options (defaults in parentheses):
   --version          print version information and quit
   -h/--help          print this usage message
   ```
+# 采用的比对策略  
+
+1. RNA-seq产生的reads可能跨长度比较大的内含子，哺乳动物中甚至最长能达到1MB，同时外显子比较短，read也比较短，会有很多read（模拟数据中大概34%）跨两个外显子的情况  
+
+2. 为了更好的比对，将跨外显子的reads分成了三类：  
+1）长锚定read，至少有16bp在两个外显子的每一个上   
+2）中间锚定read，有8-15bp在一个外显子上     
+3）短锚定read，只有1-7bp在一个外显子上    
+
+
+3. 所以总的reads可以被划分为五类：  
+1）不跨外显子的read 2）长锚定read 3）中间锚定read 4）短锚定read 5）跨两个外显子以上的read  
+![P6](../pictures/P6.webp)  
+
+4. 在模拟的数据中，有25%左右的read是长锚定read，`这种read在大多数情况下可以被唯一的定位到人的基因组上`  ;  
+5%为中间锚定read，对于这类，很多依赖于全局索引的算法就`很难执行`下去（需要比对很多次）;  
+而hisat，可以`先将read中的长片段实现唯一比对，之后再使用局部索引对剩下的小片段进行比对（局部索引可以实现快速检索）`
+
+
+5. 4.2% 为短锚定read，因为这些序列特别短，因此只能通过在hisat比对其它read时发现的剪切位点或者用户自己提供的剪切位点来`辅助比对 `
+
+6. 最后还有3%的是跨多个外显子的read，比对策略在hisat的online method中有介绍，文章中没有详解  
+
+7. 比对过程中，中间锚定read、短锚定read、跨多个外显子read的比对占总比对时长的30%-60%，而且比对错误率很高
+
+# 比对命令  
+```
+建索引：
+
+hisat2-build [options]* <reference_in> <ht2_base>
+#<reference_in> ：fasta文件 list，如果为list，使用逗号分开
+#<ht2_base> ：索引文件的前缀名，如设为xxx，则生成的索引文件为xxx.1.ht2,xxx.2.ht2，默认的前缀名为NAME
+#option:详见说明书
+检查索引：hisat2-inspect [options]* <ht2_base>
+#输出结果为一个fasta文件，主要用于检查已经构建好的索引所用的构建信息，感觉没啥用
+比对：hisat2 [options]* -x <hisat2-idx> {-1 <m1> -2 <m2> | -U <r> | --sra-acc <SRA accession number>} [-S <hit>]
+#参数说明：
+#-p ：线程数目
+#--dta  ：注意！！！在下游使用stringtie组装的时候一定要在hisat中设置这个参数！！！
+#-x <hisat2-idx> ：参考基因组索引的basename，即前缀名
+#{}：其中的内容意思为hisat2可以接受单端测序，双端测序，或者直接提交SRA ID号
+#-1 <m1> ：双端测序的read1 list ，若为list，使用逗号隔开，名字与2要匹配，如-1 flyA_1.fq,flyB_1.fq
+#-2 <m2> ：双端测序的read2 list ，若为list，使用逗号隔开，名字与1要匹配，如-2 flyA_2.fq,flyB_2.fq
+#-U <r>：单端测序list，若为list，使用逗号隔开，-U lane1.fq,lane2.fq,lane3.fq,lane4.fq
+#--sra-acc <SRA accession number> : SRAID list，若为list，使用逗号隔开，--sra-acc SRR353653,SRR353654
+#-S <hit> ：SAM写入的文件名，默认写入到标准输出中
+#options:这里只列出可调节的类别，至于参数调整，详见说明书
+#Input options
+#Alignment options
+#Scoring options
+#Spliced alignment options（重要）
+#Reporting options
+#Paired-end options（重要）
+#Output options（重要）
+#SAM options
+#Performance options
+#Other options
+report格式
+若为单端测序
+20000 reads; of these:
+  20000 (100.00%) were unpaired; of these:
+    1247 (6.24%) aligned 0 times
+    18739 (93.69%) aligned exactly 1 time
+    14 (0.07%) aligned >1 times
+93.77% overall alignment rate
+若为双端测序
+10000 reads; of these:
+  10000 (100.00%) were paired; of these:
+    650 (6.50%) aligned concordantly 0 times
+    8823 (88.23%) aligned concordantly exactly 1 time
+    527 (5.27%) aligned concordantly >1 times
+    ----
+    650 pairs aligned concordantly 0 times; of these:
+      34 (5.23%) aligned discordantly 1 time
+    ----
+    616 pairs aligned 0 times concordantly or discordantly; of these:
+      1232 mates make up the pairs; of these:
+        660 (53.57%) aligned 0 times
+        571 (46.35%) aligned exactly 1 time
+        1 (0.08%) aligned >1 times
+96.70% overall alignment rate
+```
