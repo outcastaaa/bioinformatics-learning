@@ -12,17 +12,20 @@ hisat2-build[options]*
 
 注意：
 
-       如果使用--snp，--ss和/或--exon选项，hisat2-build将需要大约200GB的运行内存来满足人类基因组规模大小的基因组的索引构建，因为建立索引涉及到graph construction。否则，就可以用8GB的运行内存在个人电脑构建索引了。
+       如果使用--snp，--ss和/或--exon选项，hisat2-build将需要大约200GB的运行内存来满足人类基因组规模大小的基因组的索引构建，
+因为建立索引涉及到graph construction。否则，就可以用8GB的运行内存在个人电脑构建索引了。
 
 主要参数
 
 <reference_in>
 
-       以逗号分隔的FASTA文件列表，其中包含要比对的参考序列，例如chr1.fa，chr2.fa，chrX.fa，chrY.fa；如果指定了-c，则可以具体的GGTCATCCT，ACGGGTCGT，CCGTTCTATGCGGCTTA序列。
+       以逗号分隔的FASTA文件列表，其中包含要比对的参考序列，例如chr1.fa，chr2.fa，chrX.fa，chrY.fa；如果指定了-c，
+则可以具体的GGTCATCCT，ACGGGTCGT，CCGTTCTATGCGGCTTA序列。
 
 <ht2_base>
 
-       要写入的索引文件的basename；默认情况下，hisat2-build写入文件名为NAME.1.ht2, NAME.2.ht2, NAME.3.ht2, NAME.4.ht2, NAME.5.ht2, NAME.6.ht2, NAME.7.ht2, NAME.8.ht2的文件。<ht2_base>就是文件前缀NAME。
+       要写入的索引文件的basename；默认情况下，hisat2-build写入文件名为NAME.1.ht2, NAME.2.ht2, NAME.3.ht2, NAME.4.ht2, 
+NAME.5.ht2, NAME.6.ht2, NAME.7.ht2, NAME.8.ht2的文件。<ht2_base>就是文件前缀NAME。
 
 选项
 
@@ -40,19 +43,23 @@ hisat2-build[options]*
 
 4.-a/--noauto
 
-禁用hisat2-build根据可用内存自动选择--bmax，--dcv和[--packed]参数的这一默认行为。相反，用户可以为这些参数指定值。如果内存在构建索引期间耗尽，将输出错误信息；由用户决定是否尝试新的参数。
+禁用hisat2-build根据可用内存自动选择--bmax，--dcv和[--packed]参数的这一默认行为。相反，用户可以为这些参数指定值。
+如果内存在构建索引期间耗尽，将输出错误信息；由用户决定是否尝试新的参数。
 
 5.--bmax
 
-block中允许的最大后缀数。允许每个block使用更多的后缀可以加快索引构建速度，但会增加内存的峰值使用。设置此选项将覆盖以前对--bmax或--bmaxdivn的任何设置。--bmaxdivn默认值是4。这是默认自动配置的；使用-a/- noauto则可以手动配置。
+block中允许的最大后缀数。允许每个block使用更多的后缀可以加快索引构建速度，但会增加内存的峰值使用。
+设置此选项将覆盖以前对--bmax或--bmaxdivn的任何设置。--bmaxdivn默认值是4。这是默认自动配置的；使用-a/- noauto则可以手动配置。
 
 6.--bmaxdivn
 
-block中允许的最大后缀数，表示为参考序列长度的一部分。设置此选项将覆盖以前对--bmax或--bmaxdivn的任何设置。默认值: --bmaxdivn 4。这是默认自动配置的；使用-a/- noauto则可以手动配置。
+block中允许的最大后缀数，表示为参考序列长度的一部分。设置此选项将覆盖以前对--bmax或--bmaxdivn的任何设置。默认值: --bmaxdivn 4。
+这是默认自动配置的；使用-a/- noauto则可以手动配置。
 
 7.--dcv
 
-使用<int>作为difference-cover样本的period。较大的period产生较少的内存开销，但可能使后缀排序变慢，特别是如果存在重复。必须是2的整数幂且必须不大于4096。默认值:1024。这是默认自动配置的；使用-a/- noauto手动配置。
+使用<int>作为difference-cover样本的period。较大的period产生较少的内存开销，但可能使后缀排序变慢，特别是如果存在重复。
+必须是2的整数幂且必须不大于4096。默认值:1024。这是默认自动配置的；使用-a/- noauto手动配置。
 
 8.--nodc
 
@@ -70,15 +77,18 @@ block中允许的最大后缀数，表示为参考序列长度的一部分。设
 
 为了将比对结果映射回参考序列上，有必要用基因组上相应位置标注(标记)部分或全部的Burrows-Wheeler
 
-rows。-o/- offrate统计有多少行被标记:索引器将标记每2^<int>行。标记更多的行可以使序列-位置查找更快，但是需要更多的内存来在运行时保存注释。默认值为4(每16行标记一次；对于人类基因组来说，注释大约有680兆字节)。
+rows。-o/- offrate统计有多少行被标记:索引器将标记每2^<int>行。标记更多的行可以使序列-位置查找更快，但是需要更多的内存来在运行时保存注释。
+默认值为4(每16行标记一次；对于人类基因组来说，注释大约有680兆字节)。
 
 12.-t/--ftabchars
 
-ftab是用于计算的第一个<int>字符的初始Burrows-Wheeler范围的查找表。较大的<int>将生成较大的查找表，但查询时间更快。ftab的大小为4^(<int>+1)字节。默认设置为10 (ftab为4MB)。
+ftab是用于计算的第一个<int>字符的初始Burrows-Wheeler范围的查找表。较大的<int>将生成较大的查找表，但查询时间更快。ftab的大小为4^(<int>+1)字节。
+默认设置为10 (ftab为4MB)。
 
 13.--localoffrate
 
-这个选项统计在本地索引中标记多少行:索引器将标记每2^<int>行。标记更多的行可以使引用位置查找更快，但是需要更多的内存来在运行时保存注释。默认值为3(每标记第8行，每个本地索引大约占用16KB)。
+这个选项统计在本地索引中标记多少行:索引器将标记每2^<int>行。标记更多的行可以使引用位置查找更快，但是需要更多的内存来在运行时保存注释。
+默认值为3(每标记第8行，每个本地索引大约占用16KB)。
 
 14.--localftabchars
 
@@ -92,11 +102,14 @@ ftab是用于计算的第一个<int>字符的初始Burrows-Wheeler范围的查�
 
 提供一个snp列表(HISAT2自己的格式)，如下(五列)。
 
-SNPID snp type (single, deletion, or insertion) chromosomename zero-offset based genomic position of a SNP alternative base (single), the length of SNP (deletion), or insertion sequence(insertion)
+SNPID snp type (single, deletion, or insertion) chromosomename zero-offset based genomic position of a SNP alternative base (single),
+ the length of SNP (deletion), or insertion sequence(insertion)
 
 例如：rs58784443，single，13，18447947，T
 
-hisat2_extract_snps_haplotypes_UCSC.py(在HISAT2包中)从dbSNP文件(例如http://hgdownload.soe.ucsc.edu/goldenPath/hg38/database/snp144Common.txt.gz)中提取SNPs和haplotypes。或者hisat2_extract_snps_haplotypes_VCF.py从VCF文件中提取SNPs和haplotypes(例如ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/release/20130502/supporting/GRCh38_
+hisat2_extract_snps_haplotypes_UCSC.py(在HISAT2包中)从dbSNP文件(例如http://hgdownload.soe.ucsc.edu/goldenPath/hg38/database/snp144Common.txt.gz)
+中提取SNPs和haplotypes。
+或者hisat2_extract_snps_haplotypes_VCF.py从VCF文件中提取SNPs和haplotypes(例如ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/release/20130502/supporting/GRCh38_
 
 positions/ALL.chr22.phase3_shapeit2_mvncall_integrated_v3plus_nounphased.rsID.genotypes.GRCh38_dbSNP_no_SVs.vcf.gz)。
 
@@ -104,7 +117,8 @@ positions/ALL.chr22.phase3_shapeit2_mvncall_integrated_v3plus_nounphased.rsID.ge
 
 提供一个单倍型列表(使用HISAT2自己的格式)，如下所示(五列)。
 
-HaplotypeID chromosome name zero-offset based left coordinate ofhaplotype zero-offset based right coordinate of haplotype a comma separated list of SNP ids in the haplotype
+HaplotypeID chromosome name zero-offset based left coordinate ofhaplotype zero-offset based right coordinate of 
+haplotype a comma separated list of SNP ids in the haplotype
 
 例如：ht35，13，18446877，18446945，rs12381094,rs12381056,rs192016659,rs538569910
 
@@ -114,7 +128,8 @@ HaplotypeID chromosome name zero-offset based left coordinate ofhaplotype zero-o
 
 注意，这个选项应该与下面的--exon选项一起使用。提供一个剪切位点列表(HISAT2自己的格式)，如下(四列)：
 
-chromosomename zero-offset based genomic position of the flanking base on theleft side of an intron zero-offset based genomic position of theflanking base on the right strand
+chromosomename zero-offset based genomic position of the flanking base on theleft side of 
+an intron zero-offset based genomic position of theflanking base on the right strand
 
 可以用hisat2_extract_splice_sites.py 脚本从GTF注释文件中提取剪切位点文件。
 
