@@ -428,12 +428,28 @@ hisat2 [options]* -x <hisat2-idx> {-1 <m1> -2 <m2> | -U <r> | --sra-acc <SRA acc
 即：88.23 + 5.27 + 6.50 * 5.23% + 6.5 *（1-5.23）% *（46.35 + 0.08）%   
 
 5. 比对结果bam文件  
-[对bam文件的具体解读](https://luohao-brian.gitbooks.io/gene_sequencing_book/content/di-5-8282-li-jie-bing-cao-zuo-bam-wen-jian.html)
 
-使用Hisat2软件进行比对之后生成的默认文件是`sam文件格式`，`bam文件是sam文件的二进制格式`，可以减小文件的存储。了解sam/bam文件的格式对后续的分析结果的筛选非常重要，sam/bam文件的格式示例如下：  
+使用Hisat2软件进行比对之后生成的默认文件是`sam文件格式`，`bam文件是sam文件的二进制格式`，可以减小文件的存储。了解sam/bam文件的格式对后续的分析结果的筛选非常重要  
+
+[对bam文件的具体解读](https://luohao-brian.gitbooks.io/gene_sequencing_book/content/di-5-8282-li-jie-bing-cao-zuo-bam-wen-jian.html)  
+
+
+* 查看方式  
+
+如果是SAM文件，同时你也熟悉linux操作的话，直接在linux终端用less打开即可  
+（注意：不要试图在本地使用文本编辑器，如vim等直接打开文件，会撑死机子的）  
+但如果我们要查看的是BAM，那么必须通过Samtools（可以到samtools的网站下载并安装）。
 ```
-bam/sam文件的说明如下：
+$ less -SN in.sam          # 打开sam文件
+$ samtools view -h in.bam  # 打开bam文件
+加上-h参数目的是为了同时把它的header输出出来，如果没有这个参数，那么header默认是不显示的。
+```
+![p8](../pictures/P8.png)  
 
+
+* bam/sam文件的说明如下：
+```
+BAM文件分为两个部分：header和record。许多NGS组学数据的存储格式都是由header和record两部分组成的
 第1列：reads名称；
 
 第2列：Flag标签；Flag标签是二进制数字之和，不同数字代表了不同的意义。比如下面的数据代表的含义如下：
@@ -474,8 +490,7 @@ bam/sam文件的说明如下：
 
 第11列：质量值。
 ```
-![P7](../pictures/P7.jpg)  
-
+![P7](../pictures/P7.jpg)    
 
 
 
