@@ -444,6 +444,20 @@ $ less -SN in.sam          # 打开sam文件
 $ samtools view -h in.bam  # 打开bam文件
 加上-h参数目的是为了同时把它的header输出出来，如果没有这个参数，那么header默认是不显示的。
 ```
+
+查看BAM文件内容：使用samtools view查看BAM文件   
+$ samtools view in.bam
+```
+如果不想从头开始看，希望快速地跳转到基因组的其它位置上，比如chr22染色体，那么可以先用samtools index生成BAM文件的索引（如果已经有索引文件则不需该步骤），然后这样操作：  
+
+```
+$ samtools index in.bam  # 生成in.bam的索引文件in.bam.bai
+$ samtools view in.bam chr22            # 跳转到chr22染色体
+$ samtools view in.bam chr22:16050103   # 跳转到chr22:16050103位置
+$ samtools view in.bam chr22:16050103-16050103  # 只查看该位置
+```  
+
+
 header 信息：  
 
 ![p8](../pictures/P8.png)    
