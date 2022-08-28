@@ -428,6 +428,7 @@ hisat2 [options]* -x <hisat2-idx> {-1 <m1> -2 <m2> | -U <r> | --sra-acc <SRA acc
 即：88.23 + 5.27 + 6.50 * 5.23% + 6.5 *（1-5.23）% *（46.35 + 0.08）%   
 
 5. 比对结果bam文件  
+[对bam文件的具体解读](https://luohao-brian.gitbooks.io/gene_sequencing_book/content/di-5-8282-li-jie-bing-cao-zuo-bam-wen-jian.html)
 
 使用Hisat2软件进行比对之后生成的默认文件是`sam文件格式`，`bam文件是sam文件的二进制格式`，可以减小文件的存储。了解sam/bam文件的格式对后续的分析结果的筛选非常重要，sam/bam文件的格式示例如下：  
 ```
