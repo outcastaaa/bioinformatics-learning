@@ -444,7 +444,12 @@ $ less -SN in.sam          # 打开sam文件
 $ samtools view -h in.bam  # 打开bam文件
 加上-h参数目的是为了同时把它的header输出出来，如果没有这个参数，那么header默认是不显示的。
 ```
-![p8](../pictures/P8.png)  
+header 信息：  
+![p8](../pictures/P8.png)    
+
+read 信息：  
+![P9](../pictures/P9.png)  
+
 
 
 * bam/sam文件的说明如下：
