@@ -445,14 +445,19 @@ $ samtools view -h in.bam  # 打开bam文件
 加上-h参数目的是为了同时把它的header输出出来，如果没有这个参数，那么header默认是不显示的。
 ```
 header 信息：  
+
 ![p8](../pictures/P8.png)    
 
-read 信息：  
+比对信息：每一行都是一条read比对信息  
+
 ![P9](../pictures/P9.png)  
 
 
 
-* bam/sam文件的说明如下：
+* bam/sam文件的说明如下：  
+
+![P10](../pictures/P10.png)  
+
 ```
 BAM文件分为两个部分：header和record。许多NGS组学数据的存储格式都是由header和record两部分组成的
 第1列：reads名称；
