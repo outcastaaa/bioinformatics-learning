@@ -515,7 +515,7 @@ BAM文件分为两个部分：header和record。许多NGS组学数据的存储�
 第11列：质量值；
 
 第12列之后都是元数据 metadata： 包括RG信息，miss match信息，二次比对信息等。
-```
+
 ![P7](../pictures/P7.jpg)    
 
 
