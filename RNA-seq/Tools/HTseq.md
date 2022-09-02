@@ -1,4 +1,10 @@
 #  HTSeq
+
+##  使用方法
+```
+htseq-count [options] <alignment_files> <gtf_file>
+```
+
 ##  HTSeq使用注意事项
 
 1. HTSeq是对有参考基因组的转录组测序数据进行表达量分析的，其输入文件必须有`SAM和GTF文件`。  
