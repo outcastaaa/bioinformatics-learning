@@ -1,5 +1,5 @@
 #  HTSeq
-
+[官网](https://htseq.readthedocs.io/en/master/index.html)
 ##  使用方法
 ```
 htseq-count [options] <alignment_files> <gtf_file>
@@ -109,7 +109,12 @@ htseq-count -f bam -r name -s no -a 10 -t exon -i gene_id -m union --nonunique=n
 
 -h | --help 输出帮助信息。
 ```
-## 结果  
+ 
+
+## 结果    
+
+
+
 每个样本输出一个count文件，其中包含了基因名和reads计数；另外，如果你看到文件倒数5行，tail htseq.count.txt 会发现还有几行带文字的
 
 ```
