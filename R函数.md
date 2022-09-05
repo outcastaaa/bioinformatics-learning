@@ -419,5 +419,12 @@ stringsAsFactors = F意味着，“在读入数据时，遇到字符串之后，
 # lapply
 # gsub
 
-![链接详情](https://blog.csdn.net/lztttao/article/details/82086346)
+![链接详情](https://blog.csdn.net/lztttao/article/details/82086346)  
+
+1. 具体用法  
+```
+gsub(pattern, replacement, x, ignore.case = FALSE, perl = FALSE,
+    fixed = FALSE, useBytes = FALSE)
+```
+其中pattern是要替换的字符，replacement是替换的字符，x是对应的string或string vector。ignore.case表示是否忽视大小写。
 
