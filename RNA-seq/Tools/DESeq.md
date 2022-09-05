@@ -72,6 +72,7 @@ SRR184——lowdoseDEN_AM063_2；SRR183——lowdoseDEN_AM063_1；SRR182——lo
 
 ```R
  condition <- factor(c(rep("control",4),rep("treatment",4)))
+ 
  ```  
 
 
@@ -79,6 +80,7 @@ SRR184——lowdoseDEN_AM063_2；SRR183——lowdoseDEN_AM063_1；SRR182——lo
 
 ```R
  colData <- data.frame(row.names=colnames(countData), condition)
+ #* row.names: NULL或单个整数或字符串，指定某列用作行名，或者一个字符或整型向量用作数据框的行名。
  ```
 
 这两个信息可以理解为告诉差异分析函数是要分析哪些变量间的差异.
