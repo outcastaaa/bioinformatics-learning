@@ -40,6 +40,7 @@ library(ggplot2)   # 用于作图的包
 ① 去除低表达的基因   
 ```R
 countdata <- countdata[rowSums(countdata) > 0,]
+# 同一个基因不同样本的count（一横行）加起来大于0
 
 # 或者通过加和平均值来判断
 countData <- countData[rowMeans(countData)>1,]
