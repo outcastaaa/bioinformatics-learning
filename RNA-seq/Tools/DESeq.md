@@ -296,7 +296,73 @@ text(pcaData[,1],pcaData[,2],row.names(pcaData),cex=1, font = 1)
 legend(-70,43,inset = .02,pt.cex= 1.5,title = "Grade",legend = c("II", "III","IV"), 
        col = c( "red","green","blue"),pch = 19, cex=0.75,bty="n")
 ```
+我的代码：
+```
+dataframe <- read.csv("merge.csv", header=TRUE, row.names = 1)
 
+countdata <- dataframe[-(1:5),]
+
+head(countdata)  
+
+col_names <- colnames(countdata)
+name_replace <- gsub("\\.\\w+","", colnames(countdata))
+colnames(countdata) <- name_replace
+head(countdata)
+
+countdata <- countdata[rowSums(countdata) > 0,]
+
+
+
+if (!require("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")  
+
+  BiocManager::install("DESeq2")
+  BiocManager::install("pheatmap")
+  BiocManager::install("biomaRt")
+  BiocManager::install("org.Rn.eg.db")
+  BiocManager::install("clusterProfiler")
+  BiocManager::install("ggplot2")   
+
+  # 加载
+  library(DESeq2)
+  library(pheatmap)     
+  library(biomaRt)
+  library(org.Rn.eg.db)
+  library(clusterProfiler)
+  library(ggplot2)
+
+browseVignettes("ggplot2")
+
+写入 coldata文件内容  
+
+head(countdata)
+
+coldata <- read.table("phenotype.csv", row.names = 1, header = TRUE, sep = "," )
+coldata
+
+countdata <- countdata[row.names(coldata)]
+
+dds <- DESeqDataSetFromMatrix(countData = countdata, colData = coldata, design= ~ treatment)
+dds
+```
+！以上都是DESeq必须完成的前期步骤，下面是PCA及聚类分析特有的
+
+```
+rld <- rlog(dds, blind=FALSE)
+rld
+
+pcaData <- plotPCA(rld, intgroup=c("treatment"),returnData = T) 
+pcaData
+
+pcaData <- pcaData[order(pcaData$treatment,decreasing=F),]
+pcaData
+
+table(pcaData$treatment)
+
+plot(pcaData[,1:2],pch = 19,col= c(rep("red",2),rep("green",6)))
+
+
+```
 
 4. DESeq2的标准化方法
 
