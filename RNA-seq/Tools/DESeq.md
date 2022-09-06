@@ -11,6 +11,29 @@ if (!require("BiocManager", quietly = TRUE))
 
 BiocManager::install("DESeq2")
 ```
+## DEseq2包自带的rlog和vst函数  
+1. 意义：  为了进行样本相关性分析，需要先把原始`read count`进行取对数转化进行校正，DEseq2包自带的rlog和vst函数（全名为variance stabilizing transformation），它们消除了方差对均值的依赖，尤其是低均值时的高log counts的变异。
+2. 注：  
+但是在DESeq2包中实际上已经有了归一化的方法，rlog和vst，在使用的需要根据样本量的多少来选择方法。样本量少于30的话，选择rlog，多于30的话，建议选择vst。
+3. VST转换（方差稳定转换variance stabilizing transformation）  
+
+* 目的:  to simplify considerations in graphical exploratory data analysis or to allow the application of simple regression-based or analysis of variance techniques.应用基于简单的基于回归或方差分析技术
+* 概括：    
+选择方差稳定变换的目的是找到一个简单的函数 ƒ 应用于数据集中的值 x，以创建新值 y = ƒ（x），使得值 y 的变异性与其平均值无关。在DESeq里就是，f是受平均值影响的raw count，找一个x，去避免y的方差收到一些极端值的影响。
+
+4. rlog转换（规范化的log转换）  
+
+
+函数rlog代表正则化log转换，通过拟合一个模型，将每个样本的一个项和一个根据数据估计的系数的先验分布进行拟合，将原始计数数据转换为log2尺度。这与DESeq和nbinomWaldTest所使用的对数倍数变化是相同的收缩（有时称为正则化或调节）。结果数据包含的元素定义如下：
+
+
+```
+\ [\ log_2（q_ {ij}）= \ beta_ {i0} + \ beta_ {ij} \]
+```
+
+
+其中\（q_ {ij} \）是与基因i和样本j的片段的预期真实浓度成比例的参数（参见下面的公式），\（\ beta_ {i0} \）是不经历收缩的截距，和\（\ beta_ {ij} \）是基于整个数据集上的色散平均趋势向零收缩的样本特定效应。这种趋势典型地表现为低计数的高分散性，因此这些基因表现出更高的收缩率。请注意，由于\（q_ {ij} \）表示大小因子\（s_j \）被分开之后的平均值\（\ mu_ {ij} \）的部分，因此很明显rlog转换具有固有的考虑到测序深度的差异。如果没有先验，这个设计矩阵将导致一个非独特的解决方案，然而，在非截距测试中增加一个先验的解决方案可以找到一个独特的解决方案。
+
 ## 使用流程  
 
 ### 1. 读入和处理数据  
