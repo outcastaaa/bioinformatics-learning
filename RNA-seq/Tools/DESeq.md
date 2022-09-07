@@ -184,16 +184,7 @@ dds <- dds[rowSums(counts(dds)) > 1, ]
 
 *  可以尝试不同的cutoff，以获得最佳效果   
 
-[选择性指定factor levels]    
 
-R 将基于字母顺序默认参考水平，但实际通常是根据对照组作为参考水平。因此有必要时要设置  
-```
-dds$condition <- factor(dds$condition, levels=c('untreated', 'treated'))
-# 也可以直接指定
-dds$condition <- relevel(dds$condition, ref='untreated')
-# 如果有时对dds取子集时，导致某些水平不含数据，那么这个水平就可以丢弃
-dds$condition <- droplevels(dds$condition)
-```
 
 3. 主成分分析[选择性采取该步骤，只用于看样本相关性]
 
@@ -298,6 +289,8 @@ legend(-70,43,inset = .02,pt.cex= 1.5,title = "Grade",legend = c("II", "III","IV
 ```
 我的代码：
 ```
+setwd("D:/project/rat/output/HTseq")
+
 dataframe <- read.csv("merge.csv", header=TRUE, row.names = 1)
 
 countdata <- dataframe[-(1:5),]
@@ -333,7 +326,7 @@ if (!require("BiocManager", quietly = TRUE))
 
 browseVignettes("ggplot2")
 
-写入 coldata文件内容  
+# 写入 coldata文件内容  
 
 head(countdata)
 
@@ -359,13 +352,285 @@ pcaData
 
 table(pcaData$treatment)
 
-plot(pcaData[,1:2],pch = 19,col= c(rep("red",2),rep("green",6)))
+# 绘制plot图
+plot(pcaData[,1:2],pch = 19,col= c(rep("red",2),rep("green",2),rep("blue",2),rep("yellow",2)))
+
+text(pcaData[,1],pcaData[,2],row.names(pcaData),cex=1, font = 1)
+
+legend(-30,-5,inset = .02,pt.cex= 1.5,legend = c("DEN","DEN + AM063","DEN + AM065","PBS"), 
+       col = c( "red","green","blue"),pch = 19, cex=0.75,bty="n")
+
+
+# 绘制聚类热图  
+library("RColorBrewer")
+
+gene_data_transform <- assay(rld)
+
+sampleDists <- dist(t(gene_data_transform))
+
+sampleDistMatrix <- as.matrix(sampleDists)
+
+rownames(sampleDistMatrix) <- paste(rld$treatment, rld$condition, rld$ids,sep="-")
+colnames(sampleDistMatrix) <- paste(rld$treatment, rld$condition, rld$ids,sep="-")
+# 没办法显示ids，因为rld没办法导进入，还得想办法搞colnames
+
+colors <- colorRampPalette( rev(brewer.pal(9, "Blues")) )(255)
+
+pheatmap(sampleDistMatrix,
+         clustering_distance_rows=sampleDists,
+         clustering_distance_cols=sampleDists,
+         col=colors)
+```
+
+
+
+
+
+4. 指定factor levels    
+
+R 将基于字母顺序默认参考水平，但实际通常是根据对照组作为参考水平。因此有必要时要设置  
+```
+dds$condition <- factor(dds$condition, levels=c('untreated', 'treated'))  
+
+# 也可以直接指定
+dds$condition <- relevel(dds$condition, ref='untreated')
+# 如果有时对dds取子集时，导致某些水平不含数据，那么这个水平就可以丢弃
+dds$condition <- droplevels(dds$condition)
+```
+我的代码：
+
+```
+# 改变样本组别顺序
+dds$treatment <- factor(as.vector(dds$treatment), levels = c("control","treatment"))
+#as.vector用于将对象转换为向量，其实在dds建立的时候就已经自然转换了
+```
+
+5. DESeq2的标准化方法[好像不是必须]  
+
+
+（1）计算归一化系数sizeFactor  
+```
+dds <- estimateSizeFactors(dds) 
+```
+
+colData(dds)多了sizeFactor这一列，对测序深度和文库组成进行校正。和vsd、rld的sizeFactor是一样的。  
+
+（2）标准化之后的数据  
+
+```
+normalized_counts <- counts(dds,normalized=T) 
+```
+
+将原始的表达量除以每个样本的归一化系数，就得到了归一化之后的表达量。read counts/sizeFactor。
+
+6. 差异表达分析  
+
+（1）一步:首选  
+```
+dds <- DESeq(dds) 
+```
+
+2）用法
+```
+DESeq(object, test = c("Wald", "LRT"), fit Type = c("parametric", "local", "mean"), sfType = c("ratio", "poscounts", "iterate"),betaPrior, full = design(object), reduced, quiet = FALSE, minReplicatesForReplace = 7, modelMatrixType, useT = FALSE, minmu = 0.5, parallel = FALSE, BPPARAM = bpparam())
+```
+
+结果：  
+
+```
+estimating size factors估计尺寸因素
+estimating dispersions估计分散
+gene-wise dispersion estimates基因分散估计
+mean-dispersion relationship平均离散关系
+final dispersion estimates最终离散估计
+fitting model and testing拟合模型和测试
+```
+
+
+test可以是`Wald significance tests`或`likelihood ratio test（似然比检验）`，on the difference in deviance between a full and reduced model formula。  
+
+
+（3）分步  
+
+* 计算归一化系数sizeFactor  
+```
+dds <- estimateSizeFactors(dds) 
+```
+
+* 估计基因的离散程度  
+```
+dds <- estimateDispersions(dds) 
+```
+
+DESeq2假定基因的表达量符合负二项分布，有两个关键参数，总体均值和离散程度α值。这个α值衡量的是均值和方差之间的关系。  
+
+![p14](../pictures/P14.webp)    
+ 
+* 统计检验，差异分析  
+```
+dds <- nbinomWaldTest(dds) 
+```
+
+6. 获得分析结果  
+
+（1）默认情况  
+```
+res <- results(dds)
+```
+
+ (2) 用法  
+
+```
+function (object, contrast, name, lfcThreshold = 0, altHypothesis = c("greaterAbs",
+    "lessAbs", "greater", "less"), listValues = c(1, -1), cooksCutoff,
+    independentFiltering = TRUE, alpha = 0.1, filter, theta,
+    pAdjustMethod = "BH", filterFun, format = c("DataFrame",
+        "GRanges", "GRangesList"), saveCols = NULL, test, addMLE = FALSE,
+    tidy = FALSE, parallel = FALSE, BPPARAM = bpparam(), minmu = 0.5)
+
+1. contrast
+this argument specifies what comparison to extract from the object to build a results table. one of either:
+（此参数指定从对象中提取什么比较以构建结果表）
+
+① a character vector with exactly three elements: the name of a factor in the design formula, the name of the numerator level for the fold change,
+ and the name of the denominator level for the fold change (simplest case) 
+ （有三个元素的字符向量：设计公式中一个因子的名称、fold change的分子level的名称、fold change的分母level的名称）
+
+② a list of 2 character vectors: the names of the fold changes for the numerator, and the names of the fold changes for the denominator. 
+these names should be elements of resultsNames(object). 
+if the list is length 1, a second element is added which is the empty character vector, character().
+(more general case, can be to combine interaction terms and main effects)
+（一个由两个字符向量组成的列表：分子的fold change名称，分母的fold change名称。这些名称应该是resultsNames(object)。
+如果列表是长度1，则添加第二个元素，即空字符向量character()。更一般的情况是，可以将交互项和主要效果结合起来。）
+
+③ a numeric contrast vector with one element for each element in resultsNames(object) (most general case)
+（具有一个元素的数值型对比向量，对于resultsNames(object)中的每一个元素）
+
+If specified, the name argument is ignored.
+
+
+2. name
+
+the name of the individual effect (coefficient) for building a results table.
+ Use this argument rather than contrast for continuous variables, individual effects or for individual interaction terms. The value provided to name must be an element of resultsNames(object).
+ （建立结果表的单个效应（系数）的名称。对于连续变量、单个效应或单个交互项，使用此参数而不是contrast。 提供给name的值必须是resultsNames(object)的元素）
+
+3. lfcThreshold
+
+a non-negative value which specifies a log2 fold change threshold. 
+The default value is 0, corresponding to a test that the log2 fold changes are equal to zero.
+
+4. independentFiltering
+
+logical, whether independent filtering should be applied automatically
+
+5. alpha
+
+the significance cutoff used for optimizing the independent filtering (by default 0.1). 
+If the adjusted p-value cutoff (FDR) will be a value other than 0.1, alpha should be set to that value.
+（用于优化独立筛选的显著性截止值（默认情况下为0.1）。如果adjusted p-value cutoff (FDR)是0.1以外的值，则α应设置为该值。）
+```
+
+ (3) 结果分析  
+
+
+* 默认使用样本信息的最后一个因子与第一个因子进行比较。  
+* 返回一个数据框res，包含6列：`baseMean、log2FC、lfcSE、stat、pvalue、padj`  
+
+
+* `baseMean`表示所有样本经过归一化系数矫正的read counts（counts/sizeFactor）的均值。  
+
+baseMean = apply( normalized_counts, 1, mean )。  
+
+
+* `log2Foldchange`表示该基因的表达发生了多大的变化，是估计的效应大小effect size。fold change是两组之间的均值差异倍数。  
+
+对差异表达的倍数取以2为底的对数，变化倍数=2^log2Foldchange。  
+
+log2FoldChange = apply( normalized_counts, 1, function(t) {log2( mean(t[5:8])/ mean(t[1:4]))}  
+
+（并不完全相等。log2FC反映的是不同分组间表达量的差异，这个差异由两部分构成，一种是样本间本身的差异，比如生物学重复样本间基因的表达量就有一定程度的差异，另外一部分就是我们真正感兴趣的，由于分组不同或者实验条件不同造成的差异。用归一化之后的数值直接计算出的log2FC包含了以上两种差异，而我们真正感兴趣的只有分组不同造成的差异，DESeq2在差异分析的过程中已经考虑到了样本本身的差异，其最终提供的log2FC只包含了分组间的差异，所以会与手动计算的不同）。  
+
+
+* lfcSE(logfoldchange Standard Error)是对于log2Foldchange估计的标准误差估计，效应大小估计有不确定性。  
+
+* stat是Wald统计量，它是由log2Foldchange除以标准差所得。  
+
+
+* pvalue和padj分别代表原始的p值以及经过校正后的p值。常用p=0.1.  
+
+ adjusted p value less than 0.1 should contain no more than 10% false positives.  
+
+  Need to filter on adjusted p-values, not p-values, to obtain FDR control. 10% FDR is common because RNA-seq experiments are often exploratory and having 90% true positives in the gene set is ok.  
+
+
+（4）比较任何两组数据  
 
 
 ```
+resultsNames(dds) 
 
-4. DESeq2的标准化方法
+res <- results(dds, name="Group_1_vs_2") 
+res <- results(dds, contrast=c("Group"," 1 "," 2 ")) #后面的是对照 
+```  
 
+（5）结果的简单统计  
+```
+summary(res)
+```
+
+（6）排序和筛选
+```
+resOrdered <- res[order(res$pvalue), ]  #从小到大排序，默认decreasing = F 
+sum(res$padj < 0.1, na.rm=TRUE)  #有多少padj小于0.1的 
+diff_gene <-subset(res, padj < 0.1 & abs(log2FoldChange) > 1) 
+```
+
+ （7）排序和筛选
+```
+resOrdered <- res[order(res$pvalue), ]  #从小到大排序，默认decreasing = F 
+sum(res$padj < 0.1, na.rm=TRUE)  #有多少padj小于0.1的 
+diff_gene <-subset(res, padj < 0.1 & abs(log2FoldChange) > 1) 
+```
+
+
+我的代码：  
+
+```
+dds1$condition <- factor(as.vector(dds1$condition), levels = c("PBS","DEN","DEN + AM063","DEN + AM095")) 
+
+dds1 <- DESeq(dds1)
+
+result1 <- results(dds1, pAdjustMethod = "fdr", alpha = 0.05)
+
+# 查看结果
+head(result1)
+
+result_order1 <- result[order(result1$pvalue),]
+head(result_order1)
+
+summary(result_order1)
+
+table(result_order1$padj<0.05)
+
+dir.create("../DESeq2")
+
+write.csv(result1, file="../DESeq2/results1.csv", quote = F)
+
+
+
+#  比较任意两组数据  
+
+resultsNames(dds1) 
+
+[1] "Intercept"                      "treatment_treatment_vs_control"
+
+  
+举例
+res <- results(dds1, name="Group_MMF_vs_WTF") 
+res <- results(dds1, contrast=c("Group"," MMF "," WTF ")) #后面的是对照 
+
+```
 
 
 
