@@ -16,7 +16,8 @@ trim_galore [options] <filename(s)>
                         (Subtract INT from all qualities; compute partial sums from all indices
                         to the end of the sequence; cut sequence at the index at which the sum is
                         minimal). Default Phred score: 20.
-  除了移除adapter之外，还可以从读取中修剪低质量末端。 对于RRBS 样本，将首先执行质量修整，然后adapter修剪在第二轮中进行。 其他文件是质量修整和adapter一次修剪。 
+  除了移除adapter之外，还可以从读取中修剪低质量末端。 对于RRBS 样本，将首先执行质量修整，然后adapter修剪在第二轮中进行。 
+  其他文件是质量修整和adapter一次修剪。 
   该算法与 BWA 使用的算法相同（从所有质量中减去 INT；从所有索引中计算部分和到序列的末尾； 在总和所在的索引处切割序列最小）。
 
 --phred33               Instructs Cutadapt to use ASCII+33 quality scores as Phred scores指示 Cutadapt 使用 ASCII+33 质量分数作为 Phred 分数
@@ -41,7 +42,8 @@ trim_galore [options] <filename(s)>
                         Trim Galore defaults to '--illumina' (as long as the Illumina adapter was one of the
                         options, else '--nextera' is the default). A single base
                         may also be given as e.g. -a A{10}, to be expanded to -a AAAAAAAAAA.
-  要修剪的adapter序列。  如果未明确指定，Trim Galore 将尝试自动检测是否使用了 Illumina 通用接头序列、Nextera 转座酶接头序列或 Illumina 小 RNA 接头序列。 另见“--illumina”、“--nextera”和“--small_rna”。 
+  要修剪的adapter序列。  如果未明确指定，Trim Galore 将尝试自动检测是否使用了 Illumina 通用接头序列、Nextera 转座酶接头序列或 Illumina 小 RNA 接头序列。 
+  另见“--illumina”、“--nextera”和“--small_rna”。 
   如果在指定的第一个文件的前 100 万个序列中没有检测到adapter，或者如果几个adapter序列之间存在关联，
   则 Trim Galore 默认为“--illumina”（只要 Illumina 适配器是选项之一， 否则 '--nextera' 是默认值）。。
 
@@ -50,7 +52,8 @@ trim_galore [options] <filename(s)>
                         are smallRNA then a2 will be set to the Illumina small RNA 5' adapter automatically
                         (GATCGTCGGACT). A single base may also be given as e.g. -a2 A{10}, to be expanded
                         to -a2 AAAAAAAAAA.
-  可选的adapter序列被修剪掉read 2 的双末端文件。 此选项还需要指定“--paired”。 如果要修剪的文库是 smallRNA，则 a2 将自动设置为 Illumina small RNA 5' adapter (GATCGTCGGACT)。
+  可选的adapter序列被修剪掉read 2 的双末端文件。 此选项还需要指定“--paired”。 
+  如果要修剪的文库是 smallRNA，则 a2 将自动设置为 Illumina small RNA 5' adapter (GATCGTCGGACT)。
 
 --illumina              Adapter sequence to be trimmed is the first 13bp of the Illumina universal adapter
                         'AGATCGGAAGAGC' instead of the default auto-detection of adapter sequence.
@@ -62,29 +65,37 @@ trim_galore [options] <filename(s)>
                         Please also see https://github.com/FelixKrueger/TrimGalore/issues/127 or
                         https://support.illumina.com/bulletins/2020/06/trimming-t-overhang-options-for-the-illumina-rna-library-prep-wo.html
                         for further information. This sequence is currently NOT included in the adapter auto-detection.
+  要修剪的接头序列是 Illumina 链 mRNA 的前 13bp或总 RNA 接头“ACTGTCTCTTATA”，而不是接头序列的默认自动检测。
+  请注意，此序列类似于 Nextera 序列，带有来自 A 加尾的附加 A。
 
 --nextera               Adapter sequence to be trimmed is the first 12bp of the Nextera adapter
                         'CTGTCTCTTATA' instead of the default auto-detection of adapter sequence.
+                        要修剪的接头序列是 Nextera 接头的前 12bp “CTGTCTCTTATA”，而不是接头序列的默认自动检测。
 
 --small_rna             Adapter sequence to be trimmed is the first 12bp of the Illumina Small RNA 3' Adapter
                         'TGGAATTCTCGG' instead of the default auto-detection of adapter sequence. Selecting
                         to trim smallRNA adapters will also lower the --length value to 18bp. If the smallRNA
                         libraries are paired-end then a2 will be set to the Illumina small RNA 5' adapter
                         automatically (GATCGTCGGACT) unless -a 2 had been defined explicitly.
+  要修剪的接头序列是 Illumina Small RNA 3' 接头的前 12bp “TGGAATTCTCGG”，而不是接头序列的默认自动检测。 
+  选择修剪 smallRNA 接头也会将 --length 值降低到 18bp。 如果 smallRNA 文库是双末端的，则 a2 将自动设置为 Illumina small RNA 5' 接头 (GATCGTCGGACT)，除非 -a 2 已明确定义
 
 --consider_already_trimmed <INT>     During adapter auto-detection, the limit set by <INT> allows the user to
                         set a threshold up to which the file is considered already adapter-trimmed. If no adapter
                         sequence exceeds this threshold, no additional adapter trimming will be performed (technically,
                         the adapter is set to '-a X'). Quality trimming is still performed as usual.
                         Default: NOT SELECTED (i.e. normal auto-detection precedence rules apply).
+  在adapter自动检测期间，<INT> 允许用户设置一个阈值，在该阈值文件被认为已经经过适配器修整。 如果没有接头序列超过此阈值，则不会执行额外的接头修整
+  （从技术上讲，接头设置为“-a X”）。 质量修整仍照常进行。 默认值：未选择（即应用正常的自动检测优先规则）。
 
 --max_length <INT>      Discard reads that are longer than <INT> bp after trimming. This is only advised for
                         smallRNA sequencing to remove non-small RNA sequences.
-
+  修剪后丢弃长于 <INT> bp 的读取。 这仅建议用于小 RNA 测序以去除非小 RNA 序列。
 
 --stringency <INT>      Overlap with adapter sequence required to trim a sequence. Defaults to a
                         very stringent setting of 1, i.e. even a single bp of overlapping sequence
                         will be trimmed off from the 3' end of any read.
+与接头序列重叠多少就要修剪掉。 默认设置为非常严格的 1，即即使是单个 bp 的重叠序列也会从任何读取的 3' 端修剪掉。
 
 -e <ERROR RATE>         Maximum allowed error rate (no. of errors divided by the length of the matching
                         region) (default: 0.1)
@@ -103,23 +114,34 @@ trim_galore [options] <filename(s)>
                         <INT> bp to be printed out to validated paired-end files (see option --paired).
                         If only one read became too short there is the possibility of keeping such
                         unpaired single-end reads (see --retain_unpaired). Default pair-cutoff: 20 bp.
+丢弃由于质量或adapter修整而变得短于长度 INT 的读取。 '0' 值有效地禁用此行为。 默认值：20 bp。
+
+对于双端文件，读取对的两个读取都需要长于<INT> bp，被打印到经过验证的双端文件中（参见选项 --paired）。
+如果只有一个读取变得太短，则有可能保留此类未配对的单端读取（请参阅--retain_unpaired）。 默认对截止：20 bp。
+
 
 --max_n COUNT           The total number of Ns (as integer) a read may contain before it will be removed altogether.
                         In a paired-end setting, either read exceeding this limit will result in the entire
                         pair being removed from the trimmed output files.
+在完全删除之前，读取可能包含的 Ns 总数（整数）。 在双端设置中，任何超过此限制的读取都将导致整个对从修剪的输出文件中删除。
 
 --trim-n                Removes Ns from either side of the read. This option does currently not work in RRBS mode.
+移除 Ns
+
 
 -o/--output_dir <DIR>   If specified all output will be written to this directory instead of the current
                         directory. If the directory doesn't exist it will be created for you.
 
 --no_report_file        If specified no report file will be generated.
+如果指定，则不会生成报告文件。
+
 
 --suppress_warn         If specified any output to STDOUT or STDERR will be suppressed.
 
 --clip_R1 <int>         Instructs Trim Galore to remove <int> bp from the 5' end of read 1 (or single-end
                         reads). This may be useful if the qualities were very poor, or if there is some
                         sort of unwanted bias at the 5' end. Default: OFF.
+指示 Trim Galore 从read 1（或单端读取）的 5' 端删除 <int> bp。 如果质量非常差，或者在 5' 端存在某种不需要的偏差，这可能很有用。 默认值：关闭。
 
 --clip_R2 <int>         Instructs Trim Galore to remove <int> bp from the 5' end of read 2 (paired-end reads
                         only). This may be useful if the qualities were very poor, or if there is some sort
@@ -127,6 +149,10 @@ trim_galore [options] <filename(s)>
                         the first few bp because the end-repair reaction may introduce a bias towards low
                         methylation. Please refer to the M-bias plot section in the Bismark User Guide for
                         some examples. Default: OFF.
+指示 Trim Galore 从read 2 的 5' 端删除 <int> bp（仅限双端读取）。 
+如果质量非常差，或者在 5' 端存在某种不需要的偏差，这可能很有用。 
+对于双末端 BS-Seq，建议去除前几个 bp，因为末端修复反应可能会引入低甲基化的偏差。 
+有关示例，请参阅 Bismark 用户指南中的 M-bias 图部分。 默认值：关闭。
 
 --three_prime_clip_R1 <int>     Instructs Trim Galore to remove <int> bp from the 3' end of read 1 (or single-end
                         reads) AFTER adapter/quality trimming has been performed. This may remove some unwanted
@@ -142,7 +168,8 @@ trim_galore [options] <filename(s)>
                         cutoff (that is normally given with -q instead), but qualities of G bases are ignored.
                         This trimming is in common for the NextSeq- and NovaSeq-platforms, where basecalls without
                         any signal are called as high-quality G bases. This is mutually exlusive with '-q INT'.
-
+这将启用 Cutadapt 中的选项 '--nextseq-trim=3'CUTOFF'，这将设置质量cutoff值（通常用 -q 代替），但 G 碱基的质量被忽略。
+ 这种修整对于 NextSeq 和 NovaSeq 平台很常见，其中没有任何信号的碱基调用被称为高质量 G 碱基。 这与“-q INT”互斥。
 
 --path_to_cutadapt </path/to/cutadapt>     You may use this option to specify a path to the Cutadapt executable,
                         e.g. /my/home/cutadapt-1.7.1/bin/cutadapt. Else it is assumed that Cutadapt is in
@@ -152,6 +179,10 @@ trim_galore [options] <filename(s)>
                         the input files. Single-end data would be called PREFERRED_NAME_trimmed.fq(.gz), or
                         PREFERRED_NAME_val_1.fq(.gz) and PREFERRED_NAME_val_2.fq(.gz) for paired-end data. --basename
                         only works when 1 file (single-end) or 2 files (paired-end) are specified, but not for longer lists.
+使用 PREFERRED_NAME 作为输出文件的基本名称，而不是从输入文件派生文件名。 单端数据将称为 PREFERRED_NAME_trimmed.fq(.gz)，
+或 PREFERRED_NAME_val_1.fq(.gz) 和 PREFERRED_NAME_val_2.fq(.gz) 用于双端测序数据。 
+--basename 仅在指定 1 个文件（单端）或 2 个文件（配对端）时有效，但不适用于更长的列表。
+
 
 -j/--cores INT          Number of cores to be used for trimming [default: 1]. For Cutadapt to work with multiple cores, it
                         requires Python 3 as well as parallel gzip (pigz) installed on the system. Trim Galore attempts to detect
@@ -161,7 +192,11 @@ trim_galore [options] <filename(s)>
                         If pigz cannot be detected on your system, Trim Galore reverts to using gzip compression. Please note
                         that gzip compression will slow down multi-core processes so much that it is hardly worthwhile, please
                         see: https://github.com/FelixKrueger/TrimGalore/issues/16#issuecomment-458557103 for more info).
+用于修整的核心数 [默认值：1]。 要让 Cutadapt 使用多个内核，它需要 Python 3 以及系统上安装的并行 gzip (pigz)。 Trim Galore 尝试通过调用 Cutadapt 来检测使用的 Python 版本。 
+如果检测到 Python 2，则 --cores 设置为 1。如果无法检测到 Python 版本，则假定为 Python 3，我们让 Cutadapt 自己处理潜在问题。
 
+如果在您的系统上无法检测到 pigz，Trim Galore 将恢复使用 gzip 压缩。 
+请注意，gzip 压缩会大大减慢多核进程，以至于几乎不值得，请参阅：https://github.com/FelixKrueger/TrimGalore/issues/16#issuecomment-458557103 了解更多信息）。
                         Actual core usage: It should be mentioned that the actual number of cores used is a little convoluted.
                         Assuming that Python 3 is used and pigz is installed, --cores 2 would use 2 cores to read the input
                         (probably not at a high usage though), 2 cores to write to the output (at moderately high usage), and
@@ -331,6 +366,10 @@ Paired-end specific options:
                         other read can be rescued (see option --retain_unpaired). Using this option lets
                         you discard too short read pairs without disturbing the sequence-by-sequence order
                         of FastQ files which is required by many aligners.
+此选项对双端文件的质量/adapter/RRBS 修剪读取执行长度修剪。 
+为了通过验证测试，一个序列对的两个序列都需要有一个特定的最小长度，该最小长度由选项--length（见上文）控制。 
+如果只有一个读取超过此长度阈值，则可以挽救另一个读取（请参阅选项 --retain_unpaired）。 
+使用此选项可让您丢弃太短的读取对，而不会干扰许多比对器所需的 FastQ 文件的序列顺序。
 
                         Trim Galore! expects paired-end files to be supplied in a pairwise fashion, e.g.
                         file1_1.fq file1_2.fq SRR2_1.fq.gz SRR2_2.fq.gz ... .
@@ -353,6 +392,7 @@ Paired-end specific options:
 -r1/--length_1 <INT>    Unpaired single-end read length cutoff needed for read 1 to be written to
                         '.unpaired_1.fq' output file. These reads may be mapped in single-end mode.
                         Default: 35 bp.
+将读取 1 写入“.unpaired_1.fq”输出文件所需的未配对单端读取长度cutoff。
 
 -r2/--length_2 <INT>    Unpaired single-end read length cutoff needed for read 2 to be written to
                         '.unpaired_2.fq' output file. These reads may be mapped in single-end mode.
