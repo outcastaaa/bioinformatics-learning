@@ -4,7 +4,7 @@
 
 trim_galore [options] <filename(s)>
 
-
+```
 -h/--help               Print this help message and exits.
 
 -v/--version            Print the version information and exits.
@@ -171,11 +171,11 @@ trim_galore [options] <filename(s)>
                         --cores 4 would then be: 4 (read) + 4 (write) + 4 (Cutadapt) + 2 (extra Cutadapt) +     1 (Trim Galore) = 15.
 
                         It seems that --cores 4 could be a sweet spot, anything above has diminishing returns.
-
+```
 
 
 SPECIFIC TRIMMING - without adapter/quality trimming
-
+```
 --hardtrim5 <int>       Instead of performing adapter-/quality trimming, this option will simply hard-trim sequences
                         to <int> bp at the 5'-end. Once hard-trimming of files is complete, Trim Galore will exit.
                         Hard-trimmed output files will end in .<int>_5prime.fq(.gz). Here is an example:
@@ -276,9 +276,9 @@ SPECIFIC TRIMMING - without adapter/quality trimming
                             ATCTAGTTCAGTACGGTGTTTTCGAATTAGAAAAATATGTATAGAGGAAATAGATATAAAGGCGTATTCGTTATTG
                         R2: @HWI-D00436:407:CCAETANXX:1:1101:4105:1905 3:N:0: CGATGTTT:CAATTTTG
                                     CAGTACAAAAATAATACCTCCTCTATTTATCCAAAATCACAAAAAACCACCCACTTAACTTTCCCTAA
-
+```
 RRBS-specific options (MspI digested material):
-
+```
 --rrbs                  Specifies that the input file was an MspI digested RRBS sample (recognition
                         site: CCGG). Single-end or Read 1 sequences (paired-end) which were adapter-trimmed
                         will have a further 2 bp removed from their 3' end. Sequences which were merely
@@ -301,7 +301,7 @@ RRBS-specific options (MspI digested material):
                         the temporary file is being deleted after adapter trimming. Only has
                         an effect for RRBS samples since other FastQ files are not trimmed
                         for poor qualities separately.
-
+```
 
 Note for RRBS using the NuGEN Ovation RRBS System 1-16 kit:
 
@@ -323,7 +323,7 @@ run Trim Galore! in the standard (i.e. non-RRBS) mode.
 
 
 Paired-end specific options:
-
+```
 --paired                This option performs length trimming of quality/adapter/RRBS trimmed reads for
                         paired-end files. To pass the validation test, both sequences of a sequence pair
                         are required to have a certain minimum length which is governed by the option
@@ -357,5 +357,5 @@ Paired-end specific options:
 -r2/--length_2 <INT>    Unpaired single-end read length cutoff needed for read 2 to be written to
                         '.unpaired_2.fq' output file. These reads may be mapped in single-end mode.
                         Default: 35 bp.
-
+```
 Last modified on 15 January 2022.
