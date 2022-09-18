@@ -1,0 +1,45 @@
+$ trim_galore -o /mnt/d/$ methylation/output/adapter/ --fastqc /mnt/d/methylation/data/sequence/*.fastq.gz
+Multicore support not enabled. Proceeding with single-core trimming.
+Path to Cutadapt set as: 'cutadapt' (default)
+Cutadapt seems to be working fine (tested command 'cutadapt --version')
+Cutadapt version: 4.1
+single-core operation.
+No quality encoding type selected. Assuming that the data provided uses Sanger encoded Phred scores (default)
+
+Output will be written into the directory: /mnt/d/methylation/output/adapter/
+
+
+AUTO-DETECTING ADAPTER TYPE
+===========================
+Attempting to auto-detect adapter type from the first 1 million sequences of the first file (>> /mnt/d/methylation/data/sequence/SRR7368841.fastq.gz <<)
+
+Found perfect matches for the following adapter sequences:
+Adapter type    Count   Sequence        Sequences analysed      Percentage
+Illumina        65577   AGATCGGAAGAGC   1000000 6.56
+Nextera 1       CTGTCTCTTATA    1000000 0.00
+smallRNA        0       TGGAATTCTCGG    1000000 0.00
+Using Illumina adapter for trimming (count: 65577). Second best hit was Nextera (count: 1)
+
+Writing report to '/mnt/d/methylation/output/adapter/SRR7368841.fastq.gz_trimming_report.txt'
+
+SUMMARISING RUN PARAMETERS
+==========================
+Input filename: /mnt/d/methylation/data/sequence/SRR7368841.fastq.gz
+Trimming mode: single-end
+Trim Galore version: 0.6.8dev
+Cutadapt version: 4.1
+Number of cores used for trimming: 1
+Quality Phred score cutoff: 20
+Quality encoding type selected: ASCII+33
+Adapter sequence: 'AGATCGGAAGAGC' (Illumina TruSeq, Sanger iPCR; auto-detected)
+Maximum trimming error rate: 0.1 (default)
+Minimum required adapter overlap (stringency): 1 bp
+Minimum required sequence length before a sequence gets removed: 20 bp
+Running FastQC on the data once trimming has completed
+Output file(s) will be GZIP compressed
+
+Cutadapt seems to be fairly up-to-date (version 4.1). Setting -j 1
+Writing final adapter and quality trimmed output to SRR7368841_trimmed.fq.gz
+
+
+  >>> Now performing quality (cutoff '-q 20') and adapter trimming in a single pass for the adapter sequence: 'AGATCGGAAGAGC' from file /mnt/d/methylation/data/sequence/SRR7368841.fastq.gz <<<
