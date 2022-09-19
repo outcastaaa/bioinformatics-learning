@@ -1,0 +1,45 @@
+xuruizhi@DESKTOP-HI65AUV:/mnt/d/methylation/output/adapter$ bismark -o /mnt/d/methylation/output/bismark_align_results \
+--parall>  --parallel 4 --bam --genome_folder ${genome_path} ./*.fq.gz
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+        LANGUAGE = (unset),
+        LC_ALL = (unset),
+        LANG = "zh_CN.UTF-8"
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+Path to Bowtie 2 specified as: bowtie2
+Bowtie seems to be working fine (tested command 'bowtie2 --version' [2.3.5])
+Output format is BAM (default)
+Alignments will be written out in BAM format. Samtools found here: '/home/linuxbrew/.linuxbrew/bin/samtools'
+Reference genome folder provided is /mnt/d/methylation/data/gene/       (absolute path is '/mnt/d/methylation/data/gene/)'
+FastQ format assumed (by default)
+
+Input files to be analysed (in current folder '/mnt/d/methylation/output/adapter'):
+./SRR7368841_trimmed.fq.gz
+./SRR7368842_trimmed.fq.gz
+./SRR7368845_trimmed.fq.gz
+Library is assumed to be strand-specific (directional), alignments to strands complementary to the original top or bottom strands will be ignored (i.e. not performed!)
+Output will be written into the directory: /mnt/d/methylation/output/bismark_align_results/
+Running Bismark Parallel version. Number of parallel instances to be spawned: 4
+
+Current working directory is: /mnt/d/methylation/output/adapter
+
+Now reading in and storing sequence information of the genome specified in: /mnt/d/methylation/data/gene/
+
+chr 19 (61420004 bp)
+
+
+Single-end alignments will be performed
+=======================================
+
+
+Single-end alignments will be performed
+=======================================
+
+
+Single-end alignments will be performed
+=======================================
+
+
+Single-end alignments will be performed
+=======================================
