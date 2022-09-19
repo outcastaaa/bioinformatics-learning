@@ -43,3 +43,136 @@ Single-end alignments will be performed
 
 Single-end alignments will be performed
 =======================================
+
+Finished subdividing ./SRR7368841_trimmed.fq.gz for PID: 0 and offset 1
+
+Using the subset file >SRR7368841_trimmed.fq.gz.temp.1< as new in-file (instead of >./SRR7368841_trimmed.fq.gz<)
+Input file is in FastQ format
+Finished subdividing ./SRR7368841_trimmed.fq.gz for PID: 58 and offset 4
+
+Finished subdividing ./SRR7368841_trimmed.fq.gz for PID: 0 and offset 3
+
+Using the subset file >SRR7368841_trimmed.fq.gz.temp.4< as new in-file (instead of >./SRR7368841_trimmed.fq.gz<)
+Using the subset file >SRR7368841_trimmed.fq.gz.temp.3< as new in-file (instead of >./SRR7368841_trimmed.fq.gz<)
+Input file is in FastQ format
+Input file is in FastQ format
+Finished subdividing ./SRR7368841_trimmed.fq.gz for PID: 0 and offset 2
+
+Using the subset file >SRR7368841_trimmed.fq.gz.temp.2< as new in-file (instead of >./SRR7368841_trimmed.fq.gz<)
+Input file is in FastQ format
+Writing a C -> T converted version of the input file SRR7368841_trimmed.fq.gz.temp.1 to SRR7368841_trimmed.fq.gz.temp.1_C_to_T.fastq
+Writing a C -> T converted version of the input file SRR7368841_trimmed.fq.gz.temp.4 to SRR7368841_trimmed.fq.gz.temp.4_C_to_T.fastq
+Writing a C -> T converted version of the input file SRR7368841_trimmed.fq.gz.temp.2 to SRR7368841_trimmed.fq.gz.temp.2_C_to_T.fastq
+Writing a C -> T converted version of the input file SRR7368841_trimmed.fq.gz.temp.3 to SRR7368841_trimmed.fq.gz.temp.3_C_to_T.fastq
+
+Created C -> T converted version of the FastQ file SRR7368841_trimmed.fq.gz.temp.2 (25034355 sequences in total)
+
+Input file is SRR7368841_trimmed.fq.gz.temp.2_C_to_T.fastq (FastQ)
+
+Now running 2 instances of Bowtie 2 against the bisulfite genome of /mnt/d/methylation/data/gene/ with the specified options: -q --score-min L,0,-0.2 --ignore-quals
+
+Now starting the Bowtie 2 aligner for CTreadCTgenome (reading in sequences from SRR7368841_trimmed.fq.gz.temp.2_C_to_T.fastq with options -q --score-min L,0,-0.2 --ignore-quals --norc)
+Using Bowtie 2 index: /mnt/d/methylation/data/gene/Bisulfite_Genome/CT_conversion/BS_CT
+
+Found first alignment:  SRR7368841.2_2_length=150       0       19_CT_converted 54923221        12      150M    *      ATTTANTTTAATTTTTAAAGTTTTTATAGTTTATAGTAGTTGTAATAATGTTAAAAGTTTAAAGTTTAAGGTTTTTTTTGAGATTTATTTAATTTAATTAATTGTAATTTTTAAAGTAAGGTAGGAAATTAGTTGGGTAAATTTTAAATT   AAAAA#EAEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEAEEEEAEEEEEEEEEEEEEEEEEEEEEEEEEAEEEEEEEEE/EEEEEEEEE<AEEAAAAAAAEEEEAAEEE<<  AS:i:-1 XS:i:-7 XN:i:0  XM:i:1  XO:i:0  XG:i:0  NM:i:1 MD:Z:5G144       YT:Z:UU
+Now starting the Bowtie 2 aligner for CTreadGAgenome (reading in sequences from SRR7368841_trimmed.fq.gz.temp.2_C_to_T.fastq with options -q --score-min L,0,-0.2 --ignore-quals --nofw)
+Using Bowtie 2 index: /mnt/d/methylation/data/gene/Bisulfite_Genome/GA_conversion/BS_GA
+
+Found first alignment:  SRR7368841.2_2_length=150       16      19_GA_converted 5823435 40      150M    *       0      AATTTAAAATTTACCCAACTAATTTCCTACCTTACTTTAAAAATTACAATTAATTAAATTAAATAAATCTCAAAAAAAACCTTAAACTTTAAACTTTTAACATTATTACAACTACTATAAACTATAAAAACTTTAAAAATTAAANTAAAT   <<EEEAAEEEEAAAAAAAEEA<EEEEEEEEE/EEEEEEEEEAEEEEEEEEEEEEEEEEEEEEEEEEEAEEEEAEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEAE#AAAAA  AS:i:-7 XN:i:0  XM:i:2  XO:i:0  XG:i:0  NM:i:2  MD:Z:71T72C5    YT:Z:UU
+
+>>> Writing bisulfite mapping results to /mnt/d/methylation/output/bismark_align_results/SRR7368841_trimmed.fq.gz.temp.2_bismark_bt2.bam <<<
+
+
+Reading in the sequence file SRR7368841_trimmed.fq.gz.temp.2
+
+Created C -> T converted version of the FastQ file SRR7368841_trimmed.fq.gz.temp.1 (25034355 sequences in total)
+
+Input file is SRR7368841_trimmed.fq.gz.temp.1_C_to_T.fastq (FastQ)
+
+Now running 2 instances of Bowtie 2 against the bisulfite genome of /mnt/d/methylation/data/gene/ with the specified options: -q --score-min L,0,-0.2 --ignore-quals
+
+Now starting the Bowtie 2 aligner for CTreadCTgenome (reading in sequences from SRR7368841_trimmed.fq.gz.temp.1_C_to_T.fastq with options -q --score-min L,0,-0.2 --ignore-quals --norc)
+Using Bowtie 2 index: /mnt/d/methylation/data/gene/Bisulfite_Genome/CT_conversion/BS_CT
+
+Found first alignment:  SRR7368841.1_1_length=150       4       *       0       0       *       *       0       0      ATTATNGATTTTATTGGTGATTTAATAATTTGGTTATTGTGTTATTTTTTTTTTTTTAAATATTTTTTATAATTTATAAAGGAGTTTTTTTTTTGGTTATTTTTTATTTGTATTTGTTTTTGGATTTTTTTTTTATATTGGGTTTTT      AAAAA#EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEAEAE/E//EAAE///A////<//A/<//////</EA<//6///E///<///EE//////E//EEE/</<EEEEEEE<<A/E/<</////AE<     YT:Z:UU
+Now starting the Bowtie 2 aligner for CTreadGAgenome (reading in sequences from SRR7368841_trimmed.fq.gz.temp.1_C_to_T.fastq with options -q --score-min L,0,-0.2 --ignore-quals --nofw)
+Using Bowtie 2 index: /mnt/d/methylation/data/gene/Bisulfite_Genome/GA_conversion/BS_GA
+
+Found first alignment:  SRR7368841.1_1_length=150       4       *       0       0       *       *       0       0      ATTATNGATTTTATTGGTGATTTAATAATTTGGTTATTGTGTTATTTTTTTTTTTTTAAATATTTTTTATAATTTATAAAGGAGTTTTTTTTTTGGTTATTTTTTATTTGTATTTGTTTTTGGATTTTTTTTTTATATTGGGTTTTT      AAAAA#EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEAEAE/E//EAAE///A////<//A/<//////</EA<//6///E///<///EE//////E//EEE/</<EEEEEEE<<A/E/<</////AE<     YT:Z:UU
+
+>>> Writing bisulfite mapping results to /mnt/d/methylation/output/bismark_align_results/SRR7368841_trimmed.fq.gz.temp.1_bismark_bt2.bam <<<
+
+
+Reading in the sequence file SRR7368841_trimmed.fq.gz.temp.1
+
+Created C -> T converted version of the FastQ file SRR7368841_trimmed.fq.gz.temp.4 (25034355 sequences in total)
+
+Input file is SRR7368841_trimmed.fq.gz.temp.4_C_to_T.fastq (FastQ)
+
+Now running 2 instances of Bowtie 2 against the bisulfite genome of /mnt/d/methylation/data/gene/ with the specified options: -q --score-min L,0,-0.2 --ignore-quals
+
+Now starting the Bowtie 2 aligner for CTreadCTgenome (reading in sequences from SRR7368841_trimmed.fq.gz.temp.4_C_to_T.fastq with options -q --score-min L,0,-0.2 --ignore-quals --norc)
+Using Bowtie 2 index: /mnt/d/methylation/data/gene/Bisulfite_Genome/CT_conversion/BS_CT
+
+Found first alignment:  SRR7368841.4_4_length=150       4       *       0       0       *       *       0       0      GGAGANATAAAAAAATAGATTTTTGTTTATTTATAATATAGTAGTGTGAATTTTGTGTTTATTATTGTTTAGATTGGATAAATAAGAAAGTTATTTTTTTTAGGGAGTTGTTATTTTAGTTAAAGATAGAGTAGAGGAAAATATAGAAGT   AAAAA#EEEEEEEEEEEE6EEAEAEEAEEEEEEEEAEEEEEEEEEEEEEEEEEAEEEAAEE//EAAEEE<AEAEEEEAEEEAAEAEAEEEA<E<E<E<EEEAEEAEEEEAEEE/EAEAEEAEEEEAEEE/E<E<<AAA<EEEEEAA/E/A  YT:Z:UU
+Now starting the Bowtie 2 aligner for CTreadGAgenome (reading in sequences from SRR7368841_trimmed.fq.gz.temp.4_C_to_T.fastq with options -q --score-min L,0,-0.2 --ignore-quals --nofw)
+Using Bowtie 2 index: /mnt/d/methylation/data/gene/Bisulfite_Genome/GA_conversion/BS_GA
+
+Found first alignment:  SRR7368841.4_4_length=150       4       *       0       0       *       *       0       0      GGAGANATAAAAAAATAGATTTTTGTTTATTTATAATATAGTAGTGTGAATTTTGTGTTTATTATTGTTTAGATTGGATAAATAAGAAAGTTATTTTTTTTAGGGAGTTGTTATTTTAGTTAAAGATAGAGTAGAGGAAAATATAGAAGT   AAAAA#EEEEEEEEEEEE6EEAEAEEAEEEEEEEEAEEEEEEEEEEEEEEEEEAEEEAAEE//EAAEEE<AEAEEEEAEEEAAEAEAEEEA<E<E<E<EEEAEEAEEEEAEEE/EAEAEEAEEEEAEEE/E<E<<AAA<EEEEEAA/E/A  YT:Z:UU
+
+>>> Writing bisulfite mapping results to /mnt/d/methylation/output/bismark_align_results/SRR7368841_trimmed.fq.gz.temp.4_bismark_bt2.bam <<<
+
+
+Reading in the sequence file SRR7368841_trimmed.fq.gz.temp.4
+
+Created C -> T converted version of the FastQ file SRR7368841_trimmed.fq.gz.temp.3 (25034355 sequences in total)
+
+Input file is SRR7368841_trimmed.fq.gz.temp.3_C_to_T.fastq (FastQ)
+
+Now running 2 instances of Bowtie 2 against the bisulfite genome of /mnt/d/methylation/data/gene/ with the specified options: -q --score-min L,0,-0.2 --ignore-quals
+
+Now starting the Bowtie 2 aligner for CTreadCTgenome (reading in sequences from SRR7368841_trimmed.fq.gz.temp.3_C_to_T.fastq with options -q --score-min L,0,-0.2 --ignore-quals --norc)
+Using Bowtie 2 index: /mnt/d/methylation/data/gene/Bisulfite_Genome/CT_conversion/BS_CT
+
+Found first alignment:  SRR7368841.3_3_length=150       4       *       0       0       *       *       0       0      AAATTNATTATAATTAAAGTATTAAGTATTGGTTTAGTATTTTGTTGTATATAGGAATGTATTTTAGTGGTAAAGATAGATATTATTTTAGAGTAAAAGTTTGGAAAATAATTTTTTAAGTAAATGGTTTAAAGAAATAAGTTGGAGT     AAAAA#EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEAEEAEEEEE/EAEEEEEEEEEEEAEEEEEEEE<EEEEEEEEEEEEEEEEEEEAAEEE<AEEEEE</<<AEEA    YT:Z:UU
+Now starting the Bowtie 2 aligner for CTreadGAgenome (reading in sequences from SRR7368841_trimmed.fq.gz.temp.3_C_to_T.fastq with options -q --score-min L,0,-0.2 --ignore-quals --nofw)
+Using Bowtie 2 index: /mnt/d/methylation/data/gene/Bisulfite_Genome/GA_conversion/BS_GA
+
+Found first alignment:  SRR7368841.3_3_length=150       4       *       0       0       *       *       0       0      AAATTNATTATAATTAAAGTATTAAGTATTGGTTTAGTATTTTGTTGTATATAGGAATGTATTTTAGTGGTAAAGATAGATATTATTTTAGAGTAAAAGTTTGGAAAATAATTTTTTAAGTAAATGGTTTAAAGAAATAAGTTGGAGT     AAAAA#EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEAEEAEEEEE/EAEEEEEEEEEEEAEEEEEEEE<EEEEEEEEEEEEEEEEEEEAAEEE<AEEEEE</<<AEEA    YT:Z:UU
+
+>>> Writing bisulfite mapping results to /mnt/d/methylation/output/bismark_align_results/SRR7368841_trimmed.fq.gz.temp.3_bismark_bt2.bam <<<
+
+
+Reading in the sequence file SRR7368841_trimmed.fq.gz.temp.3
+Processed 1000000 sequences so far
+Processed 1000000 sequences so far
+Processed 1000000 sequences so far
+Processed 1000000 sequences so far
+Processed 2000000 sequences so far
+Processed 2000000 sequences so far
+Processed 2000000 sequences so far
+Processed 2000000 sequences so far
+Processed 3000000 sequences so far
+Processed 3000000 sequences so far
+Processed 3000000 sequences so far
+Processed 3000000 sequences so far
+Processed 4000000 sequences so far
+Processed 4000000 sequences so far
+Processed 4000000 sequences so far
+Processed 4000000 sequences so far
+Processed 5000000 sequences so far
+Processed 5000000 sequences so far
+Processed 5000000 sequences so far
+Processed 5000000 sequences so far
+Processed 6000000 sequences so far
+Processed 6000000 sequences so far
+Processed 6000000 sequences so far
+Processed 6000000 sequences so far
+Processed 7000000 sequences so far
+Processed 7000000 sequences so far
+Processed 7000000 sequences so far
+Processed 7000000 sequences so far
+Processed 8000000 sequences so far
+Processed 8000000 sequences so far
+Processed 8000000 sequences so far
+Processed 8000000 sequences so far
