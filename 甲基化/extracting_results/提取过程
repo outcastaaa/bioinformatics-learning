@@ -1,0 +1,74 @@
+ *** Bismark methylation extractor version v0.19.1_dev ***
+
+Output will be written into the directory: /mnt/d/methylation/output/extracting_results/
+
+Summarising Bismark methylation extractor parameters:
+===============================================================
+Bismark single-end SAM format specified (default)
+Number of cores to be used: 4
+Output path specified as: /mnt/d/methylation/output/extracting_results/
+
+
+Summarising bedGraph parameters:
+===============================================================
+Generating additional output in bedGraph and coverage format
+bedGraph format:        <Chromosome> <Start Position> <End Position> <Methylation Percentage>
+coverage format:        <Chromosome> <Start Position> <End Position> <Methylation Percentage> <count methylated> <count non-methylated>
+
+Using a cutoff of 1 read(s) to report cytosine positions
+Reporting and sorting cytosine methylation information in CpG context only (default)
+The bedGraph UNIX sort command will use the following memory setting:   '2G'. Temporary directory used for sorting is the output directory
+
+
+Summarising genome-wide cytosine methylation report parameters:
+===============================================================
+Generating comprehensive genome-wide cytosine report
+(output format: <Chromosome> <Position> <Strand> <count methylated> <count non-methylated>  <C-context>  <trinucleotide context> )
+Reporting cytosine methylation in CpG context only (default)
+Using 1-based genomic coordinates (default)
+Genome folder was specified as /mnt/d/methylation/data/gene/
+
+Checking file >>/mnt/d/methylation/output/deduplicated_results/SRR7368841_trimmed_bismark_bt2.deduplicated.bam<< for signs of file truncation...
+
+Writing result file containing methylation information for C in CpG context from the original top strand to /mnt/d/methylation/output/extracting_results/CpG_OT_SRR7368841_trimmed_bismark_bt2.deduplicated.txt.gz
+Writing result file containing methylation information for C in CpG context from the complementary to original top strand to /mnt/d/methylation/output/extracting_results/CpG_CTOT_SRR7368841_trimmed_bismark_bt2.deduplicated.txt.gz
+Writing result file containing methylation information for C in CpG context from the complementary to original bottom strand to /mnt/d/methylation/output/extracting_results/CpG_CTOB_SRR7368841_trimmed_bismark_bt2.deduplicated.txt.gz
+Writing result file containing methylation information for C in CpG context from the original bottom strand to /mnt/d/methylation/output/extracting_results/CpG_OB_SRR7368841_trimmed_bismark_bt2.deduplicated.txt.gz
+
+Writing result file containing methylation information for C in CHG context from the original top strand to /mnt/d/methylation/output/extracting_results/CHG_OT_SRR7368841_trimmed_bismark_bt2.deduplicated.txt.gz
+Writing result file containing methylation information for C in CHG context from the complementary to original top strand to /mnt/d/methylation/output/extracting_results/CHG_CTOT_SRR7368841_trimmed_bismark_bt2.deduplicated.txt.gz
+Writing result file containing methylation information for C in CHG context from the complementary to original bottom strand to /mnt/d/methylation/output/extracting_results/CHG_CTOB_SRR7368841_trimmed_bismark_bt2.deduplicated.txt.gz
+Writing result file containing methylation information for C in CHG context from the original bottom strand to /mnt/d/methylation/output/extracting_results/CHG_OB_SRR7368841_trimmed_bismark_bt2.deduplicated.txt.gz
+
+Writing result file containing methylation information for C in CHH context from the original top strand to /mnt/d/methylation/output/extracting_results/CHH_OT_SRR7368841_trimmed_bismark_bt2.deduplicated.txt.gz
+Writing result file containing methylation information for C in CHH context from the complementary to original top strand to /mnt/d/methylation/output/extracting_results/CHH_CTOT_SRR7368841_trimmed_bismark_bt2.deduplicated.txt.gz
+Writing result file containing methylation information for C in CHH context from the complementary to original bottom strand to /mnt/d/methylation/output/extracting_results/CHH_CTOB_SRR7368841_trimmed_bismark_bt2.deduplicated.txt.gz
+Writing result file containing methylation information for C in CHH context from the original bottom strand to /mnt/d/methylation/output/extracting_results/CHH_OB_SRR7368841_trimmed_bismark_bt2.deduplicated.txt.gz
+
+
+Now reading in Bismark result file /mnt/d/methylation/output/deduplicated_results/SRR7368841_trimmed_bismark_bt2.deduplicated.bam
+
+
+Now reading in Bismark result file /mnt/d/methylation/output/deduplicated_results/SRR7368841_trimmed_bismark_bt2.deduplicated.bam
+
+Now reading in Bismark result file /mnt/d/methylation/output/deduplicated_results/SRR7368841_trimmed_bismark_bt2.deduplicated.bam
+
+Now reading in Bismark result file /mnt/d/methylation/output/deduplicated_results/SRR7368841_trimmed_bismark_bt2.deduplicated.bam
+
+skipping SAM header line:       @HD     VN:1.0  SO:unsorted
+skipping SAM header line:       @SQ     SN:19   LN:61420004
+skipping SAM header line:       @PG     ID:Bismark      VN:v0.19.1      CL:"bismark -o /mnt/d/methylation/output/bismark_align_results --parallel 4 --bam --genome_folder /mnt/d/methylation/data/gene/ ./SRR7368841_trimmed.fq.gz ./SRR7368842_trimmed.fq.gz ./SRR7368845_trimmed.fq.gz"
+skipping SAM header line:       @PG     ID:samtools     PN:samtools     PP:Bismark      VN:1.16 CL:/home/linuxbrew/.linuxbrew/bin/samtools view -bSh -
+skipping SAM header line:       @PG     ID:samtools.1   PN:samtools     PP:samtools     VN:1.16 CL:/home/linuxbrew/.linuxbrew/bin/samtools view -h /mnt/d/methylation/output/bismark_align_results/SRR7368841_trimmed.fq.gz.temp.1_bismark_bt2.bam
+skipping SAM header line:       @PG     ID:samtools.2   PN:samtools     PP:samtools.1   VN:1.16 CL:/home/linuxbrew/.linuxbrew/bin/samtools view -bSh -
+skipping SAM header line:       @PG     ID:samtools.3   PN:samtools     PP:samtools.2   VN:1.16 CL:/home/linuxbrew/.linuxbrew/bin/samtools view -h /mnt/d/methylation/output/bismark_align_results/SRR7368841_trimmed_bismark_bt2.bam
+skipping SAM header line:       @PG     ID:samtools.4   PN:samtools     PP:samtools.3   VN:1.16 CL:/home/linuxbrew/.linuxbrew/bin/samtools view -bS -
+skipping SAM header line:       @PG     ID:samtools.5   PN:samtools     PP:samtools.4   VN:1.16 CL:/home/linuxbrew/.linuxbrew/bin/samtools view -h /mnt/d/methylation/output/deduplicated_results/SRR7368841_trimmed_bismark_bt2.deduplicated.bam
+Processed lines: 500000
+Processed lines: 500000
+Processed lines: 500000
+Processed lines: 500000
+Processed lines: 1000000
+Processed lines: 1000000
+Processed lines: 1000000
+Processed lines: 1000000
