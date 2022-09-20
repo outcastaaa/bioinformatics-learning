@@ -994,3 +994,298 @@ Processed 2000000 sequences so far
 Processed 2000000 sequences so far
 Processed 2000000 sequences so far
 Processed 2000000 sequences so far
+...
+Processed 25000000 sequences so far
+Processed 25000000 sequences so far
+25358008 reads; of these:
+  25358008 (100.00%) were unpaired; of these:
+    24160029 (95.28%) aligned 0 times
+    312670 (1.23%) aligned exactly 1 time
+    885309 (3.49%) aligned >1 times
+4.72% overall alignment rate
+25358008 reads; of these:
+  25358008 (100.00%) were unpaired; of these:
+    24160378 (95.28%) aligned 0 times
+    311331 (1.23%) aligned exactly 1 time
+    886299 (3.50%) aligned >1 times
+4.72% overall alignment rate
+Processed 25358008 sequences in total
+
+
+Successfully deleted the temporary file SRR7368845_trimmed.fq.gz.temp.4_C_to_T.fastq
+
+Final Alignment report
+======================
+Sequences analysed in total:    25358008
+Number of alignments with a unique best hit from the different alignments:      728974
+Mapping efficiency:     2.9%
+
+Sequences with no alignments under any condition:       23862952
+Sequences did not map uniquely: 766082
+Sequences which were discarded because genomic sequence could not be extracted: 0
+
+Number of sequences with unique best (first) alignment came from the bowtie output:
+CT/CT:  366938  ((converted) top strand)
+CT/GA:  362036  ((converted) bottom strand)
+GA/CT:  0       (complementary to (converted) top strand)
+GA/GA:  0       (complementary to (converted) bottom strand)
+
+Number of alignments to (merely theoretical) complementary strands being rejected in total:     0
+
+Final Cytosine Methylation Report
+=================================
+Total number of C's analysed:   22920721
+
+Total methylated C's in CpG context:    12052
+Total methylated C's in CHG context:    53290
+Total methylated C's in CHH context:    212930
+Total methylated C's in Unknown context:        1935
+
+Total unmethylated C's in CpG context:  1016088
+Total unmethylated C's in CHG context:  4761116
+Total unmethylated C's in CHH context:  16865245
+Total unmethylated C's in Unknown context:      16036
+
+C methylated in CpG context:    1.2%
+C methylated in CHG context:    1.1%
+C methylated in CHH context:    1.2%
+C methylated in Unknown context (CN or CHN):    10.8%
+
+
+Now waiting for all child processes to complete
+25358009 reads; of these:
+  25358009 (100.00%) were unpaired; of these:
+    24157898 (95.27%) aligned 0 times
+    311832 (1.23%) aligned exactly 1 time
+    888279 (3.50%) aligned >1 times
+4.73% overall alignment rate
+25358009 reads; of these:
+  25358009 (100.00%) were unpaired; of these:
+    24159021 (95.27%) aligned 0 times
+    312087 (1.23%) aligned exactly 1 time
+    886901 (3.50%) aligned >1 times
+4.73% overall alignment rate
+Processed 25358009 sequences in total
+
+
+Successfully deleted the temporary file SRR7368845_trimmed.fq.gz.temp.3_C_to_T.fastq
+
+Final Alignment report
+======================
+Sequences analysed in total:    25358009
+Number of alignments with a unique best hit from the different alignments:      729520
+Mapping efficiency:     2.9%
+
+Sequences with no alignments under any condition:       23861724
+Sequences did not map uniquely: 766765
+Sequences which were discarded because genomic sequence could not be extracted: 0
+
+Number of sequences with unique best (first) alignment came from the bowtie output:
+CT/CT:  366290  ((converted) top strand)
+CT/GA:  363230  ((converted) bottom strand)
+GA/CT:  0       (complementary to (converted) top strand)
+GA/GA:  0       (complementary to (converted) bottom strand)
+
+Number of alignments to (merely theoretical) complementary strands being rejected in total:     0
+
+Final Cytosine Methylation Report
+=================================
+Total number of C's analysed:   22938182
+
+Total methylated C's in CpG context:    12078
+Total methylated C's in CHG context:    53331
+Total methylated C's in CHH context:    212603
+Total methylated C's in Unknown context:        2086
+
+Total unmethylated C's in CpG context:  1015547
+Total unmethylated C's in CHG context:  4763331
+Total unmethylated C's in CHH context:  16881292
+Total unmethylated C's in Unknown context:      16312
+
+C methylated in CpG context:    1.2%
+C methylated in CHG context:    1.1%
+C methylated in CHH context:    1.2%
+C methylated in Unknown context (CN or CHN):    11.3%
+
+
+25358009 reads; of these:
+  25358009 (100.00%) were unpaired; of these:
+    24160582 (95.28%) aligned 0 times
+    312013 (1.23%) aligned exactly 1 time
+    885414 (3.49%) aligned >1 times
+4.72% overall alignment rate
+25358009 reads; of these:
+  25358009 (100.00%) were unpaired; of these:
+    24159724 (95.27%) aligned 0 times
+    311626 (1.23%) aligned exactly 1 time
+    886659 (3.50%) aligned >1 times
+4.73% overall alignment rate
+Processed 25358009 sequences in total
+
+
+Successfully deleted the temporary file SRR7368845_trimmed.fq.gz.temp.2_C_to_T.fastq
+
+Final Alignment report
+======================
+Sequences analysed in total:    25358009
+Number of alignments with a unique best hit from the different alignments:      728924
+Mapping efficiency:     2.9%
+
+Sequences with no alignments under any condition:       23863167
+Sequences did not map uniquely: 765918
+Sequences which were discarded because genomic sequence could not be extracted: 0
+
+Number of sequences with unique best (first) alignment came from the bowtie output:
+CT/CT:  366392  ((converted) top strand)
+CT/GA:  362532  ((converted) bottom strand)
+GA/CT:  0       (complementary to (converted) top strand)
+GA/GA:  0       (complementary to (converted) bottom strand)
+
+Number of alignments to (merely theoretical) complementary strands being rejected in total:     0
+
+Final Cytosine Methylation Report
+=================================
+Total number of C's analysed:   22909956
+
+Total methylated C's in CpG context:    11918
+Total methylated C's in CHG context:    53267
+Total methylated C's in CHH context:    212690
+Total methylated C's in Unknown context:        2069
+
+Total unmethylated C's in CpG context:  1013969
+Total unmethylated C's in CHG context:  4758146
+Total unmethylated C's in CHH context:  16859966
+Total unmethylated C's in Unknown context:      16319
+
+C methylated in CpG context:    1.2%
+C methylated in CHG context:    1.1%
+C methylated in CHH context:    1.2%
+C methylated in Unknown context (CN or CHN):    11.3%
+
+
+25358009 reads; of these:
+  25358009 (100.00%) were unpaired; of these:
+    24158854 (95.27%) aligned 0 times
+    312075 (1.23%) aligned exactly 1 time
+    887080 (3.50%) aligned >1 times
+4.73% overall alignment rate
+25358009 reads; of these:
+  25358009 (100.00%) were unpaired; of these:
+    24161150 (95.28%) aligned 0 times
+    311143 (1.23%) aligned exactly 1 time
+    885716 (3.49%) aligned >1 times
+4.72% overall alignment rate
+Processed 25358009 sequences in total
+
+
+Successfully deleted the temporary file SRR7368845_trimmed.fq.gz.temp.1_C_to_T.fastq
+
+Final Alignment report
+======================
+Sequences analysed in total:    25358009
+Number of alignments with a unique best hit from the different alignments:      728173
+Mapping efficiency:     2.9%
+
+Sequences with no alignments under any condition:       23862843
+Sequences did not map uniquely: 766993
+Sequences which were discarded because genomic sequence could not be extracted: 0
+
+Number of sequences with unique best (first) alignment came from the bowtie output:
+CT/CT:  365560  ((converted) top strand)
+CT/GA:  362613  ((converted) bottom strand)
+GA/CT:  0       (complementary to (converted) top strand)
+GA/GA:  0       (complementary to (converted) bottom strand)
+
+Number of alignments to (merely theoretical) complementary strands being rejected in total:     0
+
+Final Cytosine Methylation Report
+=================================
+Total number of C's analysed:   22883366
+
+Total methylated C's in CpG context:    11887
+Total methylated C's in CHG context:    52765
+Total methylated C's in CHH context:    211248
+Total methylated C's in Unknown context:        2025
+
+Total unmethylated C's in CpG context:  1010057
+Total unmethylated C's in CHG context:  4750450
+Total unmethylated C's in CHH context:  16846959
+Total unmethylated C's in Unknown context:      15763
+
+C methylated in CpG context:    1.2%
+C methylated in CHG context:    1.1%
+C methylated in CHH context:    1.2%
+C methylated in Unknown context (CN or CHN):    11.4%
+
+
+
+
+Right, cleaning up now...
+
+Deleting temporary sequence files...
+SRR7368845_trimmed.fq.gz.temp.1 SRR7368845_trimmed.fq.gz.temp.2 SRR7368845_trimmed.fq.gz.temp.3 SRR7368845_trimmed.fq.gz.temp.4
+
+Now merging BAM files SRR7368845_trimmed.fq.gz.temp.1_bismark_bt2.bam SRR7368845_trimmed.fq.gz.temp.2_bismark_bt2.bam SRR7368845_trimmed.fq.gz.temp.3_bismark_bt2.bam SRR7368845_trimmed.fq.gz.temp.4_bismark_bt2.bam into >>> SRR7368845_trimmed_bismark_bt2.bam <<<
+Merging from file >> SRR7368845_trimmed.fq.gz.temp.1_bismark_bt2.bam <<
+Merging from file >> SRR7368845_trimmed.fq.gz.temp.2_bismark_bt2.bam <<
+Merging from file >> SRR7368845_trimmed.fq.gz.temp.3_bismark_bt2.bam <<
+Merging from file >> SRR7368845_trimmed.fq.gz.temp.4_bismark_bt2.bam <<
+
+Deleting temporary BAM files...
+/mnt/d/methylation/output/bismark_align_results/SRR7368845_trimmed.fq.gz.temp.1_bismark_bt2.bam /mnt/d/methylation/output/bismark_align_results/SRR7368845_trimmed.fq.gz.temp.2_bismark_bt2.bam        /mnt/d/methylation/output/bismark_align_results/SRR7368845_trimmed.fq.gz.temp.3_bismark_bt2.bam /mnt/d/methylation/output/bismark_align_results/SRR7368845_trimmed.fq.gz.temp.4_bismark_bt2.bam
+
+Writing report to /mnt/d/methylation/output/bismark_align_results/SRR7368845_trimmed_bismark_bt2_SE_report.txt
+Now merging temporary reports SRR7368845_trimmed.fq.gz.temp.1_bismark_bt2_SE_report.txt SRR7368845_trimmed.fq.gz.temp.2_bismark_bt2_SE_report.txt SRR7368845_trimmed.fq.gz.temp.3_bismark_bt2_SE_report.txt SRR7368845_trimmed.fq.gz.temp.4_bismark_bt2_SE_report.txt into >>> /mnt/d/methylation/output/bismark_align_results/SRR7368845_trimmed_bismark_bt2_SE_report.txt <<<
+Merging from file >> SRR7368845_trimmed.fq.gz.temp.1_bismark_bt2_SE_report.txt <<
+Merging from file >> SRR7368845_trimmed.fq.gz.temp.2_bismark_bt2_SE_report.txt <<
+Merging from file >> SRR7368845_trimmed.fq.gz.temp.3_bismark_bt2_SE_report.txt <<
+Merging from file >> SRR7368845_trimmed.fq.gz.temp.4_bismark_bt2_SE_report.txt <<
+
+Printing a final merged alignment report for all individual sub-reports
+
+Final Alignment report
+======================
+Sequences analysed in total:    101432035
+Number of alignments with a unique best hit from the different alignments:      2915591
+Mapping efficiency:     2.9%
+
+Sequences with no alignments under any condition:       95450686
+Sequences did not map uniquely: 3065758
+Sequences which were discarded because genomic sequence could not be extracted: 0
+
+Number of sequences with unique best (first) alignment came from the bowtie output:
+CT/CT:  1465180 ((converted) top strand)
+CT/GA:  1450411 ((converted) bottom strand)
+GA/CT:  0       (complementary to (converted) top strand)
+GA/GA:  0       (complementary to (converted) bottom strand)
+
+Number of alignments to (merely theoretical) complementary strands being rejected in total:     0
+
+Final Cytosine Methylation Report
+=================================
+Total number of C's analysed:   91652225
+
+Total methylated C's in CpG context:    47935
+Total methylated C's in CHG context:    212653
+Total methylated C's in CHH context:    849471
+Total methylated C's in Unknown context:        8115
+
+Total unmethylated C's in CpG context:  4055661
+Total unmethylated C's in CHG context:  19033043
+Total unmethylated C's in CHH context:  67453462
+Total unmethylated C's in Unknown context:      64430
+
+C methylated in CpG context:    1.2%
+C methylated in CHG context:    1.1%
+C methylated in CHH context:    1.2%
+C methylated in Unknown context (CN or CHN):    11.2%
+
+
+Deleting temporary report files...
+SRR7368845_trimmed.fq.gz.temp.1_bismark_bt2_SE_report.txt       SRR7368845_trimmed.fq.gz.temp.2_bismark_bt2_SE_report.txt       SRR7368845_trimmed.fq.gz.temp.3_bismark_bt2_SE_report.txt      SRR7368845_trimmed.fq.gz.temp.4_bismark_bt2_SE_report.txt
+
+Bismark completed in 0d 21h 42m 17s
+
+====================
+Bismark run complete
+====================
