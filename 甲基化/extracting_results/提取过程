@@ -1,4 +1,4 @@
- *** Bismark methylation extractor version v0.19.1_dev ***
+  *** Bismark methylation extractor version v0.19.1_dev ***
 
 Output will be written into the directory: /mnt/d/methylation/output/extracting_results/
 
@@ -72,3 +72,570 @@ Processed lines: 1000000
 Processed lines: 1000000
 Processed lines: 1000000
 Processed lines: 1000000
+Processed lines: 1500000
+Processed lines: 1500000
+Processed lines: 1500000
+Processed lines: 1500000
+Finished processing child process. Exiting..
+Finished processing child process. Exiting..
+Now waiting for all child processes to complete
+Finished processing child process. Exiting..
+
+Merging individual splitting reports into overall report: '/mnt/d/methylation/output/extracting_results/SRR7368841_trimmed_bismark_bt2.deduplicated_splitting_report.txt'
+Merging from these individual files:
+/mnt/d/methylation/output/extracting_results/SRR7368841_trimmed_bismark_bt2.deduplicated_splitting_report.txt.1
+/mnt/d/methylation/output/extracting_results/SRR7368841_trimmed_bismark_bt2.deduplicated_splitting_report.txt.2
+/mnt/d/methylation/output/extracting_results/SRR7368841_trimmed_bismark_bt2.deduplicated_splitting_report.txt.3
+/mnt/d/methylation/output/extracting_results/SRR7368841_trimmed_bismark_bt2.deduplicated_splitting_report.txt.4
+
+
+Processed 1860961 lines in total
+Total number of methylation call strings processed: 1860961
+
+Final Cytosine Methylation Report
+=================================
+Total number of C's analysed:   58875304
+
+Total methylated C's in CpG context:    65520
+Total methylated C's in CHG context:    111737
+Total methylated C's in CHH context:    443257
+
+Total C to T conversions in CpG context:        2637442
+Total C to T conversions in CHG context:        12468571
+Total C to T conversions in CHH context:        43148777
+
+C methylated in CpG context:    2.4%
+C methylated in CHG context:    0.9%
+C methylated in CHH context:    1.0%
+
+
+
+Merging individual M-bias reports into overall M-bias statistics from these 4 individual files:
+/mnt/d/methylation/output/extracting_results/SRR7368841_trimmed_bismark_bt2.deduplicated_splitting_report.txt.1.mbias
+/mnt/d/methylation/output/extracting_results/SRR7368841_trimmed_bismark_bt2.deduplicated_splitting_report.txt.2.mbias
+/mnt/d/methylation/output/extracting_results/SRR7368841_trimmed_bismark_bt2.deduplicated_splitting_report.txt.3.mbias
+/mnt/d/methylation/output/extracting_results/SRR7368841_trimmed_bismark_bt2.deduplicated_splitting_report.txt.4.mbias
+
+Determining maximum read length for M-Bias plot
+Maximum read length of Read 1: 150
+
+Perl module GD::Graph::lines is not installed, skipping drawing M-bias plots (only writing out M-bias plot table)
+Determining maximum read length for M-Bias plot
+Maximum read length of Read 1: 150
+
+Perl module GD::Graph::lines is not installed, skipping drawing M-bias plots (only writing out M-bias plot table)
+Deleting unused files ...
+
+/mnt/d/methylation/output/extracting_results/CpG_OT_SRR7368841_trimmed_bismark_bt2.deduplicated.txt.gz contains data -> kept
+/mnt/d/methylation/output/extracting_results/CpG_CTOT_SRR7368841_trimmed_bismark_bt2.deduplicated.txt.gz was empty ->   deleted
+/mnt/d/methylation/output/extracting_results/CpG_CTOB_SRR7368841_trimmed_bismark_bt2.deduplicated.txt.gz was empty ->   deleted
+/mnt/d/methylation/output/extracting_results/CpG_OB_SRR7368841_trimmed_bismark_bt2.deduplicated.txt.gz contains data -> kept
+/mnt/d/methylation/output/extracting_results/CHG_OT_SRR7368841_trimmed_bismark_bt2.deduplicated.txt.gz contains data -> kept
+/mnt/d/methylation/output/extracting_results/CHG_CTOT_SRR7368841_trimmed_bismark_bt2.deduplicated.txt.gz was empty ->   deleted
+/mnt/d/methylation/output/extracting_results/CHG_CTOB_SRR7368841_trimmed_bismark_bt2.deduplicated.txt.gz was empty ->   deleted
+/mnt/d/methylation/output/extracting_results/CHG_OB_SRR7368841_trimmed_bismark_bt2.deduplicated.txt.gz contains data -> kept
+/mnt/d/methylation/output/extracting_results/CHH_OT_SRR7368841_trimmed_bismark_bt2.deduplicated.txt.gz contains data -> kept
+/mnt/d/methylation/output/extracting_results/CHH_CTOT_SRR7368841_trimmed_bismark_bt2.deduplicated.txt.gz was empty ->   deleted
+/mnt/d/methylation/output/extracting_results/CHH_CTOB_SRR7368841_trimmed_bismark_bt2.deduplicated.txt.gz was empty ->   deleted
+/mnt/d/methylation/output/extracting_results/CHH_OB_SRR7368841_trimmed_bismark_bt2.deduplicated.txt.gz contains data -> kept
+
+
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+        LANGUAGE = (unset),
+        LC_ALL = (unset),
+        LANG = "zh_CN.UTF-8"
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+Using these input files: /mnt/d/methylation/output/extracting_results/CpG_OT_SRR7368841_trimmed_bismark_bt2.deduplicated.txt.gz /mnt/d/methylation/output/extracting_results/CpG_OB_SRR7368841_trimmed_bismark_bt2.deduplicated.txt.gz /mnt/d/methylation/output/extracting_results/CHG_OT_SRR7368841_trimmed_bismark_bt2.deduplicated.txt.gz /mnt/d/methylation/output/extracting_results/CHG_OB_SRR7368841_trimmed_bismark_bt2.deduplicated.txt.gz /mnt/d/methylation/output/extracting_results/CHH_OT_SRR7368841_trimmed_bismark_bt2.deduplicated.txt.gz /mnt/d/methylation/output/extracting_results/CHH_OB_SRR7368841_trimmed_bismark_bt2.deduplicated.txt.gz
+
+Summary of parameters for bismark2bedGraph conversion:
+======================================================
+bedGraph output:                SRR7368841_trimmed_bismark_bt2.deduplicated.bedGraph.gz
+output directory:               >/mnt/d/methylation/output/extracting_results/<
+remove whitespaces:             no
+CX context:                     no (CpG context only, default)
+No-header selected:             no
+Sorting method:                 Unix sort-based (smaller memory footprint, but slower)
+Sort buffer size:               2G
+Coverage threshold:             1
+=============================================================================
+Methylation information will now be written into a bedGraph and coverage file
+=============================================================================
+
+Using the following files as Input:
+/mnt/d/methylation/output/extracting_results/CpG_OT_SRR7368841_trimmed_bismark_bt2.deduplicated.txt.gz  /mnt/d/methylation/output/extracting_results/CpG_OB_SRR7368841_trimmed_bismark_bt2.deduplicated.txt.gz
+
+Writing bedGraph to file: SRR7368841_trimmed_bismark_bt2.deduplicated.bedGraph.gz
+Also writing out a coverage file including counts methylated and unmethylated residues to file: SRR7368841_trimmed_bismark_bt2.deduplicated.bismark.cov.gz
+
+Changed directory to /mnt/d/methylation/output/extracting_results/
+Now writing methylation information for file >>CpG_OT_SRR7368841_trimmed_bismark_bt2.deduplicated.txt.gz<< to individual files for each chromosome
+Finished writing out individual chromosome files for CpG_OT_SRR7368841_trimmed_bismark_bt2.deduplicated.txt.gz
+Now writing methylation information for file >>CpG_OB_SRR7368841_trimmed_bismark_bt2.deduplicated.txt.gz<< to individual files for each chromosome
+Finished writing out individual chromosome files for CpG_OB_SRR7368841_trimmed_bismark_bt2.deduplicated.txt.gz
+
+Collecting temporary chromosome file information... Processing the following input file(s):
+CpG_OT_SRR7368841_trimmed_bismark_bt2.deduplicated.txt.gz.chr19.methXtractor.temp
+
+Sorting input file CpG_OT_SRR7368841_trimmed_bismark_bt2.deduplicated.txt.gz.chr19.methXtractor.temp by positions (using -S of 2G)
+Successfully deleted the temporary input file CpG_OT_SRR7368841_trimmed_bismark_bt2.deduplicated.txt.gz.chr19.methXtractor.temp
+
+Finished BedGraph conversion ...
+
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+        LANGUAGE = (unset),
+        LC_ALL = (unset),
+        LANG = "zh_CN.UTF-8"
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+Output will be written into the directory: /mnt/d/methylation/output/extracting_results/
+Summary of parameters for genome-wide cytosine report:
+==============================================================================
+Coverage infile:                                SRR7368841_trimmed_bismark_bt2.deduplicated.bismark.cov.gz
+Output directory:                               >/mnt/d/methylation/output/extracting_results/<
+Parent directory:                               >/mnt/d/methylation/output/extracting_results/<
+Genome directory:                               >/mnt/d/methylation/data/gene/<
+CX context:                                     no (CpG context only, default)
+Genome coordinates used:                        1-based (default)
+GZIP compression:                               yes
+Split by chromosome:                            no
+
+
+Now reading in and storing sequence information of the genome specified in: /mnt/d/methylation/data/gene/
+
+chr 19 (61420004 bp)
+
+Stored sequence information of 1 chromosomes/scaffolds in total
+
+==============================================================================
+Methylation information will now be written into a genome-wide cytosine report
+==============================================================================
+
+>>> Writing genome-wide cytosine report to: SRR7368841_trimmed_bismark_bt2.deduplicated.CpG_report.txt.gz <<<
+
+Storing all covered cytosine positions for chromosome: 19
+Writing cytosine report for last chromosome 19 (stored 848816 different covered positions)
+Finished writing out cytosine report for covered chromosomes (processed 1 chromosomes/scaffolds in total)
+
+Now processing chromosomes that were not covered by any methylation calls in the coverage file...
+All chromosomes in the genome were covered by at least some reads. coverage2cytosine processing complete.
+
+
+
+Finished generating genome-wide cytosine report
+
+Checking file >>/mnt/d/methylation/output/deduplicated_results/SRR7368842_trimmed_bismark_bt2.deduplicated.bam<< for signs of file truncation...
+
+Writing result file containing methylation information for C in CpG context from the original top strand to /mnt/d/methylation/output/extracting_results/CpG_OT_SRR7368842_trimmed_bismark_bt2.deduplicated.txt.gz
+Writing result file containing methylation information for C in CpG context from the complementary to original top strand to /mnt/d/methylation/output/extracting_results/CpG_CTOT_SRR7368842_trimmed_bismark_bt2.deduplicated.txt.gz
+Writing result file containing methylation information for C in CpG context from the complementary to original bottom strand to /mnt/d/methylation/output/extracting_results/CpG_CTOB_SRR7368842_trimmed_bismark_bt2.deduplicated.txt.gz
+Writing result file containing methylation information for C in CpG context from the original bottom strand to /mnt/d/methylation/output/extracting_results/CpG_OB_SRR7368842_trimmed_bismark_bt2.deduplicated.txt.gz
+
+Writing result file containing methylation information for C in CHG context from the original top strand to /mnt/d/methylation/output/extracting_results/CHG_OT_SRR7368842_trimmed_bismark_bt2.deduplicated.txt.gz
+Writing result file containing methylation information for C in CHG context from the complementary to original top strand to /mnt/d/methylation/output/extracting_results/CHG_CTOT_SRR7368842_trimmed_bismark_bt2.deduplicated.txt.gz
+Writing result file containing methylation information for C in CHG context from the complementary to original bottom strand to /mnt/d/methylation/output/extracting_results/CHG_CTOB_SRR7368842_trimmed_bismark_bt2.deduplicated.txt.gz
+Writing result file containing methylation information for C in CHG context from the original bottom strand to /mnt/d/methylation/output/extracting_results/CHG_OB_SRR7368842_trimmed_bismark_bt2.deduplicated.txt.gz
+
+Writing result file containing methylation information for C in CHH context from the original top strand to /mnt/d/methylation/output/extracting_results/CHH_OT_SRR7368842_trimmed_bismark_bt2.deduplicated.txt.gz
+Writing result file containing methylation information for C in CHH context from the complementary to original top strand to /mnt/d/methylation/output/extracting_results/CHH_CTOT_SRR7368842_trimmed_bismark_bt2.deduplicated.txt.gz
+Writing result file containing methylation information for C in CHH context from the complementary to original bottom strand to /mnt/d/methylation/output/extracting_results/CHH_CTOB_SRR7368842_trimmed_bismark_bt2.deduplicated.txt.gz
+Writing result file containing methylation information for C in CHH context from the original bottom strand to /mnt/d/methylation/output/extracting_results/CHH_OB_SRR7368842_trimmed_bismark_bt2.deduplicated.txt.gz
+
+
+Now reading in Bismark result file /mnt/d/methylation/output/deduplicated_results/SRR7368842_trimmed_bismark_bt2.deduplicated.bam
+
+Warning: unable to close filehandle IN properly.
+
+Now reading in Bismark result file /mnt/d/methylation/output/deduplicated_results/SRR7368842_trimmed_bismark_bt2.deduplicated.bam
+
+Now reading in Bismark result file /mnt/d/methylation/output/deduplicated_results/SRR7368842_trimmed_bismark_bt2.deduplicated.bam
+Warning: unable to close filehandle IN properly.
+
+Now reading in Bismark result file /mnt/d/methylation/output/deduplicated_results/SRR7368842_trimmed_bismark_bt2.deduplicated.bam
+
+Warning: unable to close filehandle IN properly.
+skipping SAM header line:       @HD     VN:1.0  SO:unsorted
+skipping SAM header line:       @SQ     SN:19   LN:61420004
+skipping SAM header line:       @PG     ID:Bismark      VN:v0.19.1      CL:"bismark -o /mnt/d/methylation/output/bismark_align_results --parallel 4 --bam --genome_folder /mnt/d/methylation/data/gene/ ./SRR7368841_trimmed.fq.gz ./SRR7368842_trimmed.fq.gz ./SRR7368845_trimmed.fq.gz"
+skipping SAM header line:       @PG     ID:samtools     PN:samtools     PP:Bismark      VN:1.16 CL:/home/linuxbrew/.linuxbrew/bin/samtools view -bSh -
+skipping SAM header line:       @PG     ID:samtools.1   PN:samtools     PP:samtools     VN:1.16 CL:/home/linuxbrew/.linuxbrew/bin/samtools view -h /mnt/d/methylation/output/bismark_align_results/SRR7368842_trimmed.fq.gz.temp.1_bismark_bt2.bam
+skipping SAM header line:       @PG     ID:samtools.2   PN:samtools     PP:samtools.1   VN:1.16 CL:/home/linuxbrew/.linuxbrew/bin/samtools view -bSh -
+skipping SAM header line:       @PG     ID:samtools.3   PN:samtools     PP:samtools.2   VN:1.16 CL:/home/linuxbrew/.linuxbrew/bin/samtools view -h /mnt/d/methylation/output/bismark_align_results/SRR7368842_trimmed_bismark_bt2.bam
+skipping SAM header line:       @PG     ID:samtools.4   PN:samtools     PP:samtools.3   VN:1.16 CL:/home/linuxbrew/.linuxbrew/bin/samtools view -bS -
+skipping SAM header line:       @PG     ID:samtools.5   PN:samtools     PP:samtools.4   VN:1.16 CL:/home/linuxbrew/.linuxbrew/bin/samtools view -h /mnt/d/methylation/output/deduplicated_results/SRR7368842_trimmed_bismark_bt2.deduplicated.bam
+Processed lines: 500000
+Processed lines: 500000
+Processed lines: 500000
+Processed lines: 500000
+Processed lines: 1000000
+Processed lines: 1000000
+Processed lines: 1000000
+Processed lines: 1000000
+Processed lines: 1500000
+Processed lines: 1500000
+Processed lines: 1500000
+Processed lines: 1500000
+Processed lines: 2000000
+Processed lines: 2000000
+Processed lines: 2000000
+Processed lines: 2000000
+Processed lines: 2500000
+Processed lines: 2500000
+Processed lines: 2500000
+Processed lines: 2500000
+Finished processing child process. Exiting..
+Finished processing child process. Exiting..
+Finished processing child process. Exiting..
+Now waiting for all child processes to complete
+
+Merging individual splitting reports into overall report: '/mnt/d/methylation/output/extracting_results/SRR7368842_trimmed_bismark_bt2.deduplicated_splitting_report.txt'
+Merging from these individual files:
+/mnt/d/methylation/output/extracting_results/SRR7368842_trimmed_bismark_bt2.deduplicated_splitting_report.txt.1
+/mnt/d/methylation/output/extracting_results/SRR7368842_trimmed_bismark_bt2.deduplicated_splitting_report.txt.2
+/mnt/d/methylation/output/extracting_results/SRR7368842_trimmed_bismark_bt2.deduplicated_splitting_report.txt.3
+/mnt/d/methylation/output/extracting_results/SRR7368842_trimmed_bismark_bt2.deduplicated_splitting_report.txt.4
+
+
+Processed 2760435 lines in total
+Total number of methylation call strings processed: 2760435
+
+Final Cytosine Methylation Report
+=================================
+Total number of C's analysed:   87408689
+
+Total methylated C's in CpG context:    80399
+Total methylated C's in CHG context:    138719
+Total methylated C's in CHH context:    571348
+
+Total C to T conversions in CpG context:        3881330
+Total C to T conversions in CHG context:        18531007
+Total C to T conversions in CHH context:        64205886
+
+C methylated in CpG context:    2.0%
+C methylated in CHG context:    0.7%
+C methylated in CHH context:    0.9%
+
+
+
+Merging individual M-bias reports into overall M-bias statistics from these 4 individual files:
+/mnt/d/methylation/output/extracting_results/SRR7368842_trimmed_bismark_bt2.deduplicated_splitting_report.txt.1.mbias
+/mnt/d/methylation/output/extracting_results/SRR7368842_trimmed_bismark_bt2.deduplicated_splitting_report.txt.2.mbias
+/mnt/d/methylation/output/extracting_results/SRR7368842_trimmed_bismark_bt2.deduplicated_splitting_report.txt.3.mbias
+/mnt/d/methylation/output/extracting_results/SRR7368842_trimmed_bismark_bt2.deduplicated_splitting_report.txt.4.mbias
+
+Determining maximum read length for M-Bias plot
+Maximum read length of Read 1: 150
+
+Perl module GD::Graph::lines is not installed, skipping drawing M-bias plots (only writing out M-bias plot table)
+Determining maximum read length for M-Bias plot
+Maximum read length of Read 1: 150
+
+Perl module GD::Graph::lines is not installed, skipping drawing M-bias plots (only writing out M-bias plot table)
+Deleting unused files ...
+
+/mnt/d/methylation/output/extracting_results/CpG_OT_SRR7368842_trimmed_bismark_bt2.deduplicated.txt.gz contains data -> kept
+/mnt/d/methylation/output/extracting_results/CpG_CTOT_SRR7368842_trimmed_bismark_bt2.deduplicated.txt.gz was empty ->   deleted
+/mnt/d/methylation/output/extracting_results/CpG_CTOB_SRR7368842_trimmed_bismark_bt2.deduplicated.txt.gz was empty ->   deleted
+/mnt/d/methylation/output/extracting_results/CpG_OB_SRR7368842_trimmed_bismark_bt2.deduplicated.txt.gz contains data -> kept
+/mnt/d/methylation/output/extracting_results/CHG_OT_SRR7368842_trimmed_bismark_bt2.deduplicated.txt.gz contains data -> kept
+/mnt/d/methylation/output/extracting_results/CHG_CTOT_SRR7368842_trimmed_bismark_bt2.deduplicated.txt.gz was empty ->   deleted
+/mnt/d/methylation/output/extracting_results/CHG_CTOB_SRR7368842_trimmed_bismark_bt2.deduplicated.txt.gz was empty ->   deleted
+/mnt/d/methylation/output/extracting_results/CHG_OB_SRR7368842_trimmed_bismark_bt2.deduplicated.txt.gz contains data -> kept
+/mnt/d/methylation/output/extracting_results/CHH_OT_SRR7368842_trimmed_bismark_bt2.deduplicated.txt.gz contains data -> kept
+/mnt/d/methylation/output/extracting_results/CHH_CTOT_SRR7368842_trimmed_bismark_bt2.deduplicated.txt.gz was empty ->   deleted
+/mnt/d/methylation/output/extracting_results/CHH_CTOB_SRR7368842_trimmed_bismark_bt2.deduplicated.txt.gz was empty ->   deleted
+/mnt/d/methylation/output/extracting_results/CHH_OB_SRR7368842_trimmed_bismark_bt2.deduplicated.txt.gz contains data -> kept
+
+
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+        LANGUAGE = (unset),
+        LC_ALL = (unset),
+        LANG = "zh_CN.UTF-8"
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+Using these input files: /mnt/d/methylation/output/extracting_results/CpG_OT_SRR7368842_trimmed_bismark_bt2.deduplicated.txt.gz /mnt/d/methylation/output/extracting_results/CpG_OB_SRR7368842_trimmed_bismark_bt2.deduplicated.txt.gz /mnt/d/methylation/output/extracting_results/CHG_OT_SRR7368842_trimmed_bismark_bt2.deduplicated.txt.gz /mnt/d/methylation/output/extracting_results/CHG_OB_SRR7368842_trimmed_bismark_bt2.deduplicated.txt.gz /mnt/d/methylation/output/extracting_results/CHH_OT_SRR7368842_trimmed_bismark_bt2.deduplicated.txt.gz /mnt/d/methylation/output/extracting_results/CHH_OB_SRR7368842_trimmed_bismark_bt2.deduplicated.txt.gz
+
+Summary of parameters for bismark2bedGraph conversion:
+======================================================
+bedGraph output:                SRR7368842_trimmed_bismark_bt2.deduplicated.bedGraph.gz
+output directory:               >/mnt/d/methylation/output/extracting_results/<
+remove whitespaces:             no
+CX context:                     no (CpG context only, default)
+No-header selected:             no
+Sorting method:                 Unix sort-based (smaller memory footprint, but slower)
+Sort buffer size:               2G
+Coverage threshold:             1
+=============================================================================
+Methylation information will now be written into a bedGraph and coverage file
+=============================================================================
+
+Using the following files as Input:
+/mnt/d/methylation/output/extracting_results/CpG_OT_SRR7368842_trimmed_bismark_bt2.deduplicated.txt.gz  /mnt/d/methylation/output/extracting_results/CpG_OB_SRR7368842_trimmed_bismark_bt2.deduplicated.txt.gz
+
+Writing bedGraph to file: SRR7368842_trimmed_bismark_bt2.deduplicated.bedGraph.gz
+Also writing out a coverage file including counts methylated and unmethylated residues to file: SRR7368842_trimmed_bismark_bt2.deduplicated.bismark.cov.gz
+
+Changed directory to /mnt/d/methylation/output/extracting_results/
+Now writing methylation information for file >>CpG_OT_SRR7368842_trimmed_bismark_bt2.deduplicated.txt.gz<< to individual files for each chromosome
+Finished writing out individual chromosome files for CpG_OT_SRR7368842_trimmed_bismark_bt2.deduplicated.txt.gz
+Now writing methylation information for file >>CpG_OB_SRR7368842_trimmed_bismark_bt2.deduplicated.txt.gz<< to individual files for each chromosome
+Finished writing out individual chromosome files for CpG_OB_SRR7368842_trimmed_bismark_bt2.deduplicated.txt.gz
+
+Collecting temporary chromosome file information... Processing the following input file(s):
+CpG_OT_SRR7368842_trimmed_bismark_bt2.deduplicated.txt.gz.chr19.methXtractor.temp
+
+Sorting input file CpG_OT_SRR7368842_trimmed_bismark_bt2.deduplicated.txt.gz.chr19.methXtractor.temp by positions (using -S of 2G)
+Successfully deleted the temporary input file CpG_OT_SRR7368842_trimmed_bismark_bt2.deduplicated.txt.gz.chr19.methXtractor.temp
+
+Finished BedGraph conversion ...
+
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+        LANGUAGE = (unset),
+        LC_ALL = (unset),
+        LANG = "zh_CN.UTF-8"
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+Output will be written into the directory: /mnt/d/methylation/output/extracting_results/
+Summary of parameters for genome-wide cytosine report:
+==============================================================================
+Coverage infile:                                SRR7368842_trimmed_bismark_bt2.deduplicated.bismark.cov.gz
+Output directory:                               >/mnt/d/methylation/output/extracting_results/<
+Parent directory:                               >/mnt/d/methylation/output/extracting_results/<
+Genome directory:                               >/mnt/d/methylation/data/gene/<
+CX context:                                     no (CpG context only, default)
+Genome coordinates used:                        1-based (default)
+GZIP compression:                               yes
+Split by chromosome:                            no
+
+
+Now reading in and storing sequence information of the genome specified in: /mnt/d/methylation/data/gene/
+
+chr 19 (61420004 bp)
+
+Stored sequence information of 1 chromosomes/scaffolds in total
+
+==============================================================================
+Methylation information will now be written into a genome-wide cytosine report
+==============================================================================
+
+>>> Writing genome-wide cytosine report to: SRR7368842_trimmed_bismark_bt2.deduplicated.CpG_report.txt.gz <<<
+
+Storing all covered cytosine positions for chromosome: 19
+Writing cytosine report for last chromosome 19 (stored 962482 different covered positions)
+Finished writing out cytosine report for covered chromosomes (processed 1 chromosomes/scaffolds in total)
+
+Now processing chromosomes that were not covered by any methylation calls in the coverage file...
+All chromosomes in the genome were covered by at least some reads. coverage2cytosine processing complete.
+
+
+
+Finished generating genome-wide cytosine report
+
+Checking file >>/mnt/d/methylation/output/deduplicated_results/SRR7368845_trimmed_bismark_bt2.deduplicated.bam<< for signs of file truncation...
+
+Writing result file containing methylation information for C in CpG context from the original top strand to /mnt/d/methylation/output/extracting_results/CpG_OT_SRR7368845_trimmed_bismark_bt2.deduplicated.txt.gz
+Writing result file containing methylation information for C in CpG context from the complementary to original top strand to /mnt/d/methylation/output/extracting_results/CpG_CTOT_SRR7368845_trimmed_bismark_bt2.deduplicated.txt.gz
+Writing result file containing methylation information for C in CpG context from the complementary to original bottom strand to /mnt/d/methylation/output/extracting_results/CpG_CTOB_SRR7368845_trimmed_bismark_bt2.deduplicated.txt.gz
+Writing result file containing methylation information for C in CpG context from the original bottom strand to /mnt/d/methylation/output/extracting_results/CpG_OB_SRR7368845_trimmed_bismark_bt2.deduplicated.txt.gz
+
+Writing result file containing methylation information for C in CHG context from the original top strand to /mnt/d/methylation/output/extracting_results/CHG_OT_SRR7368845_trimmed_bismark_bt2.deduplicated.txt.gz
+Writing result file containing methylation information for C in CHG context from the complementary to original top strand to /mnt/d/methylation/output/extracting_results/CHG_CTOT_SRR7368845_trimmed_bismark_bt2.deduplicated.txt.gz
+Writing result file containing methylation information for C in CHG context from the complementary to original bottom strand to /mnt/d/methylation/output/extracting_results/CHG_CTOB_SRR7368845_trimmed_bismark_bt2.deduplicated.txt.gz
+Writing result file containing methylation information for C in CHG context from the original bottom strand to /mnt/d/methylation/output/extracting_results/CHG_OB_SRR7368845_trimmed_bismark_bt2.deduplicated.txt.gz
+
+Writing result file containing methylation information for C in CHH context from the original top strand to /mnt/d/methylation/output/extracting_results/CHH_OT_SRR7368845_trimmed_bismark_bt2.deduplicated.txt.gz
+Writing result file containing methylation information for C in CHH context from the complementary to original top strand to /mnt/d/methylation/output/extracting_results/CHH_CTOT_SRR7368845_trimmed_bismark_bt2.deduplicated.txt.gz
+Writing result file containing methylation information for C in CHH context from the complementary to original bottom strand to /mnt/d/methylation/output/extracting_results/CHH_CTOB_SRR7368845_trimmed_bismark_bt2.deduplicated.txt.gz
+Writing result file containing methylation information for C in CHH context from the original bottom strand to /mnt/d/methylation/output/extracting_results/CHH_OB_SRR7368845_trimmed_bismark_bt2.deduplicated.txt.gz
+
+
+Now reading in Bismark result file /mnt/d/methylation/output/deduplicated_results/SRR7368845_trimmed_bismark_bt2.deduplicated.bam
+
+Warning: unable to close filehandle IN properly.
+
+Now reading in Bismark result file /mnt/d/methylation/output/deduplicated_results/SRR7368845_trimmed_bismark_bt2.deduplicated.bam
+
+Warning: unable to close filehandle IN properly.
+Now reading in Bismark result file /mnt/d/methylation/output/deduplicated_results/SRR7368845_trimmed_bismark_bt2.deduplicated.bam
+
+Now reading in Bismark result file /mnt/d/methylation/output/deduplicated_results/SRR7368845_trimmed_bismark_bt2.deduplicated.bam
+
+Warning: unable to close filehandle IN properly.
+skipping SAM header line:       @HD     VN:1.0  SO:unsorted
+skipping SAM header line:       @SQ     SN:19   LN:61420004
+skipping SAM header line:       @PG     ID:Bismark      VN:v0.19.1      CL:"bismark -o /mnt/d/methylation/output/bismark_align_results --parallel 4 --bam --genome_folder /mnt/d/methylation/data/gene/ ./SRR7368841_trimmed.fq.gz ./SRR7368842_trimmed.fq.gz ./SRR7368845_trimmed.fq.gz"
+skipping SAM header line:       @PG     ID:samtools     PN:samtools     PP:Bismark      VN:1.16 CL:/home/linuxbrew/.linuxbrew/bin/samtools view -bSh -
+skipping SAM header line:       @PG     ID:samtools.1   PN:samtools     PP:samtools     VN:1.16 CL:/home/linuxbrew/.linuxbrew/bin/samtools view -h /mnt/d/methylation/output/bismark_align_results/SRR7368845_trimmed.fq.gz.temp.1_bismark_bt2.bam
+skipping SAM header line:       @PG     ID:samtools.2   PN:samtools     PP:samtools.1   VN:1.16 CL:/home/linuxbrew/.linuxbrew/bin/samtools view -bSh -
+skipping SAM header line:       @PG     ID:samtools.3   PN:samtools     PP:samtools.2   VN:1.16 CL:/home/linuxbrew/.linuxbrew/bin/samtools view -h /mnt/d/methylation/output/bismark_align_results/SRR7368845_trimmed_bismark_bt2.bam
+skipping SAM header line:       @PG     ID:samtools.4   PN:samtools     PP:samtools.3   VN:1.16 CL:/home/linuxbrew/.linuxbrew/bin/samtools view -bS -
+skipping SAM header line:       @PG     ID:samtools.5   PN:samtools     PP:samtools.4   VN:1.16 CL:/home/linuxbrew/.linuxbrew/bin/samtools view -h /mnt/d/methylation/output/deduplicated_results/SRR7368845_trimmed_bismark_bt2.deduplicated.bam
+Processed lines: 500000
+Processed lines: 500000
+Processed lines: 500000
+Processed lines: 500000
+Processed lines: 1000000
+Processed lines: 1000000
+Processed lines: 1000000
+Processed lines: 1000000
+Processed lines: 1500000
+Processed lines: 1500000
+Processed lines: 1500000
+Processed lines: 1500000
+Processed lines: 2000000
+Processed lines: 2000000
+Processed lines: 2000000
+Processed lines: 2000000
+Now waiting for all child processes to complete
+Finished processing child process. Exiting..
+Finished processing child process. Exiting..
+Finished processing child process. Exiting..
+
+Merging individual splitting reports into overall report: '/mnt/d/methylation/output/extracting_results/SRR7368845_trimmed_bismark_bt2.deduplicated_splitting_report.txt'
+Merging from these individual files:
+/mnt/d/methylation/output/extracting_results/SRR7368845_trimmed_bismark_bt2.deduplicated_splitting_report.txt.1
+/mnt/d/methylation/output/extracting_results/SRR7368845_trimmed_bismark_bt2.deduplicated_splitting_report.txt.2
+/mnt/d/methylation/output/extracting_results/SRR7368845_trimmed_bismark_bt2.deduplicated_splitting_report.txt.3
+/mnt/d/methylation/output/extracting_results/SRR7368845_trimmed_bismark_bt2.deduplicated_splitting_report.txt.4
+
+
+Processed 2033128 lines in total
+Total number of methylation call strings processed: 2033128
+
+Final Cytosine Methylation Report
+=================================
+Total number of C's analysed:   63973179
+
+Total methylated C's in CpG context:    35658
+Total methylated C's in CHG context:    156888
+Total methylated C's in CHH context:    618916
+
+Total C to T conversions in CpG context:        2820384
+Total C to T conversions in CHG context:        13394829
+Total C to T conversions in CHH context:        46946504
+
+C methylated in CpG context:    1.2%
+C methylated in CHG context:    1.2%
+C methylated in CHH context:    1.3%
+
+
+
+Merging individual M-bias reports into overall M-bias statistics from these 4 individual files:
+/mnt/d/methylation/output/extracting_results/SRR7368845_trimmed_bismark_bt2.deduplicated_splitting_report.txt.1.mbias
+/mnt/d/methylation/output/extracting_results/SRR7368845_trimmed_bismark_bt2.deduplicated_splitting_report.txt.2.mbias
+/mnt/d/methylation/output/extracting_results/SRR7368845_trimmed_bismark_bt2.deduplicated_splitting_report.txt.3.mbias
+/mnt/d/methylation/output/extracting_results/SRR7368845_trimmed_bismark_bt2.deduplicated_splitting_report.txt.4.mbias
+
+Determining maximum read length for M-Bias plot
+Maximum read length of Read 1: 150
+
+Perl module GD::Graph::lines is not installed, skipping drawing M-bias plots (only writing out M-bias plot table)
+Determining maximum read length for M-Bias plot
+Maximum read length of Read 1: 150
+
+Perl module GD::Graph::lines is not installed, skipping drawing M-bias plots (only writing out M-bias plot table)
+Deleting unused files ...
+
+/mnt/d/methylation/output/extracting_results/CpG_OT_SRR7368845_trimmed_bismark_bt2.deduplicated.txt.gz contains data -> kept
+/mnt/d/methylation/output/extracting_results/CpG_CTOT_SRR7368845_trimmed_bismark_bt2.deduplicated.txt.gz was empty ->   deleted
+/mnt/d/methylation/output/extracting_results/CpG_CTOB_SRR7368845_trimmed_bismark_bt2.deduplicated.txt.gz was empty ->   deleted
+/mnt/d/methylation/output/extracting_results/CpG_OB_SRR7368845_trimmed_bismark_bt2.deduplicated.txt.gz contains data -> kept
+/mnt/d/methylation/output/extracting_results/CHG_OT_SRR7368845_trimmed_bismark_bt2.deduplicated.txt.gz contains data -> kept
+/mnt/d/methylation/output/extracting_results/CHG_CTOT_SRR7368845_trimmed_bismark_bt2.deduplicated.txt.gz was empty ->   deleted
+/mnt/d/methylation/output/extracting_results/CHG_CTOB_SRR7368845_trimmed_bismark_bt2.deduplicated.txt.gz was empty ->   deleted
+/mnt/d/methylation/output/extracting_results/CHG_OB_SRR7368845_trimmed_bismark_bt2.deduplicated.txt.gz contains data -> kept
+/mnt/d/methylation/output/extracting_results/CHH_OT_SRR7368845_trimmed_bismark_bt2.deduplicated.txt.gz contains data -> kept
+/mnt/d/methylation/output/extracting_results/CHH_CTOT_SRR7368845_trimmed_bismark_bt2.deduplicated.txt.gz was empty ->   deleted
+/mnt/d/methylation/output/extracting_results/CHH_CTOB_SRR7368845_trimmed_bismark_bt2.deduplicated.txt.gz was empty ->   deleted
+/mnt/d/methylation/output/extracting_results/CHH_OB_SRR7368845_trimmed_bismark_bt2.deduplicated.txt.gz contains data -> kept
+
+
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+        LANGUAGE = (unset),
+        LC_ALL = (unset),
+        LANG = "zh_CN.UTF-8"
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+Using these input files: /mnt/d/methylation/output/extracting_results/CpG_OT_SRR7368845_trimmed_bismark_bt2.deduplicated.txt.gz /mnt/d/methylation/output/extracting_results/CpG_OB_SRR7368845_trimmed_bismark_bt2.deduplicated.txt.gz /mnt/d/methylation/output/extracting_results/CHG_OT_SRR7368845_trimmed_bismark_bt2.deduplicated.txt.gz /mnt/d/methylation/output/extracting_results/CHG_OB_SRR7368845_trimmed_bismark_bt2.deduplicated.txt.gz /mnt/d/methylation/output/extracting_results/CHH_OT_SRR7368845_trimmed_bismark_bt2.deduplicated.txt.gz /mnt/d/methylation/output/extracting_results/CHH_OB_SRR7368845_trimmed_bismark_bt2.deduplicated.txt.gz
+
+Summary of parameters for bismark2bedGraph conversion:
+======================================================
+bedGraph output:                SRR7368845_trimmed_bismark_bt2.deduplicated.bedGraph.gz
+output directory:               >/mnt/d/methylation/output/extracting_results/<
+remove whitespaces:             no
+CX context:                     no (CpG context only, default)
+No-header selected:             no
+Sorting method:                 Unix sort-based (smaller memory footprint, but slower)
+Sort buffer size:               2G
+Coverage threshold:             1
+=============================================================================
+Methylation information will now be written into a bedGraph and coverage file
+=============================================================================
+
+Using the following files as Input:
+/mnt/d/methylation/output/extracting_results/CpG_OT_SRR7368845_trimmed_bismark_bt2.deduplicated.txt.gz  /mnt/d/methylation/output/extracting_results/CpG_OB_SRR7368845_trimmed_bismark_bt2.deduplicated.txt.gz
+
+Writing bedGraph to file: SRR7368845_trimmed_bismark_bt2.deduplicated.bedGraph.gz
+Also writing out a coverage file including counts methylated and unmethylated residues to file: SRR7368845_trimmed_bismark_bt2.deduplicated.bismark.cov.gz
+
+Changed directory to /mnt/d/methylation/output/extracting_results/
+Now writing methylation information for file >>CpG_OT_SRR7368845_trimmed_bismark_bt2.deduplicated.txt.gz<< to individual files for each chromosome
+Finished writing out individual chromosome files for CpG_OT_SRR7368845_trimmed_bismark_bt2.deduplicated.txt.gz
+Now writing methylation information for file >>CpG_OB_SRR7368845_trimmed_bismark_bt2.deduplicated.txt.gz<< to individual files for each chromosome
+Finished writing out individual chromosome files for CpG_OB_SRR7368845_trimmed_bismark_bt2.deduplicated.txt.gz
+
+Collecting temporary chromosome file information... Processing the following input file(s):
+CpG_OT_SRR7368845_trimmed_bismark_bt2.deduplicated.txt.gz.chr19.methXtractor.temp
+
+Sorting input file CpG_OT_SRR7368845_trimmed_bismark_bt2.deduplicated.txt.gz.chr19.methXtractor.temp by positions (using -S of 2G)
+Successfully deleted the temporary input file CpG_OT_SRR7368845_trimmed_bismark_bt2.deduplicated.txt.gz.chr19.methXtractor.temp
+
+Finished BedGraph conversion ...
+
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+        LANGUAGE = (unset),
+        LC_ALL = (unset),
+        LANG = "zh_CN.UTF-8"
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+Output will be written into the directory: /mnt/d/methylation/output/extracting_results/
+Summary of parameters for genome-wide cytosine report:
+==============================================================================
+Coverage infile:                                SRR7368845_trimmed_bismark_bt2.deduplicated.bismark.cov.gz
+Output directory:                               >/mnt/d/methylation/output/extracting_results/<
+Parent directory:                               >/mnt/d/methylation/output/extracting_results/<
+Genome directory:                               >/mnt/d/methylation/data/gene/<
+CX context:                                     no (CpG context only, default)
+Genome coordinates used:                        1-based (default)
+GZIP compression:                               yes
+Split by chromosome:                            no
+
+
+Now reading in and storing sequence information of the genome specified in: /mnt/d/methylation/data/gene/
+
+chr 19 (61420004 bp)
+
+Stored sequence information of 1 chromosomes/scaffolds in total
+
+==============================================================================
+Methylation information will now be written into a genome-wide cytosine report
+==============================================================================
+
+>>> Writing genome-wide cytosine report to: SRR7368845_trimmed_bismark_bt2.deduplicated.CpG_report.txt.gz <<<
+
+Storing all covered cytosine positions for chromosome: 19
+Writing cytosine report for last chromosome 19 (stored 872318 different covered positions)
+Finished writing out cytosine report for covered chromosomes (processed 1 chromosomes/scaffolds in total)
+
+Now processing chromosomes that were not covered by any methylation calls in the coverage file...
+All chromosomes in the genome were covered by at least some reads. coverage2cytosine processing complete.
+
+
+
+Finished generating genome-wide cytosine report
