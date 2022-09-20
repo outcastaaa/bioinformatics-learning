@@ -1,0 +1,5 @@
+Total number of alignments analysed in /mnt/d/methylation/output/bismark_align_results/SRR7368842_trimmed_bismark_bt2.bam:	5184075
+Total number duplicated alignments removed:	2423640 (46.75%)
+Duplicated alignments were found at:	1180681 different position(s)
+
+Total count of deduplicated leftover sequences: 2760435 (53.25% of total)
