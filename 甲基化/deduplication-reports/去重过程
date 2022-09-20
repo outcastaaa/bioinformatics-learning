@@ -1,0 +1,96 @@
+xuruizhi@DESKTOP-HI65AUV:/mnt/d/methylation/output/adapter$ deduplicate_bismark --bam \
+> --output_dir /mnt/d/methylation/output/deduplicated_results/ \
+nt/d/met> /mnt/d/methylation/output/bismark_align_results/*.bam
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+        LANGUAGE = (unset),
+        LC_ALL = (unset),
+        LANG = "zh_CN.UTF-8"
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+Output will be written into the directory: /mnt/d/methylation/output/deduplicated_results/
+
+Neither -s (single-end) nor -p (paired-end) selected for deduplication. Trying to extract this information for each file separately from the @PG line of the SAM/BAM file
+Processing single-end Bismark output file(s) (SAM format):
+/mnt/d/methylation/output/bismark_align_results/SRR7368841_trimmed_bismark_bt2.bam      /mnt/d/methylation/output/bismark_align_results/SRR7368842_trimmed_bismark_bt2.bam      /mnt/d/methylation/output/bismark_align_results/SRR7368845_trimmed_bismark_bt2.bam
+
+
+If there are several alignments to a single position in the genome the first alignment will be chosen. Since the input files are not in any way sorted this is a near-enough random selection of reads.
+
+Checking file >>/mnt/d/methylation/output/bismark_align_results/SRR7368841_trimmed_bismark_bt2.bam<< for signs of file truncation...
+
+Trying to determine the type of mapping from the SAM header line
+Treating file as single-end data (extracted from @PG line)
+Treating file as single-end data (extracted from @PG line)
+Treating file as single-end data (extracted from @PG line)
+Treating file as single-end data (extracted from @PG line)
+Treating file as single-end data (extracted from @PG line)
+
+
+Output file is: SRR7368841_trimmed_bismark_bt2.deduplicated.bam
+
+skipping header line:   @HD     VN:1.0  SO:unsorted
+skipping header line:   @SQ     SN:19   LN:61420004
+skipping header line:   @PG     ID:Bismark      VN:v0.19.1      CL:"bismark -o /mnt/d/methylation/output/bismark_align_results --parallel 4 --bam --genome_folder /mnt/d/methylation/data/gene/ ./SRR7368841_trimmed.fq.gz ./SRR7368842_trimmed.fq.gz ./SRR7368845_trimmed.fq.gz"
+skipping header line:   @PG     ID:samtools     PN:samtools     PP:Bismark      VN:1.16 CL:/home/linuxbrew/.linuxbrew/bin/samtools view -bSh -
+skipping header line:   @PG     ID:samtools.1   PN:samtools     PP:samtools     VN:1.16 CL:/home/linuxbrew/.linuxbrew/bin/samtools view -h /mnt/d/methylation/output/bismark_align_results/SRR7368841_trimmed.fq.gz.temp.1_bismark_bt2.bam
+skipping header line:   @PG     ID:samtools.2   PN:samtools     PP:samtools.1   VN:1.16 CL:/home/linuxbrew/.linuxbrew/bin/samtools view -bSh -
+skipping header line:   @PG     ID:samtools.3   PN:samtools     PP:samtools.2   VN:1.16 CL:/home/linuxbrew/.linuxbrew/bin/samtools view -h /mnt/d/methylation/output/bismark_align_results/SRR7368841_trimmed_bismark_bt2.bam
+
+Total number of alignments analysed in /mnt/d/methylation/output/bismark_align_results/SRR7368841_trimmed_bismark_bt2.bam:      2777592
+Total number duplicated alignments removed:     916631 (33.00%)
+Duplicated alignments were found at:    540209 different position(s)
+
+Total count of deduplicated leftover sequences: 1860961 (67.00% of total)
+
+Checking file >>/mnt/d/methylation/output/bismark_align_results/SRR7368842_trimmed_bismark_bt2.bam<< for signs of file truncation...
+
+Trying to determine the type of mapping from the SAM header line
+Treating file as single-end data (extracted from @PG line)
+Treating file as single-end data (extracted from @PG line)
+Treating file as single-end data (extracted from @PG line)
+Treating file as single-end data (extracted from @PG line)
+Treating file as single-end data (extracted from @PG line)
+
+
+Output file is: SRR7368842_trimmed_bismark_bt2.deduplicated.bam
+
+skipping header line:   @HD     VN:1.0  SO:unsorted
+skipping header line:   @SQ     SN:19   LN:61420004
+skipping header line:   @PG     ID:Bismark      VN:v0.19.1      CL:"bismark -o /mnt/d/methylation/output/bismark_align_results --parallel 4 --bam --genome_folder /mnt/d/methylation/data/gene/ ./SRR7368841_trimmed.fq.gz ./SRR7368842_trimmed.fq.gz ./SRR7368845_trimmed.fq.gz"
+skipping header line:   @PG     ID:samtools     PN:samtools     PP:Bismark      VN:1.16 CL:/home/linuxbrew/.linuxbrew/bin/samtools view -bSh -
+skipping header line:   @PG     ID:samtools.1   PN:samtools     PP:samtools     VN:1.16 CL:/home/linuxbrew/.linuxbrew/bin/samtools view -h /mnt/d/methylation/output/bismark_align_results/SRR7368842_trimmed.fq.gz.temp.1_bismark_bt2.bam
+skipping header line:   @PG     ID:samtools.2   PN:samtools     PP:samtools.1   VN:1.16 CL:/home/linuxbrew/.linuxbrew/bin/samtools view -bSh -
+skipping header line:   @PG     ID:samtools.3   PN:samtools     PP:samtools.2   VN:1.16 CL:/home/linuxbrew/.linuxbrew/bin/samtools view -h /mnt/d/methylation/output/bismark_align_results/SRR7368842_trimmed_bismark_bt2.bam
+
+Total number of alignments analysed in /mnt/d/methylation/output/bismark_align_results/SRR7368842_trimmed_bismark_bt2.bam:      5184075
+Total number duplicated alignments removed:     2423640 (46.75%)
+Duplicated alignments were found at:    1180681 different position(s)
+
+Total count of deduplicated leftover sequences: 2760435 (53.25% of total)
+
+Checking file >>/mnt/d/methylation/output/bismark_align_results/SRR7368845_trimmed_bismark_bt2.bam<< for signs of file truncation...
+
+Trying to determine the type of mapping from the SAM header line
+Treating file as single-end data (extracted from @PG line)
+Treating file as single-end data (extracted from @PG line)
+Treating file as single-end data (extracted from @PG line)
+Treating file as single-end data (extracted from @PG line)
+Treating file as single-end data (extracted from @PG line)
+
+
+Output file is: SRR7368845_trimmed_bismark_bt2.deduplicated.bam
+
+skipping header line:   @HD     VN:1.0  SO:unsorted
+skipping header line:   @SQ     SN:19   LN:61420004
+skipping header line:   @PG     ID:Bismark      VN:v0.19.1      CL:"bismark -o /mnt/d/methylation/output/bismark_align_results --parallel 4 --bam --genome_folder /mnt/d/methylation/data/gene/ ./SRR7368841_trimmed.fq.gz ./SRR7368842_trimmed.fq.gz ./SRR7368845_trimmed.fq.gz"
+skipping header line:   @PG     ID:samtools     PN:samtools     PP:Bismark      VN:1.16 CL:/home/linuxbrew/.linuxbrew/bin/samtools view -bSh -
+skipping header line:   @PG     ID:samtools.1   PN:samtools     PP:samtools     VN:1.16 CL:/home/linuxbrew/.linuxbrew/bin/samtools view -h /mnt/d/methylation/output/bismark_align_results/SRR7368845_trimmed.fq.gz.temp.1_bismark_bt2.bam
+skipping header line:   @PG     ID:samtools.2   PN:samtools     PP:samtools.1   VN:1.16 CL:/home/linuxbrew/.linuxbrew/bin/samtools view -bSh -
+skipping header line:   @PG     ID:samtools.3   PN:samtools     PP:samtools.2   VN:1.16 CL:/home/linuxbrew/.linuxbrew/bin/samtools view -h /mnt/d/methylation/output/bismark_align_results/SRR7368845_trimmed_bismark_bt2.bam
+
+Total number of alignments analysed in /mnt/d/methylation/output/bismark_align_results/SRR7368845_trimmed_bismark_bt2.bam:      2915591
+Total number duplicated alignments removed:     882463 (30.27%)
+Duplicated alignments were found at:    530051 different position(s)
+
+Total count of deduplicated leftover sequences: 2033128 (69.73% of total)
