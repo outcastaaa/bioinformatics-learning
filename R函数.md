@@ -428,3 +428,98 @@ gsub(pattern, replacement, x, ignore.case = FALSE, perl = FALSE,
 ```
 其中pattern是要替换的字符，replacement是替换的字符，x是对应的string或string vector。ignore.case表示是否忽视大小写。
 
+# strsplit
+
+1. 用法
+```
+strsplit(x, split, fixed = F, perl = F, useBytes = F)	
+```
+```
+* x-字符串格式向量，函数依次对向量的每个元素进行拆分。
+* split-为拆分位置的字串向量，即在哪个字串处开始拆分；该参数默认是正则表达式匹配。
+* fixed = T-表示是用普通文本匹配或者正则表达式的精确匹配。
+* perl-其设置和perl的版本有关，表示可以使用perl语言里面的正则表达式。如果正则表达式过长，则可以考虑使用perl的正则来提高运算速度。
+* useBytes-是否逐字节进行匹配，默认为FALSE，表示是按字符匹配而不是按字节进行匹配。
+
+原文链接：https://blog.csdn.net/L_J_Kin/article/details/103870410
+```
+
+# substring
+
+用于提取字符向量中的子串。
+
+1. 用法： 
+```R
+substring(text, first, last)
+参数：
+text:字符向量
+first:整数，要替换的第一个元素
+last:整数，要替换的最后一个元素
+```
+2. 范例：
+
+```R
+
+范例1：
+# R program to illustrate
+# substring function
+  
+# Calling substring() function
+substring("Geeks", 2, 3)
+substring("Geeks", 1, 4)
+substring("GFG", 1, 1)
+substring("gfg", 3, 3)
+输出：
+
+[1] "ee"
+[1] "Geek"
+[1] "G"
+[1] "g"
+
+
+范例2：
+# R program to illustrate
+# substring function
+  
+# Initializing a string vector
+x <- c("GFG", "gfg", "Geeks")
+  
+# Calling substring() function
+substring(x, 2, 3)
+substring(x, 1, 3)
+substring(x, 2, 2)
+输出：
+
+[1] "FG" "fg" "ee"
+[1] "GFG" "gfg" "Gee"
+[1] "F" "f" "e"
+```
+[[]]这个符号主要用于列表(list)中的元素的引用，因为列表的元素可能有好几层，多一个[]就是调用更下一层
+
+
+# nchar
+
+nchar()R编程中的方法用于获取字符串的长度。
+
+1. 用法： 
+```
+nchar(string)
+返回：返回字符串的长度。
+```
+
+2. 范例1：
+
+```
+# R program to calculate length of string
+  
+# Given String
+gfg <- "Geeks For Geeks"
+  
+# Using nchar() method
+answer <- nchar(gfg)
+  
+print(answer)
+输出：
+
+[1] 15
+```
