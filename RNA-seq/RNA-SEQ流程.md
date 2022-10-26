@@ -857,6 +857,7 @@ GDS数据编号(Datasets)。
     nohup prefetch SRR2190795 SRR224018{2..7} SRR2240228 -o . &
 
     # nohup 英文全称 no hang up（不挂起），用于在系统后台不挂断地运行命令，退出终端不会影响程序的运行。nohup 命令，在默认情况下（非重定向时），会输出一个名叫 nohup.out 的文件到当前目录下，如果当前目录的 nohup.out 文件不可写，输出重定向到 $HOME/nohup.out 文件中。
+    # -o . & 下载完输出到当前目录，& 一般没有运行完、输入空格会卡住，只有运行完才会再出现主机名称；但是加上&后可以放在后台下载运行
     ```
     或者  
     * 执行下列代码：
@@ -1308,7 +1309,7 @@ $ parallel -j 4 "
 " ::: $( ls *.gz)
 
 # 本命令逻辑  
-java -jar  [Trimmomatic软件存储位置]\
+java -jar  [Trimmomatic软件存储位置]\   #-jar 执行封装在 JAR 存档中的程序
    [单端测序] SE -phred33 {变量名称}      [指明存储路径和名称] ../trim/{变量名称}\
    Trimmomatic软件的命令选项  
 ```
