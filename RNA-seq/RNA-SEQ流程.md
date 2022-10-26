@@ -315,6 +315,7 @@ $ cd sortmerna-2.1
 
 # 配置相关信息
 $ ./configure --prefix=$PWD
+—prefix选项的另一个好处是卸载软件或移植软件。当某个安装的软件不再需要时，只须简单的删除该安装目录，就可以把软件卸载得干干净净；移植软件只需拷贝整个目录到另外一个机器即可（相同的操作系统）。
 
 # 编译
 $ make -j 4
@@ -527,6 +528,7 @@ mv mRatBN7.2.fa mRatBN7.2.raw.fa
 
 # 然后去除染色体编号后的描述信息
 $ cat mRatBN7.2.raw.fa | perl -n -e 'if(m/^>(.+?)(?:\s|$)/){ print ">$1\n";}else{print}' > mRatBN7.2.fa
+#单行匹配，如果匹配到了 开头>多个字母空格或者$，将  >多个字母  打印出来
 
 # 删除
 $ rm mRatBN7.2.raw.fa
@@ -556,11 +558,11 @@ $ rm mRatBN7.2.raw.fa
 * 可以使用脚本统计每一条染色体的长度  
 ```
 cat mRatBN7.2.fa | perl -n -e '
-    s/\r?\n//;
+    s/\r?\n//;     #\r∶perl语言的转义，回车；删除回车
     if(m/^>(.+?)\s*$/){
         $title = $1;
-        push @t, $title;
-    }elsif(defined $title){
+        push @t, $title; 
+    }elsif(defined $title){   #计算第二行数目
         $title_len{$title} += length($_);
     }
     END{
@@ -596,7 +598,7 @@ cat mRatBN7.2.fa | perl -n -e '
       $title = 0;
     }
   }else{
-    push @s, $_ if $title;
+    push @s, $_ if $title;  #title=1，即一号染色体
   }
   END{
     printf ">1\n%s", join("", @s);
