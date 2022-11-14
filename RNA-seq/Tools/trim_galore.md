@@ -11,7 +11,7 @@ Nextera: CTGTCTCTTATA
 ```
 ##  参数举例   
 ```
- --quality：设定Phred quality score阈值，默认为20。
+--quality：设定Phred quality score阈值，默认为20。
 --phred33：：选择-phred33或者-phred64，表示测序平台使用的Phred quality score。
 --adapter：输入adapter序列。也可以不输入，Trim Galore!会自动寻找可能性最高的平台对应的adapter。自动搜选的平台三个，也直接显式输入这三种平台，即--illumina、--nextera和--small_rna。
 --stringency：设定可以忍受的前后adapter重叠的碱基数，默认为1（非常苛刻）。可以适度放宽，因为后一个adapter几乎不可能被测序仪读到。
