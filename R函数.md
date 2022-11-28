@@ -1,14 +1,14 @@
 - [R函数](#R函数)
     - [data.frame](#data.frame)
-    - [Bash用法](#Bash用法)
-    - [Cat用法](#Cat用法)
-    - [文件/etc/apt/sources.list](#文件/etc/apt/sources.list)
-    - [shell语句中各种符号](#shell语句中各种符号)
-    - [条件判断语句if-then-fi](#条件判断语句if-then-fi)
-    - [sed-i命令](#sed-i命令)
-    - [export命令](#export命令)
-    - [Mkdir命令](#Mkdir命令)
-    - [For循环语句](#For循环语句)
+    - [readcsv](#readcsv)
+    - [factor](#factor)
+    - [colnames-rownames](#colnames-rownames)
+    - [readtable](#readtable)
+    - [lapply](#lapply)
+    - [gsub](#gsub)
+    - [strsplit](#strsplit)
+    - [substring](#substring)
+    - [nchar](#nchar)
     - [文件目录的切换方式](#文件目录的切换方式)
     - [Curl的使用方法](#Curl的使用方法)
     - [Eval用法](#Eval用法)
@@ -413,9 +413,9 @@ stringsAsFactors = F意味着，“在读入数据时，遇到字符串之后，
 
 链接：https://www.jianshu.com/p/90e1d430c9ef
 ```
-# write.table
-# merge
-# write.csv
+ writetable
+ merge
+ write.csv
 # lapply
 # gsub
 
