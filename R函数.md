@@ -417,6 +417,15 @@ stringsAsFactors = F意味着，“在读入数据时，遇到字符串之后，
  merge
  write.csv
 # lapply
+* 用法
+```
+lapply(X, FUN)
+
+参数  描述
+X           向量或对象
+FUN     作用于x中的每个元素的函数
+lapply()中的“l”代表list。lapply()和apply()之间的区别在于输出。lapply()的输出是一个列表。lapply()可以用于其他对象，比如数据帧和列表。
+```
 # gsub
 
 ![链接详情](https://blog.csdn.net/lztttao/article/details/82086346)  
@@ -522,4 +531,58 @@ print(answer)
 输出：
 
 [1] 15
+```
+
+# function
+* 概括
+```
+function_name <- function(arg_1, arg_2, ...) {
+  Function body 
+}
+
+function_name:       函数名字
+arg_1, arg_2, ...：  参数
+Function body：    函数主题，用于定义函数的作用
+返回值 ： 函数的返回值是要评估/计算的函数体中的最后一个表达式
+```
+
+* 举例
+```
+new1.function<- function(a){
+  for(i in 1:a){
+  b = i^2
+  print(b)
+  }
+    }
+new1.function(3)
+```
+# paste
+许多字符串使用 paste() 函数来组合。它可以将任意数量的参数组合在一起。
+
+* 语法
+粘贴（paste）函数的基本语法是：
+`paste(..., sep = " ", collapse = NULL)`
+以下是所使用的参数的说明：  
+
+```
+... - 表示要组合的任何数量的参数。
+sep - 表示参数之间的分隔符。它是任选的。
+collapse - 用于消除两个字符串之间的空间。但不是在一个字符串的两个词的空间。
+```
+* 示例
+```
+a <- "Hello"
+b <- 'How'
+c <- "are you? "
+
+print(paste(a,b,c))
+
+print(paste(a,b,c, sep = "-"))
+
+print(paste(a,b,c, sep = "", collapse = ""))
+当上面的代码执行时，它产生以下结果：
+
+[1] "Hello How are you? "
+[1] "Hello-How-are you? "
+[1] "HelloHoware you? "
 ```
