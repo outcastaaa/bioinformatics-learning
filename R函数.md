@@ -586,3 +586,41 @@ print(paste(a,b,c, sep = "", collapse = ""))
 [1] "Hello-How-are you? "
 [1] "HelloHoware you? "
 ```
+
+# dplyr  
+
+dplyr是R中专门用于数据处理的包。更具体功能包括：  
+
+
+```
+select() 从数据中选择列
+filter() 数据行的子集
+group_by() 汇总数据
+summarise() 汇总数据（计算汇总统计信息）
+arrange() 排序数据
+mutate() 创建新变量
+```
+
+* mutate()
+
+```
+使用时，通常你只需要指定3项内容：
+
+您要修改的数据框的名称
+您将创建的新变量的名称
+您将分配给新变量的值
+```
+1. mutate()的第一个参数就是数据框，然后就是新变量名=旧变量的某种新式。就是说你可以轻松地以数据框中的原有变量生成新变量。
+2. mutate()的第二个参数是“名称-值”对，就是说我们在创建变量时新变量需要一个名称，但是它也需要一个分配给该名称的值。因此，当使用mutate时，您需要提供名称和新值…即名称/值对。
+ 
+* 举例：
+```r
+print(auto_specs)是一个数据框；
+
+现在需要一个新变量叫做hp_to_weight，这个变量是原先horsepower / weight两个变量的比值:
+
+auto_specs_new <- mutate(auto_specs, hp_to_weight = horsepower / weight)
+print(auto_specs_new)
+
+会在本来数据表最后一列加上hp_to_weight及其数值
+```
