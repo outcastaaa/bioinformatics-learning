@@ -3009,6 +3009,7 @@ fitting model and testing拟合模型和测试
 
 ```R
 result <- results(dds, pAdjustMethod = "fdr", alpha = 0.05)
+#这一步不会做任何筛选，只不过把不可查看的dds变成可以查看的表格，同result <- results(dds)
 # pAdjustMethod计算p值的方法：p-value cutoff (FDR)  
 # 显著性设定为0.05
 
