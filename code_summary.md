@@ -71,10 +71,25 @@ done
 ```
 
 # 批量替换后缀
+1. 替换删除
 ```bash
 paralle -k -j 4 "
   ....{1}...
 " ::: $(ls *.gz | perl -p -e 's/.fa.gz$//')
+```
+2. 批量添加后缀
+```bash
+cat  MOUSE.list | perl -ne ' \
+chomp;
+print "$_" . ".sra\n";
+'
+```
+3. 删除后缀
+```bash
+ls *.bam | while read id 
+do 
+  ..${id%%.*}.bw
+done
 ```
 
 # 批量下载
@@ -84,10 +99,12 @@ aria2c -d ./ -Z 1.fq.gz 2.fq.gz
 
 
 # 传输文件
-1. rasync
+1. rsync
 ```bash
 # 网页下载
 rsync -avP ftp.... ./本地文件
+# 超算传输到本地
+rsync -av /mnt/d/brain  wangq@202.119.37.251:/scratch/wangq/xrz/..
 ```
 2. 
 
@@ -130,7 +147,10 @@ chr           start            end     methyl%  methyled   unmethyled
 # 对列处理
 1. cut
 ```bash
-cut -f 1 # 提取第一列
+# 提取第一列
+cut -f 1 
+# 提取某几列
+cut -f 1,2,3 1.txt > 1.txt
 ```
 2. awk
 ```bash
@@ -140,6 +160,23 @@ cat 1.lsit | awk  -F "\t" '{print $1, $2, $3}' > 1.txt
 cat 1.list | awk -v OFS='\t' \
 '{if($6 == "-"){print $1,$2+4,$3+4} else if($6 == "+"){print $1, $2-5, $3-5}}' >1.txt
 # -v 自己定义变量
+
+# 筛选第几列的数值大小
+awk '{if ($5 >= 540) {print $0 }}' a.txt > a.txt
+```
+3. tsv-filter
+```bash
+tsv-filter --is-numeric 5 --ge 5:540 a.txt > a.txt
+```
+3. 列之间加减
+```bash
+# 统计peak长度
+cat a.bed | perl -ne '
+chomp;
+my @info = split( /\t/, $_ );
+my $result = ( $info[2] - $info[1] );
+print "$_\t$result\n";
+' | head
 ```
 
 
@@ -158,4 +195,8 @@ sed -i "/^NA/d" 1.txt
 sort -k8,8nr 1.txt > 1.txt
 # -k8,8nr 表示按照第 8 列进行排序
 # -k8,8 表示使用第 8 列作为排序键，n 表示按照数字排序，r 表示以逆序排序（降序）
+
+sort -k1,1 -k2,2n a.txt
+# 先对第一列排，再对第二列
 ```
+
