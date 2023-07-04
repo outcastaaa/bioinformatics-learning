@@ -4,11 +4,12 @@
 - [批量替换后缀](#批量替换后缀)
 - [批量下载](#批量下载)
 - [传输文件](#传输文件)
-- [提取列](#提取列)
 - [查找文件](#查找文件)
 - [统计](#统计)
 - [表格内容处理](#表格内容处理)
+- [对列处理](#对列处理)
 - [对行处理](#对行处理)
+- [排序](#排序)
 
 
 # 循环
@@ -52,6 +53,23 @@ for i in ${ls *.gz};do
 done
 ```
 
+4. 读取双端数据的循环
+```bash
+ls *_1.fq.gz >./1
+ls *_2.fq.gz >./2
+paste 1 1 2 | sed 's/_1.fastq.gz//' >config.raw
+
+cat config.raw | while read id 
+do
+  echo ${id}
+  arr = (${id})
+  fq1 = ${arr[1]}
+  fq2 = ${arr[2]}
+
+  ...$fq1 ...$fq2
+done
+```
+
 # 批量替换后缀
 ```bash
 paralle -k -j 4 "
@@ -74,15 +92,6 @@ rsync -avP ftp.... ./本地文件
 2. 
 
 
-# 提取列
-1. cut
-```bash
-cut -f 1 # 提取第一列
-```
-2. awk
-```bash
-cat 1.lsit | awk  -F "\t" '{print $1, $2, $3}' > 1.txt
-```
 
 # 查找文件
 1. where vs which 
@@ -117,6 +126,23 @@ chr           start            end     methyl%  methyled   unmethyled
 (echo -e "chr\tstart\tend\tmethyl%\tmethyled\tunmethyled " && cat ./NC_result.txt) > temp && mv temp NC_methylation_result.txt
 ```
 
+
+# 对列处理
+1. cut
+```bash
+cut -f 1 # 提取第一列
+```
+2. awk
+```bash
+# 提取某几列
+cat 1.lsit | awk  -F "\t" '{print $1, $2, $3}' > 1.txt
+# 筛选、提取、计算
+cat 1.list | awk -v OFS='\t' \
+'{if($6 == "-"){print $1,$2+4,$3+4} else if($6 == "+"){print $1, $2-5, $3-5}}' >1.txt
+# -v 自己定义变量
+```
+
+
 # 对行处理
 1. 删除行
 ```bash
@@ -124,4 +150,12 @@ chr           start            end     methyl%  methyled   unmethyled
 cat 1.txt | sed -d '1d'
 # 删除NA行
 sed -i "/^NA/d" 1.txt
+```
+
+# 排序
+1. sort 
+```bash
+sort -k8,8nr 1.txt > 1.txt
+# -k8,8nr 表示按照第 8 列进行排序
+# -k8,8 表示使用第 8 列作为排序键，n 表示按照数字排序，r 表示以逆序排序（降序）
 ```
