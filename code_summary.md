@@ -15,7 +15,7 @@
 # 循环
 1. paralle
 ```bash
-paralle -j 4 -k "
+paralle -j 4 -k --no-run-if-empty --linebuffer "
 ...{1}
 " ::: $(ls *.gz)
 ```
