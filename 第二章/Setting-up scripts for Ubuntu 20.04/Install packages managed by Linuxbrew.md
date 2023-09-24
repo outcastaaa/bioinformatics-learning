@@ -29,7 +29,8 @@ export HOMEBREW_NO_AUTO_UPDATE=1
 #使用环境变量设置代理，设置代理，只在当前终端有效；写入配置文件(如: .bashrc)永久有效
 #socks5h用于本地不能解析目标主机域名(比如google),由代理服务器解析目标主机域名
 补充：
-代理（英语：Proxy），也称网络代理，是一种特殊的网络服务，允许一个网络终端（一般为客户端）通过这个服务与另一个网络终端（一般为服务器）进行非直接的连接。一些网关、路由器等网络设备具备网络代理功能。一般认为代理服务有利于保障网络终端的隐私或安全，防止攻击。
+代理（英语：Proxy），也称网络代理，是一种特殊的网络服务，允许一个网络终端（一般为客户端）通过这个服务与另一个网络终端（一般为服务器）进行非直接的连接。\
+一些网关、路由器等网络设备具备网络代理功能。一般认为代理服务有利于保障网络终端的隐私或安全，防止攻击。
 
 
 
@@ -46,8 +47,10 @@ brew install gcc
 brew install gpatch pkg-config
 
 #下载gcc和pkg-config
-#gcc是GNU编译器套件(GNU Compiler Collection)包括C、C++、Objective-C、Fortran、Java、Ada和Go语言的前端，也包括了这些语言的库，GCC的初衷是为GNU操作系统专门编写的一款编译器。
-#pkg-config可用与列举出某个库的相关信息，比如此库的路径、相关头文件路径等，这在程序编译时将非常有用。例如，现在要编译一个依赖librtmp.so库的程序。pkg-config能找出头文件的路径，也能找出库存放在哪，而且还能知道依赖的其它库。
+#gcc是GNU编译器套件(GNU Compiler Collection)包括C、C++、Objective-C、Fortran、Java、Ada和Go语言的前端，也包括了这些语言的库，\
+GCC的初衷是为GNU操作系统专门编写的一款编译器。
+#pkg-config可用与列举出某个库的相关信息，比如此库的路径、相关头文件路径等，这在程序编译时将非常有用。\
+例如，现在要编译一个依赖librtmp.so库的程序。pkg-config能找出头文件的路径，也能找出库存放在哪，而且还能知道依赖的其它库。
 pkg-config常用参数：
 –-list-all     列出所有已安装的共享库
 -–cflags     列出指定共享库的预处理和编译flag。
@@ -70,7 +73,10 @@ else
     #sed 's/ /\//'替换掉文本
     #head -n 1显示文件的前一行
 
-    #brew --prefix：linux安装软件采用源码安装灵活自由，适用于不同的平台，维护也十分方便。指定安装到某个目录，执行成功后再编译、安装(make，make install);安装完成将自动生成目录,而且该软件任何的文档都被复制到这个目录。用了-prefix选项的另一个好处是卸载软件或移植软件。当某个安装的软件不再需要时，只须简单的删除该安装目录，就能够把软件卸载得干干净净;移植软件只需拷贝整个目录到另外一个机器即可(相同的操作系统)
+    #brew --prefix：linux安装软件采用源码安装灵活自由，适用于不同的平台，维护也十分方便。\
+指定安装到某个目录，执行成功后再编译、安装(make，make install);安装完成将自动生成目录,而且该软件任何的文档都被复制到这个目录。\
+用了-prefix选项的另一个好处是卸载软件或移植软件。当某个安装的软件不再需要时，只须简单的删除该安装目录，就能够把软件卸载得干干净净;\
+移植软件只需拷贝整个目录到另外一个机器即可(相同的操作系统)
     
 
     PERL_534_PATH="export PATH=\"$PERL_534_BREW/bin:\$PATH\""
@@ -107,10 +113,13 @@ brew install cmake
 brew install bison flex
 
 #GNU 构建系统，主要组成部分有Autoconf、Automake和Libtool。
-#Autoconf是一个用于生成shell脚本的工具，可以自动配置软件源代码以适应多种类似POSIX的系统解决了系统特使构建和运行时信息的难题，但在软件开发时还有更多的难题，GNU构建系统是为了更好的开发软件而开发的一套完整的公益事业。
+#Autoconf是一个用于生成shell脚本的工具，可以自动配置软件源代码以适应多种类似POSIX的系统解决了系统特使构建和运行时信息的难题，\
+但在软件开发时还有更多的难题，GNU构建系统是为了更好的开发软件而开发的一套完整的公益事业。
 #Automake为了兼容各个系统的make使用。从Makefile.am文件和Autoconf一起生成Makefile.in文件。
-#Libtool生产动态的共享库是非常困难的事情，每个系统都有自己的编译工具、编译标志、etc.。Libtool会处理所有的共享库请求。需要共享库的时候会自Libtool会自动地被使用，无需知晓其语法规则。
-#CMake是一个跨平台的安装(编译)工具,可以用简单的语句来描述所有平台的安装(编译过程)。他能够输出各种各样的makefile或者project文件,能测试编译器所支持的C++特性,类似UNIX下的automake。
+#Libtool生产动态的共享库是非常困难的事情，每个系统都有自己的编译工具、编译标志、etc.。Libtool会处理所有的共享库请求。\
+需要共享库的时候会自Libtool会自动地被使用，无需知晓其语法规则。
+#CMake是一个跨平台的安装(编译)工具,可以用简单的语句来描述所有平台的安装(编译过程)。\
+他能够输出各种各样的makefile或者project文件,能测试编译器所支持的C++特性,类似UNIX下的automake。
 
 
 
@@ -218,7 +227,8 @@ hash pandoc 2>/dev/null || {
 hash gnuplot 2>/dev/null || {
     brew install gnuplot
 }
-#Gnuplot是一个命令行的交互式绘图工具（command-driven interactive function plotting program）。用户通过输入命令，可以逐步设置或修改绘图环境，并以图形描述数据或函数，借由图形做更进一步的分析。
+#Gnuplot是一个命令行的交互式绘图工具（command-driven interactive function plotting program）。\
+用户通过输入命令，可以逐步设置或修改绘图环境，并以图形描述数据或函数，借由图形做更进一步的分析。
 
 
 hash dot 2>/dev/null || {
@@ -228,7 +238,8 @@ hash dot 2>/dev/null || {
 hash convert 2>/dev/null || {
     brew install imagemagick
 }
-#ImageMagick是一个免费的创建、编辑、合成图片的软件。它可以读取、转换、写入多种格式的图片。图片切割、颜色替换、各种效果的应用，图片的旋转、组合，文本，直线，多边形，椭圆，曲线，附加到图片伸展旋转。
+#ImageMagick是一个免费的创建、编辑、合成图片的软件。它可以读取、转换、写入多种格式的图片。\
+图片切割、颜色替换、各种效果的应用，图片的旋转、组合，文本，直线，多边形，椭圆，曲线，附加到图片伸展旋转。
 
 
 # weird dependancies by Cairo.pm 安装依赖项
