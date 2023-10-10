@@ -30,7 +30,8 @@ echo "====> Install softwares via apt-get 通过apt-get安装软件<===="
 echo "==> Disabling the release upgrader禁用发布升级程序"
 sudo sed -i.bak 's/^Prompt=.*$/Prompt=never/' /etc/update-manager/release-upgrades
 
-#对每行匹配到的  ^Prompt=.*$  替换为  Prompt=never,将''修改内容存放到/etc/update-manager/release-upgrades文件, 并且以/etc/update-manager/release-upgrades.bak文件将原文件备份
+#对每行匹配到的  ^Prompt=.*$  替换为  Prompt=never,将''修改内容存放到/etc/update-manager/release-upgrades文件, \
+并且以/etc/update-manager/release-upgrades.bak文件将原文件备份
 
 1. sudo 表示 “superuser do”。 它允许已验证的用户以其他用户的身份来运行命令。其他用户可以是普通用户或者超级用户。\
 然而，大部分时候我们用它来以提升的权限来运行命令。
