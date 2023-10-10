@@ -1,5 +1,5 @@
 
-## Bypass GFW blocking
+## 1. Bypass GFW blocking
 
 * Query the IP address on [ipaddress](https://www.ipaddress.com/) for
 
